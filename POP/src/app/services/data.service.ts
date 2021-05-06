@@ -1,9 +1,39 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+export interface alluserImportData {
+  userid: string;
+  usersid: string;
+  userpassword: string;
+
+  useremail: string;
+  userfirstname: string;
+  userlastname: string;
+  userbio: string;
+
+  usercontactno: string;
+}
+
+export interface userLoginData {
+  usersid: string;
+  userpassword: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() { }
+  private data = [];
+
+  private url = 'https://student.amphibistudio.sg/10196284K/SpaceSluggers_DDWA_Assg2_Codes/db/am2.php';
+  private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  get(usersid: string, userpassword:string){
+    return this.http.get<[userLoginData]>(this.loginUrl + '?usersid=' + usersid + '&userpassword=' + userpassword);
+  }
 }

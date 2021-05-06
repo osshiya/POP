@@ -11,8 +11,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class LoginPage implements OnInit {
 
-  sid: string;
-  password: string;
+  usersid: string;
+  userpassword: string;
 
   constructor(
     public navCtrl: NavController,
@@ -24,34 +24,34 @@ export class LoginPage implements OnInit {
   }
 
   form = new FormGroup({
-    sid: new FormControl('', [
+    usersid: new FormControl('', [
       Validators.required, Validators.minLength(10)
     ]),
-    password: new FormControl('', [
-      Validators.required, Validators.minLength(30)
+    userpassword: new FormControl('', [
+      Validators.required, Validators.minLength(2)
     ]),
   });
 
   loginSuccess(){
-
+    console.log('success placeholder');
   }
 
   connectToDB(){
     let userData = {
-      sid: this.sid,
-      password: this.password,
+      usersid: this.usersid,
+      userpassword: this.userpassword,
     }
 
-    this.dataService.get(userData.sid, userData.password).subscribe(response => {
+    this.dataService.get(userData.usersid, userData.userpassword).subscribe(response => {
         if(response != null){  
         //this.showToast('Logged in');
-          console.log('link:' + 'https://student.amphibistudio.sg/10196284K/SpaceSluggers_DDWA_Assg2_Codes/db/am2.php?userid=' + userData.sid + '&userpassword=' + userData.password)
+          console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/login.php?usersid=' + userData.usersid + '&userpassword=' + userData.userpassword)
           this.loginSuccess();
         }else{
           //this.showErrorToast('Wrong userid/ password');
+          console.log("Wrong SID/ Password");
         }
     })
   }
 
-}
 }

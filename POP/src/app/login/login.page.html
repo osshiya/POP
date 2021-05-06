@@ -16,12 +16,12 @@
       <form [formGroup]="form" (submit)="connectToDB()">
         <ion-item>
           <ion-label position="floating" placeholder="Enter SID">Student ID</ion-label>
-          <ion-input type="text" [(ngModel)]="sid" required formControlName="sid"></ion-input>
+          <ion-input type="text" [(ngModel)]="usersid" required formControlName="usersid"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating" placeholder="Enter Password">Password</ion-label>
-          <ion-input type="password" [(ngModel)]="password" required formControlName="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="userpassword" required formControlName="userpassword"></ion-input>
         </ion-item>
 
         <ion-button type="submit" class="loginButton" [disabled]=form.invalid>LOG IN</ion-button>

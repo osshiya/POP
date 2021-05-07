@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
     const currentpw = await storage.get('userpassword');
 
     // this.router.navigateByUrl('/home');
-    this.router.navigate(['/discover']);
+    this.router.navigate(['/home']);
 
     console.log('success placeholder: ');
     console.log('currentsid: ' + currentsid);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { DataService, userLoginData, userPortfolioData } from '../services/data.service';
+import { DataService, userLoginData, userPortfolioData } from '../../services/data.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -68,6 +68,7 @@ xmlhttp.onreadystatechange = function() {
                 `
     );
     }
+    // return;
   }
     console.log(myObj);
   }

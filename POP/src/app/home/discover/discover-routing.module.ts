@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: DiscoverPage
-  },
-  {
-    path: 'social',
-    loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)
   }
 ];
 

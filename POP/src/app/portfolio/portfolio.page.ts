@@ -29,7 +29,7 @@ data: userPortfolioData[];
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-obj = { "limit":1 };
+obj = { "limit":100};
 dbParam = JSON.stringify(obj);
 xmlhttp = new XMLHttpRequest();
 

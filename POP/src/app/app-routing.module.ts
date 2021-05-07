@@ -12,8 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'discover',
+    loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
+  },
+  {
+    path: 'social',
+    loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)
   },
   {
     path: 'portfolio',

@@ -40,6 +40,9 @@ export class LoginPage implements OnInit {
       userpassword: this.userpassword,
     }
 
+    //Convert all letters to uppercase
+    userData.usersid = this.usersid.toUpperCase();
+
     // this.dataService.setData('user', userData);
     const storage = new Storage();
     await storage.create();
@@ -52,7 +55,7 @@ export class LoginPage implements OnInit {
     const currentpw = await storage.get('userpassword');
 
     // this.router.navigateByUrl('/home');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/discover']);
 
     console.log('success placeholder: ');
     console.log('currentsid: ' + currentsid);

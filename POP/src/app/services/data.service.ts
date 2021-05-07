@@ -36,4 +36,14 @@ export class DataService {
   get(usersid: string, userpassword:string){
     return this.http.get<[userLoginData]>(this.loginUrl + '?usersid=' + usersid + '&userpassword=' + userpassword);
   }
+
+
+  // JSON API
+  // setData(id, data){
+  //   this.data[id] = data;
+  // }
+
+  // getData(id){
+  //   return this.data[id];
+  // }
 }

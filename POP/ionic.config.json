@@ -1,5 +1,7 @@
 {
   "name": "POP",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

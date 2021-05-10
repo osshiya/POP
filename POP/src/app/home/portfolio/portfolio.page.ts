@@ -58,7 +58,7 @@ xmlhttp.onreadystatechange = function() {
               </ion-card-subtitle>
               </ion-card-header>
               <ion-card-content id="each-title">
-              <div class="side-title" style="width:70%; float:left;" ><h3>${posts.userportfoliolink}</h3></div>
+              <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.userportfoliolink}"></h3></div>
               </ion-card-content>
               <ion-card-content id="each-msg">
               <div class="side-msg" style="width:70%;" ><h3>${posts.userportfoliodesc}</h3></div>

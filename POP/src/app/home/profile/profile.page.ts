@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { DataService, userLoginData, userPortfolioData } from '../../services/data.service';
+import { DataService, userLoginData, userPostData } from '../../services/data.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -9,7 +9,7 @@ import * as $ from 'jquery';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-data: userPortfolioData[];
+data: userPostData[];
 
   constructor(
     private dataService: DataService,
@@ -49,16 +49,16 @@ xmlhttp.onreadystatechange = function() {
       if(myObj[x].usersid == currentsid){
 
       var posts = {
-      userportfoliodate: myObj[x].userportfoliodate,
+      date: myObj[x].date,
       usersid: myObj[x].usersid,
-      userportfolioid: myObj[x].userportfolioid,
-      userportfoliolink: myObj[x].userportfoliolink,
-      userportfoliodesc: myObj[x].userportfoliodesc,
+      id: myObj[x].id,
+      url: myObj[x].url,
+      desc: myObj[x].postsdesc,
       }
       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
         $("#portfolio-gallery").prepend(
               `
-              <img src="${posts.userportfoliolink}" class="${posts.userportfolioid}" style="width:33%; float: left;">
+              <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
                 `
     );
 
@@ -68,15 +68,15 @@ xmlhttp.onreadystatechange = function() {
       <ion-card style="width:100%">
       <ion-card-header>
       <ion-card-subtitle>
-      <div class="side-date" style="width:70%; float:left;" ><h3>${posts.userportfoliodate}</h3></div>
-      <div class="side-icons" style="width:30%; float:left; text-align:center;"><h3>${posts.usersid} ${posts.userportfolioid}</h3></div>
+      <div class="side-date" style="width:70%; float:left;" ><h3>${posts.date}</h3></div>
+      <div class="side-icons" style="width:30%; float:left; text-align:center;"><h3>${posts.usersid} ${posts.id}</h3></div>
       </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content id="each-title">
-      <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.userportfoliolink}"></h3></div>
+      <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.url}"></h3></div>
       </ion-card-content>
       <ion-card-content id="each-msg">
-      <div class="side-msg" style="width:70%;" ><h3>${posts.userportfoliodesc}</h3></div>
+      <div class="side-msg" style="width:70%;" ><h3>${posts.desc}</h3></div>
       </ion-card-content> 
       </ion-card>
         </ion-item>
@@ -90,7 +90,7 @@ xmlhttp.onreadystatechange = function() {
     console.log(myObj);
   }
 };
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/getPortfolio.php?x=" + dbParam, true);
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
 xmlhttp.send();
 }
 

@@ -19,11 +19,13 @@ export interface userLoginData {
   userpassword: string;
 }
 
-export interface userPortfolioData {
-  userportfoliodesc: string;
-  userportfoliolink: string;
-  userportfoliodate: string;
-  userportfolioid: string;
+export interface userPostData {
+  postsdesc: string;
+  url: string;
+  date: string; 
+  type: string;
+  name: string;
+  id: string;
   usersid: string;
 }
 
@@ -36,7 +38,7 @@ export class DataService {
 
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
-  private portfolioUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/getPortfolio.php'
+  private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php'
 
   constructor(
     private http: HttpClient
@@ -46,8 +48,8 @@ export class DataService {
     return this.http.get<[userLoginData]>(this.loginUrl + '?usersid=' + usersid + '&userpassword=' + userpassword);
   }
 
-  getPortfolio(usersid: string){
-    return this.http.get<[userPortfolioData]>(this.portfolioUrl + '?usersid=' + usersid);
+  getPosts(usersid: string){
+    return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
 

@@ -40,7 +40,7 @@ export class CameraPage implements OnInit {
         source: CameraSource.Prompt,
         preserveAspectRatio: true,
         width: 500,
-        height: 600,
+        height: 500,
         direction: CameraDirection.Rear,
         correctOrientation: true,
         saveToGallery: true,
@@ -49,9 +49,9 @@ export class CameraPage implements OnInit {
         this.location.back();
         throw new Error(e);
       });
-    //this.image = image.dataUrl;
-    console.log(image.webPath);
-    return  this.image = image.webPath;
+    this.image = image.dataUrl;
+    // console.log(this.image);
+    // return  this.image = image.dataUrl;
     };
     
   

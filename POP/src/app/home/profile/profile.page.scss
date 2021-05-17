@@ -20,7 +20,21 @@
     display: block;
 }
 
+#fixed-profile{
+    display: flex;
+    width: 100vw;
+    // margin: 20px;
+    margin: 20px 0;
+    flex-direction: row;
+}
+
 #portfolio-gallery{
+    flex-direction: row;
+    margin: 0 5px 0 5px;
+    align-items: center;
+}
+
+#posts-gallery{
     flex-direction: row;
     margin: 0 5px 0 5px;
     align-items: center;

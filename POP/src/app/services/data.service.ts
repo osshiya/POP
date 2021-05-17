@@ -38,7 +38,8 @@ export class DataService {
 
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
-  private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php'
+  private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
+  private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
 
   constructor(
     private http: HttpClient
@@ -50,6 +51,10 @@ export class DataService {
 
   getPosts(usersid: string){
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
+  }
+
+  upload(services: userPostData){
+    return this.http.post(this.uploadUrl, services);
   }
 
 

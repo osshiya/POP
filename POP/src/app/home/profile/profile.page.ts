@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 import { DataService, userLoginData, userPostData } from '../../services/data.service';
+import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +15,7 @@ data: userPostData[];
 
   constructor(
     private dataService: DataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -21,20 +24,84 @@ data: userPostData[];
     // Optional parameters to pass to the swiper instance.
     // See http://idangero.us/swiper/api/ for valid options.
     slides.options = {
-      initialSlide: 1,
+      initialSlide: 0,
       speed: 400
     }
-
-    this.retrieveUserPosts();
-    this.retrieveUserPortfolio();
   }
 
-  async retrieveUserPosts(){
-    console.log("retrieve posts");
+  ionViewWillEnter(){
+    $("#fixed-profile").html("");
+    $("#posts-gallery").html("");
+    $("#portfolio-gallery").html("");    
+    
+    this.myData();
+  }
+
+  async myData(){
     const storage = new Storage();
     await storage.create();
     const currentsid = await storage.get('usersid');
 
+    this.retrieveUser(currentsid);
+    this.retrieveUserPosts(currentsid);
+    this.retrieveUserPortfolio(currentsid);
+  }
+
+  retrieveUser(currentsid){
+    console.log("retrieve users");
+    console.log("start of posting: " + currentsid);
+
+var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+obj = { "limit":100};
+dbParam = JSON.stringify(obj);
+xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    for (x in myObj) {
+      if(myObj[x].usersid == currentsid){
+
+      var user = {
+      usersid: myObj[x].usersid,
+      useremail: myObj[x].useremail,
+      username: myObj[x].username,
+      userpassword: myObj[x].userpassword,
+      userfirstname: myObj[x].userfirstname,
+      userlastname: myObj[x].userlastname,
+      userschool: myObj[x].userschool,
+      userdiploma: myObj[x].userdiploma,
+      useryear: myObj[x].useryear,
+      useravatarurl: myObj[x].useravatarurl,
+      userbio: myObj[x].userbio,
+      }
+
+    $("#fixed-profile").html(
+      `
+      <div class="leftProfile" style="width: 30%;">
+        <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+      </div>
+      <div class="rightProfile" style="width: 70%;">
+        <strong>${user.userfirstname} ${user.userlastname}</strong>
+        <p>@${user.username}</p>
+        <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
+      </div>
+        `
+);
+    }
+    // return;
+  }
+    console.log(myObj);
+  }
+};
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/login.php?x=" + dbParam, true);
+xmlhttp.send();
+}
+
+
+  retrieveUserPosts(currentsid){
+    console.log("retrieve posts");
     console.log("start of posting: " + currentsid);
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
@@ -59,22 +126,7 @@ xmlhttp.onreadystatechange = function() {
 
     $("#posts-gallery").prepend(
       `
-      <ion-item>
-      <ion-card style="width:100%">
-      <ion-card-header>
-      <ion-card-subtitle>
-      <div class="side-date" style="width:70%; float:left;" ><h3>${posts.date}</h3></div>
-      <div class="side-icons" style="width:30%; float:left; text-align:center;"><h3>${posts.usersid} ${posts.id}</h3></div>
-      </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content id="each-title">
-      <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.url}"></h3></div>
-      </ion-card-content>
-      <ion-card-content id="each-msg">
-      <div class="side-msg" style="width:70%;" ><h3>${posts.desc}</h3></div>
-      </ion-card-content> 
-      </ion-card>
-        </ion-item>
+      <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
         `
 );
     }
@@ -88,12 +140,8 @@ xmlhttp.send();
 }
 
 
-async retrieveUserPortfolio(){
+retrieveUserPortfolio(currentsid){
     console.log("retrieve portfolio");
-    const storage = new Storage();
-    await storage.create();
-    const currentsid = await storage.get('usersid');
-
     console.log("start of posting: " + currentsid);
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";

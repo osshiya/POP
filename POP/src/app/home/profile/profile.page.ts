@@ -25,11 +25,12 @@ data: userPostData[];
       speed: 400
     }
 
-    this.retrieveUser();
+    this.retrieveUserPosts();
+    this.retrieveUserPortfolio();
   }
 
-  async retrieveUser(){
-    console.log("retrieve user");
+  async retrieveUserPosts(){
+    console.log("retrieve posts");
     const storage = new Storage();
     await storage.create();
     const currentsid = await storage.get('usersid');
@@ -46,7 +47,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid){
+      if(myObj[x].usersid == currentsid && myObj[x].type == 'post'){
 
       var posts = {
       date: myObj[x].date,
@@ -55,12 +56,6 @@ xmlhttp.onreadystatechange = function() {
       url: myObj[x].url,
       desc: myObj[x].postsdesc,
       }
-      //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-        $("#portfolio-gallery").prepend(
-              `
-              <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
-                `
-    );
 
     $("#posts-gallery").prepend(
       `
@@ -82,8 +77,50 @@ xmlhttp.onreadystatechange = function() {
         </ion-item>
         `
 );
+    }
+    // return;
+  }
+    console.log(myObj);
+  }
+};
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
+xmlhttp.send();
+}
 
 
+async retrieveUserPortfolio(){
+    console.log("retrieve portfolio");
+    const storage = new Storage();
+    await storage.create();
+    const currentsid = await storage.get('usersid');
+
+    console.log("start of posting: " + currentsid);
+
+var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+obj = { "limit":100};
+dbParam = JSON.stringify(obj);
+xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    for (x in myObj) {
+      if(myObj[x].usersid == currentsid && myObj[x].type == 'portfolio'){
+
+      var posts = {
+      date: myObj[x].date,
+      usersid: myObj[x].usersid,
+      id: myObj[x].id,
+      url: myObj[x].url,
+      desc: myObj[x].postsdesc,
+      }
+      //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
+        $("#portfolio-gallery").prepend(
+              `
+              <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
+                `
+    );
     }
     // return;
   }
@@ -95,7 +132,6 @@ xmlhttp.send();
 }
 
 }
-
   //Subscribe
       // this.dataService.getPortfolio(currentsid).subscribe(response => {
       //   console.log(response);

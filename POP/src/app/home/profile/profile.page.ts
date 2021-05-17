@@ -16,6 +16,15 @@ data: userPortfolioData[];
   ) { }
 
   ngOnInit() {
+    var slides = document.querySelector('ion-slides');
+
+    // Optional parameters to pass to the swiper instance.
+    // See http://idangero.us/swiper/api/ for valid options.
+    slides.options = {
+      initialSlide: 1,
+      speed: 400
+    }
+
     this.retrieveUser();
   }
 
@@ -47,26 +56,34 @@ xmlhttp.onreadystatechange = function() {
       userportfoliodesc: myObj[x].userportfoliodesc,
       }
       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-        $("#gallery").prepend(
+        $("#portfolio-gallery").prepend(
               `
-              <ion-item>
-              <ion-card style="width:100%">
-              <ion-card-header>
-              <ion-card-subtitle>
-              <div class="side-date" style="width:70%; float:left;" ><h3>${posts.userportfoliodate}</h3></div>
-              <div class="side-icons" style="width:30%; float:left; text-align:center;"><h3>${posts.usersid} ${posts.userportfolioid}</h3></div>
-              </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content id="each-title">
-              <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.userportfoliolink}"></h3></div>
-              </ion-card-content>
-              <ion-card-content id="each-msg">
-              <div class="side-msg" style="width:70%;" ><h3>${posts.userportfoliodesc}</h3></div>
-              </ion-card-content> 
-              </ion-card>
-                </ion-item>
+              <img src="${posts.userportfoliolink}" class="${posts.userportfolioid}" style="width:33%; float: left;">
                 `
     );
+
+    $("#posts-gallery").prepend(
+      `
+      <ion-item>
+      <ion-card style="width:100%">
+      <ion-card-header>
+      <ion-card-subtitle>
+      <div class="side-date" style="width:70%; float:left;" ><h3>${posts.userportfoliodate}</h3></div>
+      <div class="side-icons" style="width:30%; float:left; text-align:center;"><h3>${posts.usersid} ${posts.userportfolioid}</h3></div>
+      </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content id="each-title">
+      <div class="side-title" style="width:70%; float:left;" ><h3><img src="${posts.userportfoliolink}"></h3></div>
+      </ion-card-content>
+      <ion-card-content id="each-msg">
+      <div class="side-msg" style="width:70%;" ><h3>${posts.userportfoliodesc}</h3></div>
+      </ion-card-content> 
+      </ion-card>
+        </ion-item>
+        `
+);
+
+
     }
     // return;
   }

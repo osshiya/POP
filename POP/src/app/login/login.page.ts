@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -19,10 +20,31 @@ export class LoginPage implements OnInit {
     public navCtrl: NavController,
     private router: Router,
     private dataService: DataService,
+    public toastCtrl:ToastController,
   ) { }
 
   ngOnInit() {
     //auto login
+  }
+
+  async showToast(data: any) {
+    const toast = await this.toastCtrl.create({
+      message: data,
+      duration: 2000,
+      position: 'top',
+      color: 'success'
+    });
+    toast.present();
+  }
+
+  async showErrorToast(data: any) {
+    const toast = await this.toastCtrl.create({
+      message: data,
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
   }
 
   form = new FormGroup({
@@ -71,10 +93,12 @@ export class LoginPage implements OnInit {
     this.dataService.get(userData.usersid, userData.userpassword).subscribe(response => {
         if(response != null){  
         //this.showToast('Logged in');
-          console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/login.php?usersid=' + userData.usersid + '&userpassword=' + userData.userpassword)
+          console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/login.php?usersid=' + userData.usersid + '&userpassword=' + userData.userpassword);
+          this.showToast('Login success');
           this.loginSuccess();
         }else{
           //this.showErrorToast('Wrong userid/ password');
+          this.showErrorToast('Wrong SID/ Password');
           console.log("Wrong SID/ Password");
         }
     })

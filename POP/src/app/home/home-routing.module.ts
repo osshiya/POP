@@ -14,16 +14,12 @@ const routes: Routes = [
         loadChildren: () => import('../home/discover/discover.module').then(m => m.DiscoverPageModule)
       },
       {
-        path: 'social',
-        loadChildren: () => import('../home/social/social.module').then(m => m.SocialPageModule)
-      },
-      {
         path: 'camera',
         loadChildren: () => import('../home/camera/camera.module').then(m => m.CameraPageModule)
       },
       {
-        path: 'portfolio',
-        loadChildren: () => import('../home/portfolio/portfolio.module').then(m => m.PortfolioPageModule)
+        path: 'profile',
+        loadChildren: () => import('../home/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',

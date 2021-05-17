@@ -1,3 +1,12 @@
+:host{
+  --ion-background-color: #FFFCF2;
+}
+
+ion-tab-bar.md.hydrated{
+--ion-tab-bar-background: #FFCF01;
+--ion-background-color: #FFCF01;
+}
+
 #container {
   text-align: center;
 
@@ -24,4 +33,16 @@
 
 #container a {
   text-decoration: none;
+}
+
+// ion-icon svg{
+//   outline: black;
+//   color: black;
+//   fill: black;
+//   stroke: black;
+//   // --ripple-color: var(--color-selected);
+// }
+
+ion-label{
+  color: white;
 }

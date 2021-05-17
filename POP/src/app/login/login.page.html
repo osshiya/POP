@@ -1,31 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <!-- <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar> -->
+  </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Login</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  
-    <div id="container">
-      <strong>Ready to login?</strong>
-      <form [formGroup]="form" (submit)="connectToDB()">
-        <ion-item>
-          <ion-label position="floating" placeholder="Enter SID">Student ID</ion-label>
-          <ion-input type="text" [(ngModel)]="usersid" required formControlName="usersid"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating" placeholder="Enter Password">Password</ion-label>
-          <ion-input type="password" [(ngModel)]="userpassword" required formControlName="userpassword"></ion-input>
-        </ion-item>
-
-        <ion-button type="submit" class="loginButton" [disabled]=form.invalid>LOG IN</ion-button>
-      </form>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+  <ion-col>
+    <div>
+      <img src = "../../assets/images/AppLogo_Transparent.png" class="app-logo">
     </div>
-  </ion-content>
+  </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+  <ion-col>
+  <div id="container">
+    <p class="ion-text-center">Ready to login?</p>
+    <form [formGroup]="form" (submit)="connectToDB()">
+      <ion-item>
+        <ion-label position="floating" placeholder="Enter SID">Student ID</ion-label>
+        <ion-input type="text" [(ngModel)]="usersid" required formControlName="usersid"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" placeholder="Enter Password">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="userpassword" required formControlName="userpassword"></ion-input>
+      </ion-item>
+
+      <ion-button type="submit" expand="block" class="loginButton" [disabled]=form.invalid>LOG IN</ion-button>
+    </form>
+  </div>
+  </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
 

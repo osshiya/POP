@@ -1,0 +1,34 @@
+:host{
+    --ion-background-color: #FFFCF2;
+}
+
+ion-button{
+    margin: 30px 10px 30px 10px;
+    height: 50px;
+}
+
+ion-grid{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100vh;
+position: relative;
+top: 10vh;
+}
+
+.app-logo{
+    align-items: center;
+}
+
+.app-logo img{
+    width: 50vw;
+}
+
+.ion-align-items-center{
+    align-items: center;
+}
+
+.ion-text-center{
+    text-align: center
+}

@@ -4,11 +4,11 @@ import { DataService, userLoginData, userPortfolioData } from '../../services/da
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.page.html',
-  styleUrls: ['./portfolio.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class PortfolioPage implements OnInit {
+export class ProfilePage implements OnInit {
 data: userPortfolioData[];
 
   constructor(

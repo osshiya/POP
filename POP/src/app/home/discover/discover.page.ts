@@ -17,6 +17,8 @@ export class DiscoverPage implements OnInit {
     private dataService: DataService,
   ) { }
 
+  enterid: string;
+
   ngOnInit() {
     var slides = document.querySelector('ion-slides');
 
@@ -68,16 +70,29 @@ xmlhttp.onreadystatechange = function() {
     $("#discover-gallery").prepend(
       `
       <ion-item style=" --ion-card-background: #FFFFFF;">
-      <ion-card style="width:100%">
-      <ion-card-header>
+      <ion-card style="width:100%; height:100vh;">
+      <ion-card-header style="width:100%; height:30px ;margin: 10px 0;">
       <ion-card-subtitle>
-      <div class="small-user" style="width:100%; float:left;"><p>${posts.usersid}</p></div>
+        <div class="small-user" style="width:100%; float:left;"><a href="/home/profiles/${posts.usersid}">${posts.usersid}</a></div>
       </ion-card-subtitle>
       </ion-card-header>
-      <ion-card-content id="post${posts.id}">
-      <div class="full-img" style="width:100%;"><img src="${posts.url}" style="width:100%;"></div>
-      <div class="small-msg" style="width:100%;" ><p>${posts.desc}</p></div>
-      <div class="small-date" style="float:right;"><p>${posts.date}</p></div>
+      <ion-card-content id="post${posts.id}"style="width:100%; height:100vh;">
+      
+        <img src="${posts.url}" style="width:100%; height:300px ;margin: 30px 0;">
+
+        <div class="bars" style="margin: 30px 0; width:100%; height: 20vh;">
+        <ion-button onclick="open()">Open</ion-button>
+        <div class="left-bar" style="width:75%; float: left"> 
+          <p>${posts.desc}</p>
+        </div>
+
+      <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
+        <button ion-button icon-only onclick="liked()"><ion-icon name="heart-outline" style="font-size:50px;"></button>
+        <ion-icon name="chatbox-outline" class="comment" style="font-size:50px;"></ion-icon>
+      </div>
+      </div>
+
+        <p style="float:right; display:block; margin: 30px 0">${posts.date}</p>
       </ion-card-content> 
       </ion-card>
         </ion-item>
@@ -90,6 +105,21 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
 xmlhttp.send();
-}
 
+  }
+
+  open(){
+    // let userData = {
+    //   userid: "sss",
+    // }
+
+    // this.dataService.setData("user", userData);
+    // this.router.navigateByUrl('home/profiles/user');
+    console.log("open");
+  }
+
+  liked(){
+    // console.log(($this).getAttribute('fill'));
+    console.log("liked");
+  }
 }

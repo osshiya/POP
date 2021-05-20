@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
-
+import { ResolverService } from '../resolver/resolver.service';
 
 
 const routes: Routes = [
@@ -25,7 +25,14 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home/discover',
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'profiles/:id',
+        resolve: {
+          user: ResolverService,
+        },
+        loadChildren: () => import('../home/profiles/profiles.module').then(m => m.ProfilesPageModule)
+      },
     ]
   },
 ];

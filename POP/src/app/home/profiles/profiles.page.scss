@@ -1,26 +1,8 @@
-.fixed-profile{
-    height: 20vh;
-}
-
-// ion-slides {
-//     // height: 120%;
-// }
-
-// .swiper-pagination{
-//     display: none;
-// }
-
-// .slides-md{
-    // --bullet-background: none;
-    // --bullet-background-active: none;
-    // --ion-background-color: #ebe7db;
-// }
-
 .swiper-slide {
     display: block;
 }
 
-#fixed-profile{
+#fixed-profiles{
     display: flex;
     width: 100vw;
     // margin: 20px;
@@ -28,13 +10,13 @@
     flex-direction: row;
 }
 
-#portfolio-gallery{
+#portfolio-profiles{
     flex-direction: row;
     // margin: 0 5px 0 5px;
     // align-items: center;
 }
 
-#posts-gallery{
+#posts-profiles{
     flex-direction: row;
     // margin: 0 5px 0 5px;
     // align-items: center;

@@ -59,11 +59,11 @@ export class DataService {
 
 
   // JSON API
-  // setData(id, data){
-  //   this.data[id] = data;
-  // }
+  setData(id, data){
+    this.data[id] = data;
+  }
 
-  // getData(id){
-  //   return this.data[id];
-  // }
+  getData(id){
+    return this.data[id];
+  }
 }

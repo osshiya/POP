@@ -2,20 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService, userLoginData, userPostData } from '../../services/data.service';
 import { Storage } from '@ionic/storage';
+import { Location } from "@angular/common";
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-profiles',
+  templateUrl: './profiles.page.html',
+  styleUrls: ['./profiles.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfilesPage implements OnInit {
+  // userData: any;
+  // userIdentity: string;
 
   constructor(
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
+    public toastCtrl:ToastController,
   ) { }
 
   ngOnInit() {
@@ -27,30 +32,59 @@ export class ProfilePage implements OnInit {
       initialSlide: 0,
       speed: 400
     };
-  
+  }
+
+  async showErrorToast(data: any) {
+    const toast = await this.toastCtrl.create({
+      message: data,
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
   }
 
   ionViewWillEnter(){
-    $("#fixed-profile").html("");
-    $("#posts-gallery").html("");
-    $("#portfolio-gallery").html("");    
+    $("#fixed-profiles").html("");
+    $("#posts-profiles").html("");
+    $("#portfolio-profiles").html("");    
     
-    this.myData();
+    // if (this.route.snapshot.data['user']){
+    //   this.userData = this.route.snapshot.data['user'];
+
+    //   this.userIdentity= this.userData.userid;
+    //   console.log("userIdentity: " + this.userIdentity);
+
+    //   console.log(this.userIdentity);
+    // }else{
+    //   console.log("???");
+    //   this.showErrorToast('Error');
+    //   this.location.back();
+    // }
+    // console.log(this.router.url);
+    var str = this.router.url;
+    var str2 = str.split("/").pop();
+    console.log(str2);
+    
+    // this.myData(str2);
+    this.retrieveUser(str2);
+    this.retrieveUserPosts(str2);
+    this.retrieveUserPortfolio(str2);
   }
 
-  async myData(){
-    const storage = new Storage();
-    await storage.create();
-    const currentsid = await storage.get('usersid');
+  // async myData(str2){
+  //   const storage = new Storage();
+  //   await storage.create();
+  //   const currentsid = await storage.get('usersid');
 
-    this.retrieveUser(currentsid);
-    this.retrieveUserPosts(currentsid);
-    this.retrieveUserPortfolio(currentsid);
-  }
+  //   // if (str2 == currentsid){
+  //   //   this.router.navigateByUrl('home/profile');
+  //   // } 
+  // }
 
-  retrieveUser(currentsid){
+  retrieveUser(str2){
     console.log("retrieve users");
-    console.log("start of posting: " + currentsid);
+    console.log("start of posting: " + str2);
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
@@ -62,7 +96,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid){
+      if(myObj[x].usersid == str2){
 
       var user = {
       usersid: myObj[x].usersid,
@@ -78,12 +112,12 @@ xmlhttp.onreadystatechange = function() {
       userbio: myObj[x].userbio,
       }
 
-    $("#fixed-profile").html(
+    $("#fixed-profiles").html(
       `
-      <div class="leftProfile" style="width: 45%;">
+      <div class="leftProfiles" style="width: 45%;">
         <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       </div>
-      <div class="rightProfile" style="width: 55%; margin 0 20px; ">
+      <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
         <strong>${user.userfirstname} ${user.userlastname}</strong>
         <p>@${user.username}</p>
         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
@@ -101,9 +135,9 @@ xmlhttp.send();
 }
 
 
-  retrieveUserPosts(currentsid){
+  retrieveUserPosts(str2){
     console.log("retrieve posts");
-    console.log("start of posting: " + currentsid);
+    console.log("start of posting: " + str2);
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
@@ -115,7 +149,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'post'){
+      if(myObj[x].usersid == str2 && myObj[x].posttype == 'post'){
 
       var posts = {
       date: myObj[x].postdate,
@@ -125,7 +159,7 @@ xmlhttp.onreadystatechange = function() {
       desc: myObj[x].postdesc,
       }
 
-    $("#posts-gallery").prepend(
+    $("#posts-profiles").prepend(
       `
       <div class="posts" style="width:100%; height:100%; float: left;">
       <img src="${posts.url}" class="${posts.id}" style="width:100%;">
@@ -143,9 +177,9 @@ xmlhttp.send();
 }
 
 
-retrieveUserPortfolio(currentsid){
+retrieveUserPortfolio(str2){
     console.log("retrieve portfolio");
-    console.log("start of posting: " + currentsid);
+    console.log("start of posting: " + str2);
 
 var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
@@ -157,7 +191,7 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'portfolio'){
+      if(myObj[x].usersid == str2 && myObj[x].posttype == 'portfolio'){
 
       var posts = {
       date: myObj[x].postdate,
@@ -167,10 +201,10 @@ xmlhttp.onreadystatechange = function() {
       desc: myObj[x].postdesc,
       }
       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-        $("#portfolio-gallery").prepend(
+        $("#portfolio-profiles").prepend(
               `
               <div class="posts" style="width:100%; height:100%; float: left;">
-              <img src="${posts.url}" class="${posts.id}" style="width: 100%;">
+              <img src="${posts.url}" class="${posts.id}" style="width:100%;">
               </div>
                 `
     );
@@ -185,10 +219,3 @@ xmlhttp.send();
 }
 
 }
-  //Subscribe
-      // this.dataService.getPortfolio(currentsid).subscribe(response => {
-      //   console.log(response);
-          // if(response != null){  
-          //   var res = response;
-          //   this.data = response;
-

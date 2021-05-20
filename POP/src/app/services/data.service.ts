@@ -20,12 +20,12 @@ export interface userLoginData {
 }
 
 export interface userPostData {
-  postsdesc: string;
-  url: string;
-  date: string; 
-  type: string;
-  name: string;
-  id: string;
+  postdesc: string;
+  posturl: string;
+  postdate: string; 
+  posttype: string;
+  postname: string;
+  postid: string;
   usersid: string;
 }
 

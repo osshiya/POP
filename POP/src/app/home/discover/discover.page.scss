@@ -5,3 +5,10 @@
 .swiper-slide {
     display: block;
 }
+
+ion-card-content{
+    display: none !important;
+    --ion-card-background: #000000;
+    --ion-item-background: #000000;
+    --ion-background-color: #000000;
+}

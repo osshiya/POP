@@ -79,10 +79,10 @@ xmlhttp.onreadystatechange = function() {
 
     $("#fixed-profile").html(
       `
-      <div class="leftProfile" style="width: 30%;">
+      <div class="leftProfile" style="width: 45%;">
         <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       </div>
-      <div class="rightProfile" style="width: 70%;">
+      <div class="rightProfile" style="width: 55%; margin 0 20px; ">
         <strong>${user.userfirstname} ${user.userlastname}</strong>
         <p>@${user.username}</p>
         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
@@ -114,19 +114,21 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].type == 'post'){
+      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'post'){
 
       var posts = {
-      date: myObj[x].date,
+      date: myObj[x].postdate,
       usersid: myObj[x].usersid,
-      id: myObj[x].id,
-      url: myObj[x].url,
-      desc: myObj[x].postsdesc,
+      id: myObj[x].postid,
+      url: myObj[x].posturl,
+      desc: myObj[x].postdesc,
       }
 
     $("#posts-gallery").prepend(
       `
-      <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
+      <div class="posts" style="width:33%; height:33%; float: left;">
+      <img src="${posts.url}" class="${posts.id}" style="width:100%;">
+      </div>
         `
 );
     }
@@ -154,19 +156,21 @@ xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].type == 'portfolio'){
+      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'portfolio'){
 
       var posts = {
-      date: myObj[x].date,
+      date: myObj[x].postdate,
       usersid: myObj[x].usersid,
-      id: myObj[x].id,
-      url: myObj[x].url,
-      desc: myObj[x].postsdesc,
+      id: myObj[x].postid,
+      url: myObj[x].posturl,
+      desc: myObj[x].postdesc,
       }
       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
         $("#portfolio-gallery").prepend(
               `
-              <img src="${posts.url}" class="${posts.id}" style="width:33%; float: left;">
+              <div class="posts" style="width:33%; height:33%; float: left;">
+              <img src="${posts.url}" class="${posts.id}" style="width: 100%;">
+              </div>
                 `
     );
     }

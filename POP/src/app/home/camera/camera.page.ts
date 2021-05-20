@@ -6,6 +6,7 @@ import { DataService } from 'src/app/services/data.service';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
+import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 const { Camera }= Plugins;
 
@@ -16,7 +17,7 @@ const { Camera }= Plugins;
 })
 export class CameraPage implements OnInit {
 
-  image: string;
+  base64Image: string;
   captureProgress = 0;
 
   constructor(
@@ -54,6 +55,7 @@ export class CameraPage implements OnInit {
     toast.present();
   }
 
+  //actionsheet pop out for actions
 
   //async captureImage(){}
 
@@ -64,8 +66,8 @@ export class CameraPage implements OnInit {
         resultType: CameraResultType.DataUrl,
         source: CameraSource.Prompt,
         preserveAspectRatio: true,
-        width: 500,
-        height: 500,
+        width: 150,
+        height: 150,
         direction: CameraDirection.Rear,
         correctOrientation: true,
         saveToGallery: true,
@@ -74,8 +76,9 @@ export class CameraPage implements OnInit {
         this.location.back();
         throw new Error(e);
       });
-    this.image = image.dataUrl;
-    this.postToDB();
+    this.base64Image = image.dataUrl;
+    console.log (this.base64Image);
+    // this.postToDB(f);
     // console.log(this.image);
     // return  this.image = image.dataUrl;
     };
@@ -85,24 +88,27 @@ export class CameraPage implements OnInit {
       await storage.create();
       const currentsid = await storage.get('usersid');
 
-      console.log(this.image);
+      // const result = form.value;
+      // console.log('form: ' + form.value);
 
       let userPostData = {
-        postsdesc: "",
-        url: "",
-        date: "", 
-        type: "",
-        name: this.image,
-        id: "",
+        postdate: '',
+        postid: '',
+        posturl: '',
+        posttype: '',
+        postdesc: '',
+        postname: this.base64Image,
         usersid: currentsid,
       }
 
-      const result = userPostData;
+      const data = userPostData;
+      console.log('userPostData: ' + data);
+      $("#pRes").html("online");
+
     //   this.dataService.getCheck(this.userid).subscribe(response => {
     //     if(response != null){  
-    this.dataService.upload(result).subscribe(response => {
-    if(response != null){  
-      console.log(response);        
+    this.dataService.upload(data).subscribe(response => {
+    if(response != null){
       this.showToast('Posted successfully');
       this.router.navigate(['/home']);
     }else{

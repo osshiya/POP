@@ -57,16 +57,17 @@ xmlhttp.onreadystatechange = function() {
     myObj = JSON.parse(this.responseText);
     for (x in myObj) {
       var posts = {
-      date: myObj[x].date,
+      date: myObj[x].postdate,
       usersid: myObj[x].usersid,
-      id: myObj[x].id,
-      url: myObj[x].url,
-      desc: myObj[x].postsdesc,
+      id: myObj[x].postid,
+      url: myObj[x].posturl,
+      desc: myObj[x].postdesc,
       }
 
+       //change to div for ion-card-content for full scale img
     $("#discover-gallery").prepend(
       `
-      <ion-item>
+      <ion-item style=" --ion-card-background: #FFFFFF;">
       <ion-card style="width:100%">
       <ion-card-header>
       <ion-card-subtitle>
@@ -74,7 +75,7 @@ xmlhttp.onreadystatechange = function() {
       </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content id="post${posts.id}">
-      <div class="full-img" style="width:100%;"><img src="${posts.url}"></div>
+      <div class="full-img" style="width:100%;"><img src="${posts.url}" style="width:100%;"></div>
       <div class="small-msg" style="width:100%;" ><p>${posts.desc}</p></div>
       <div class="small-date" style="float:right;"><p>${posts.date}</p></div>
       </ion-card-content> 

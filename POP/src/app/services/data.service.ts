@@ -28,6 +28,7 @@ export interface userPostData {
   postid: string;
   usersid: string;
   likes: string;
+  comments: string;
   likedid: string;
   likedpostid: string;
   likedusersid: string; 
@@ -43,13 +44,20 @@ export interface postPostData {
   postid: string;
   usersid: string;
   likes: string;
+  comments: string;
 }
 
 export interface likePostData {
-  likesid: string;
-  postid: string;
-  usersid: string; 
+  likedid: string;
+  likedpostid: string;
+  likedusersid: string; 
   liked: string;
+}
+export interface commentPostData {
+  commentid: string;
+  commentpostid: string;
+  commentusersid: string; 
+  commentfield: string;
 }
 
 @Injectable({
@@ -64,6 +72,7 @@ export class DataService {
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
+  private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
 
   constructor(
     private http: HttpClient
@@ -85,12 +94,20 @@ export class DataService {
     return this.http.post(this.uploadUrl, services);
   }
   
-  checkLikes(usersid: string){
-    return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
+  getLikes(usersid: string){
+    return this.http.get<[likePostData]>(this.likesUrl + '?usersid=' + usersid);
   }
 
   likes(services: likePostData){
     return this.http.post(this.likesUrl, services);
+  }
+
+  getComments(services: commentPostData){
+    return this.http.post(this.likesUrl, services);
+  }
+
+  comments(postid: string){
+    return this.http.get<[commentPostData]>(this.commentsUrl + '?postid=' + postid)
   }
 
 

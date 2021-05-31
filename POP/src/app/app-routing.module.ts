@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'comment',
+    loadChildren: () => import('./modal/comment/comment.module').then( m => m.CommentPageModule)
+  },
   // {
   //   path: 'social',
   //   loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)

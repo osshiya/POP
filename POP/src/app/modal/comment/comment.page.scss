@@ -1,0 +1,37 @@
+:host{
+    --ion-background-color: #FFFCF2;
+}
+
+.like{
+    fill: red;
+    color: red;
+    text-align: center;
+}
+
+.unlike{
+    fill: red;
+    color: red;
+}
+
+.hide{
+    display: none;
+}
+
+#like-counter{
+    text-align: center;
+    margin-top: 0;
+}
+
+#comment-counter{
+    text-align: center;
+    margin-top: 0;
+}
+
+ion-input{
+    --background: white;
+}
+
+.send-button{
+    --background: transparent;
+    --color: black;
+}

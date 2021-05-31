@@ -100,6 +100,7 @@ export class CameraPage implements OnInit {
         postname: this.base64Image,
         usersid: currentsid,
         likes: '',
+        comments: '',
       }
 
       const data = userPostData;

@@ -4,6 +4,8 @@ import { DataService } from 'src/app/services/data.service';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { CommentPage } from '../../modal/comment/comment.page';
 
 @Component({
   selector: 'app-discover',
@@ -16,7 +18,8 @@ export class DiscoverPage implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
-    public toastCtrl: ToastController 
+    public toastCtrl: ToastController ,
+    private modalController: ModalController,
   ) { }
 
   // public likeShow = false;
@@ -27,7 +30,8 @@ export class DiscoverPage implements OnInit {
 
   currentsid: any;
 
-  likedposts: any = [];
+  likesdata: any = [];
+  commentdatas: any = [];
 
   isLiked: boolean;
 
@@ -78,6 +82,21 @@ export class DiscoverPage implements OnInit {
     });
     toast.present();
   }
+
+  async presentModal(postid) {
+    const modal = await this.modalController.create({
+      component: CommentPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'postid': postid,
+        'currentsid': this.currentsid,
+      },
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
+
 //   retrieveDiscover(){
 //     console.log("retrieve Discover");
 
@@ -162,7 +181,7 @@ export class DiscoverPage implements OnInit {
   retrieveSocial(){
     // console.log("retrieve Social");
 
-    this.dataService.getAll().subscribe(response => {
+    this.dataService.getPosts(this.currentsid).subscribe(response => {
       if(response != null){  
       //this.showToast('Logged in');
         // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
@@ -199,9 +218,9 @@ export class DiscoverPage implements OnInit {
   like(discoverpost, currentsid){
 
       let likePostData = {
-        likesid: '',
-        postid: discoverpost.postid,
-        usersid: currentsid,
+        likedid: '',
+        likedpostid: discoverpost.postid,
+        likedusersid: currentsid,
         liked: '',
       }
 
@@ -240,17 +259,6 @@ export class DiscoverPage implements OnInit {
 			// 		thispost.siblings().removeClass('hide');
 			// 	}
 			// });
-  }
-
-
-  comment(){
-    // let userData = {
-    //   userid: "sss",
-    // }
-
-    // this.dataService.setData("user", userData);
-    // this.router.navigateByUrl('home/profiles/user');
-    console.log("comment");
   }
 
 

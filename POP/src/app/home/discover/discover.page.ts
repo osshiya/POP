@@ -91,7 +91,6 @@ export class DiscoverPage implements OnInit {
         'postid': postid,
         'currentsid': this.currentsid,
       },
-      swipeToClose: true,
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
     return await modal.present();

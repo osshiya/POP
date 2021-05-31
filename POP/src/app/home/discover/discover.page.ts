@@ -33,7 +33,8 @@ export class DiscoverPage implements OnInit {
   likesdata: any = [];
   commentdatas: any = [];
 
-  isLiked: boolean;
+  isLiking: boolean ;
+
 
   ngOnInit() {
     var slides = document.querySelector('ion-slides');
@@ -50,6 +51,10 @@ export class DiscoverPage implements OnInit {
 
   ionViewWillEnter(){
     // $("#discover-gallery").html("");
+    $("#discover-gallery").html("");
+    $("#social-gallery").html("");   
+    this.retrieveDiscover();
+    this.retrieveSocial();
   }
 
   async myData(){
@@ -94,6 +99,19 @@ export class DiscoverPage implements OnInit {
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
     return await modal.present();
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    $("#discover-gallery").html("");
+    $("#social-gallery").html("");   
+    this.retrieveDiscover();
+    this.retrieveSocial();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
 //   retrieveDiscover(){
@@ -214,13 +232,13 @@ export class DiscoverPage implements OnInit {
   // })
   // }
 
-  like(discoverpost, currentsid){
+  like(postid, currentsid){
 
       let likePostData = {
         likedid: '',
-        likedpostid: discoverpost.postid,
+        likedpostid: postid,
         likedusersid: currentsid,
-        liked: '',
+        liked: '1',
       }
 
       const data = likePostData;
@@ -230,10 +248,14 @@ export class DiscoverPage implements OnInit {
     //     if(response != null){  
     this.dataService.likes(data).subscribe(response => {
     if(response != null){
+
+      this.isLiking = true;
+      const res = document.getElementById("like-counter").textContent;
+      $('span#like-counter').text(JSON.parse(res) + 1);
       this.showToast('Liked Post');
-      $('span.like-counter').text(response + " likes");
+      // $('span.like-counter').text(response + " likes");
       // document.getElementById('like21');
-      $(".like21").addClass("hide");
+      // $(".like21").addClass("hide");
       // $('.unlike').removeClass('hide');
     }else{
       this.showErrorToast('Error');
@@ -259,6 +281,36 @@ export class DiscoverPage implements OnInit {
 			// 	}
 			// });
   }
+
+  unlike(postid, currentsid){
+    let likePostData = {
+      likedid: '',
+      likedpostid: postid,
+      likedusersid: currentsid,
+      liked: '0',
+    }
+
+    const data = likePostData;
+    console.log('likePostData: ' + JSON.stringify(data));
+
+  //   this.dataService.getCheck(this.userid).subscribe(response => {
+  //     if(response != null){  
+  this.dataService.likes(data).subscribe(response => {
+  if(response != null){
+
+    this.isLiking = false;
+    const res = document.getElementById("like-counter").textContent;
+    $('span#like-counter').text(JSON.parse(res) - 1);
+    this.showToast('Unliked Post');
+    // $('span.like-counter').text(response + " likes");
+    // document.getElementById('like21');
+    // $(".like21").addClass("hide");
+    // $('.unlike').removeClass('hide');
+  }else{
+    this.showErrorToast('Error');
+  }
+});
+}
 
 
 }

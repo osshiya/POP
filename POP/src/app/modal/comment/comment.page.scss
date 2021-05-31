@@ -1,5 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
 :host{
-    --ion-background-color: #FFFCF2;
+  --ion-background-color: #FFFCF2;
+  --ion-font-family: 'Open Sans', sans-serif;
+}
+
+strong{
+font-weight: 400;
+}
+
+p, span{
+font-weight: 300;
+}
+
+ion-toolbar{
+  font-weight: 600;
 }
 
 .like{
@@ -51,4 +66,11 @@ ion-button{
 
 ion-toolbar{
     text-align: center;
+}
+
+ion-header{
+    --ion-background-color: #FFCF01;
+    --color: white;
+    --ion-toolbar-color: white;
+    --ion-text-color: white;
 }

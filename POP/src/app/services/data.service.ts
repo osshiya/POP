@@ -70,6 +70,7 @@ export class DataService {
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
+  private profilepostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
@@ -90,6 +91,10 @@ export class DataService {
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
+  getProfilePosts(usersid: string){
+    return this.http.get<[userPostData]>(this.profilepostsUrl + '?usersid=' + usersid);
+  }
+
   upload(services: postPostData){
     return this.http.post(this.uploadUrl, services);
   }
@@ -102,11 +107,11 @@ export class DataService {
     return this.http.post(this.likesUrl, services);
   }
 
-  getComments(services: commentPostData){
-    return this.http.post(this.likesUrl, services);
+  comments(services: commentPostData){
+    return this.http.post(this.commentsUrl, services);
   }
 
-  comments(postid: string){
+  getComments(postid: string){
     return this.http.get<[commentPostData]>(this.commentsUrl + '?postid=' + postid)
   }
 

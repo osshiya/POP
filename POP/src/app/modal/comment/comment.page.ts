@@ -25,7 +25,7 @@ export class CommentPage implements OnInit {
 
   ngOnInit() {
     this.retrieveDiscover(this.currentsid);
-    this.comment(this.postid);
+    this.retrievecomment(this.postid);
   }
 
   commentdatas: any = [];
@@ -55,7 +55,7 @@ export class CommentPage implements OnInit {
   })
 }
 
-  comment(postid){
+retrievecomment(postid){
     // let userData = {
     //   userid: "sss",
     // }
@@ -66,7 +66,7 @@ export class CommentPage implements OnInit {
     // console.log(postid);
     // console.log($this);
     // GET Comments
-    this.dataService.comments(postid).subscribe(response => {
+    this.dataService.getComments(postid).subscribe(response => {
       if(response != null){
         this.commentdatas = response;
         console.log(postid + ':' + this.commentdatas);
@@ -79,4 +79,41 @@ export class CommentPage implements OnInit {
 
   })
 }
+
+  comment(postid, txtValue){
+    let commentPostData = {
+      commentid: '',
+      commentpostid: postid,
+      commentusersid: this.currentsid,
+      commentfield: txtValue,
+    }
+
+    const data = commentPostData;
+    console.log('commentPostData: ' + JSON.stringify(data));
+
+  //   this.dataService.getCheck(this.userid).subscribe(response => {
+  //     if(response != null){  
+  this.dataService.comments(data).subscribe(response => {
+  if(response != null){
+    const res = document.getElementById("comment-counter").textContent;
+    $('span#comment-counter').text(JSON.parse(res) + 1);
+    $('#comments-section').prepend(
+      `    
+      <ion-item>
+      <ion-label>
+        <strong>${commentPostData.commentusersid}</strong>
+        <p>${commentPostData.commentfield}</p>
+      </ion-label>
+    </ion-item>
+    `
+    )
+    // $('span.like-counter').text(response + " likes");
+    // document.getElementById('like21');
+    // $(".like21").addClass("hide");
+    // $('.unlike').removeClass('hide');
+  }
+
+});
+}
+
 }

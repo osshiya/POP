@@ -138,7 +138,7 @@ xmlhttp.onreadystatechange = function() {
     console.log(myObj);
   }
 };
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
 xmlhttp.send();
 }
 
@@ -180,7 +180,7 @@ xmlhttp.onreadystatechange = function() {
     console.log(myObj);
   }
 };
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
 xmlhttp.send();
 }
 

@@ -1,5 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
 :host{
   --ion-background-color: #FFFCF2;
+  --ion-font-family: 'Open Sans', sans-serif;
+}
+
+strong{
+  --font-weight: 400;
+}
+
+p, span{
+  --font-weight: 300;
+}
+
+ion-toolbar{
+  --font-weight: 600;
 }
 
 ion-tab-bar.md.hydrated{
@@ -36,11 +51,12 @@ ion-tab-bar.md.hydrated{
 }
 
 // ion-icon svg{
-//   outline: black;
-//   color: black;
-//   fill: black;
-//   stroke: black;
-//   // --ripple-color: var(--color-selected);
+//   --outline: black;
+//   --color: black;
+//   --fill: black;
+//   --stroke: black;
+//   --color-selected: black;
+//   --ripple-color: var(--color-selected);
 // }
 
 ion-label{

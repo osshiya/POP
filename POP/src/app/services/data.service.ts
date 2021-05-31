@@ -27,6 +27,29 @@ export interface userPostData {
   postname: string;
   postid: string;
   usersid: string;
+  likes: string;
+  likedid: string;
+  likedpostid: string;
+  likedusersid: string; 
+  liked: string;
+}
+
+export interface postPostData {
+  postdesc: string;
+  posturl: string;
+  postdate: string; 
+  posttype: string;
+  postname: string;
+  postid: string;
+  usersid: string;
+  likes: string;
+}
+
+export interface likePostData {
+  likesid: string;
+  postid: string;
+  usersid: string; 
+  liked: string;
 }
 
 @Injectable({
@@ -40,10 +63,15 @@ export class DataService {
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
+  private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
 
   constructor(
     private http: HttpClient
   ) { }
+
+  getAll(){
+    return this.http.get<[userPostData]>(this.postsUrl);
+  }
 
   get(usersid: string, userpassword:string){
     return this.http.get<[userLoginData]>(this.loginUrl + '?usersid=' + usersid + '&userpassword=' + userpassword);
@@ -53,8 +81,16 @@ export class DataService {
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
-  upload(services: userPostData){
+  upload(services: postPostData){
     return this.http.post(this.uploadUrl, services);
+  }
+  
+  checkLikes(usersid: string){
+    return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
+  }
+
+  likes(services: likePostData){
+    return this.http.post(this.likesUrl, services);
   }
 
 

@@ -13,3 +13,27 @@ ion-card-content{
     --ion-background-color: #000000;
 }
 
+.like{
+    fill: red;
+    color: red;
+    text-align: center;
+}
+
+.unlike{
+    fill: red;
+    color: red;
+}
+
+.hide{
+    display: none;
+}
+
+#like-counter{
+    text-align: center;
+    margin-top: 0;
+}
+
+#comment-counter{
+    text-align: center;
+    margin-top: 0;
+}

@@ -35,3 +35,20 @@ ion-input{
     --background: transparent;
     --color: black;
 }
+
+.titletxt{
+    margin: 0;
+}
+
+// ion-title{
+//     text-align: center;
+//     display: inline-block;
+// }
+
+ion-button{
+    --border-style: none;
+}
+
+ion-toolbar{
+    text-align: center;
+}

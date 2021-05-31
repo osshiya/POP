@@ -1,10 +1,19 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="outline" (click)="dismiss()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Back
+      </ion-button>
+      </ion-buttons>
     <ion-title>Comments</ion-title>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content>
+  <!-- <ion-button (click)="dismiss()" fill="clear"><ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon></ion-button>
+  <h4>Comments</h4> -->
+
   <div id="discover-gallery" *ngFor="let discoverpost of discoverposts">
     <ng-container *ngIf = "discoverpost.postid == postid">
     <ion-item style=" --ion-card-background: #FFFFFF;">

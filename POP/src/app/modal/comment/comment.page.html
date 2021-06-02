@@ -33,8 +33,8 @@
         </div>
 
       <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
-         <ion-button (click)="like()" class="like like{{ discoverpost.postid }}" [ngClass]="{'hide' : discoverpost.likedusersid == currentsid }" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
-        <ion-button (click)="unlike()" class="unlike unlike{{ discoverpost.postid }}" [ngClass]="{'hide' : discoverpost.likedusersid !== currentsid }" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
+        <ion-button (click)="like(discoverpost.postid, currentsid, discoverpost)"name="like" class="like like{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
+        <ion-button (click)="unlike(discoverpost.postid, currentsid, discoverpost)" name="unlike" class="unlike unlike{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid == currentsid" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
         <span id="like-counter">{{ discoverpost.likes }}</span>
 
         <ion-button (click)="dismiss()" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon></ion-button>

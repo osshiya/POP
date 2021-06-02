@@ -28,7 +28,7 @@ export interface userPostData {
   postid: string;
   usersid: string;
   likes: number;
-  comments: string;
+  comments: number;
   likedid: string;
   likedpostid: string;
   likedusersid: string; 
@@ -44,7 +44,7 @@ export interface postPostData {
   postid: string;
   usersid: string;
   likes: number;
-  comments: string;
+  comments: number;
 }
 
 export interface likePostData {

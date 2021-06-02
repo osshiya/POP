@@ -56,16 +56,15 @@
             <!-- <ion-button (click)="like(discoverpost)" class="like like{{ discoverpost.postid }}" *ngIf="selectedIndex === undefined || selectedIndex == i" [ngClass]="{show: selectedIndex == likeShow, hide: selectedIndex == !likeShow}" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
             <ion-button (click)="unlike()" class="unlike unlike{{ discoverpost.postid }}" *ngIf="selectedIndex === undefined || selectedIndex == i" [ngClass]="{show: selectedIndex == unlikeShow, hide: selectedIndex == !unlikeShow}" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button> -->
             <!-- <ion-button (click)="like(discoverpost)" class="like like{{ discoverpost.postid }}" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button> -->
-             <ion-button (click)="like(discoverpost.postid, currentsid, discoverpost)"name="like" class="like like{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
+            <ion-button (click)="like(discoverpost.postid, currentsid, discoverpost)"name="like" class="like like{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
             <ion-button (click)="unlike(discoverpost.postid, currentsid, discoverpost)" name="unlike" class="unlike unlike{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid == currentsid" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
             <span id="like-counter">{{ discoverpost.likes }}</span>
-            <p>??: {{ i }}</p>
             <!-- <span id="like-stat">{{ discoverpost.liked }} by {{ discoverpost.likedusersid }} : {{ currentsid }}</span> -->
 
           <!-- <input type="button" value="Like" class="like" ng-style="discoverpost.type == 1 && {'color': '#ffa449'}" ng-click='setResponse(post.id,1,$index)' />&nbsp;(<span >{{ post.likes}}</span>)&nbsp;
           <input type="button" value="Unlike" class="unlike" ng-style="post.type == 0 && {'color': '#ffa449'}" ng-click='setResponse(post.id,0,$index)' />&nbsp;(<span >{{ post.unlikes }}</span>)
            -->
-            <ion-button (click)="presentModal(discoverpost.postid)" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon></ion-button>
+            <ion-button (click)="presentModal(discoverpost.postid, discoverpost.comments, discoverpost.likes, discoverpost)" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon></ion-button>
             <span id="comment-counter">{{ discoverpost.comments }}</span>
           </div>
           </div>

@@ -22,6 +22,9 @@ export class CommentPage implements OnInit {
 
   @Input() postid: string;
   @Input() currentsid: string;
+  @Input() comments: string;
+  @Input() likes: string;
+
 
   ngOnInit() {
     this.retrieveDiscover(this.currentsid);
@@ -31,12 +34,31 @@ export class CommentPage implements OnInit {
   commentdatas: any = [];
   discoverposts: any = [];
 
+  async showToast(data: any) {
+    const toast = await this.toastCtrl.create({
+      message: data,
+      duration: 2000,
+      position: 'top',
+      color: 'success'
+    });
+    toast.present();
+  }
+
+  async showErrorToast(data: any) {
+    const toast = await this.toastCtrl.create({
+      message: data,
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
+  }
+  
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss({
-      'dismissed': true
-    });
+    this.modalController.dismiss(this.comments, this.likes);
+    console.log(this.comments, this. likes);
   }
 
   retrieveDiscover(currentsid){
@@ -80,6 +102,99 @@ retrievecomment(postid){
   })
 }
 
+like(postid, currentsid, discoverpost){
+
+  let likePostData = {
+    likedid: '',
+    likedpostid: postid,
+    likedusersid: currentsid,
+    liked: '1',
+  }
+
+  const data = likePostData;
+  console.log('likePostData: ' + JSON.stringify(data));
+
+//   this.dataService.getCheck(this.userid).subscribe(response => {
+//     if(response != null){  
+this.dataService.likes(data).subscribe(response => {
+if(response != null){
+
+  discoverpost.likedusersid = currentsid;
+  var likeys = JSON.parse(discoverpost.likes);
+  likeys += 1; 
+  discoverpost.likes = likeys;
+
+  this.likes = likeys;
+  // const res = document.getElementById("like-counter").textContent;
+  // $('span#like-counter').text(JSON.parse(res) + 1);
+  this.showToast('Liked Post');
+  // this.isLiking==-1 
+  // i=this.isLiking;
+  // $('span.like-counter').text(response + " likes");
+  // document.getElementById('like21');
+  // $(".like21").addClass("hide");
+  // $('.unlike').removeClass('hide');
+}else{
+  this.showErrorToast('Error');
+}
+});
+
+// var postid = $(this).data('likeid');
+// 		const thispost = $(this);
+
+// console.log(discoverpost.postid);
+
+  // $.ajax({
+  // 	url: 'index.php',
+  // 	type: 'post',
+  // 	data: {
+  // 		'liked': 1,
+  // 		'postid': postid
+  // 	},
+  // 	success: function(response){
+  // 		thispost.parent().find('span.likes_counter').text(response + " likes");
+  // 		thispost.addClass('hide');
+  // 		thispost.siblings().removeClass('hide');
+  // 	}
+  // });
+}
+
+unlike(postid, currentsid, discoverpost){
+let likePostData = {
+  likedid: '',
+  likedpostid: postid,
+  likedusersid: currentsid,
+  liked: '0',
+}
+
+const data = likePostData;
+console.log('likePostData: ' + JSON.stringify(data));
+
+//   this.dataService.getCheck(this.userid).subscribe(response => {
+//     if(response != null){  
+this.dataService.likes(data).subscribe(response => {
+if(response != null){
+
+// const res = document.getElementById("like-counter").textContent;
+// $('span#like-counter').text(JSON.parse(res) - 1);
+discoverpost.likedusersid = "";
+var likeys = JSON.parse(discoverpost.likes);
+likeys -= 1; 
+discoverpost.likes = likeys;
+
+this.likes = likeys;
+
+this.showToast('Unliked Post');
+// $('span.like-counter').text(response + " likes");
+// document.getElementById('like21');
+// $(".like21").addClass("hide");
+// $('.unlike').removeClass('hide');
+}else{
+this.showErrorToast('Error');
+}
+});
+}
+
   comment(postid, txtValue, discoverpost){
     let commentPostData = {
       commentid: '',
@@ -101,6 +216,9 @@ retrievecomment(postid){
     var newcomment = JSON.parse(discoverpost.comments);
     newcomment += 1; 
     discoverpost.comments = newcomment;
+
+    this.comments = newcomment;
+    // console.log(this.comments);
 
     $('#comments-section').prepend(
       `    

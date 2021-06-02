@@ -33,7 +33,12 @@ export class DiscoverPage implements OnInit {
   likesdata: any = [];
   commentdatas: any = [];
 
-  isLiking:number=-1
+  isLiking:number=-1;
+
+  dataReturned: any = [];
+
+  ddata: number;
+  rdata: number;
 
   ngOnInit() {
     // var slides = document.querySelector('ion-slides');
@@ -87,16 +92,47 @@ export class DiscoverPage implements OnInit {
     toast.present();
   }
 
-  async presentModal(postid) {
+  async presentModal(postid, comments, likes, discoverpost) {
     const modal = await this.modalController.create({
       component: CommentPage,
       cssClass: 'my-custom-class',
       componentProps: {
         'postid': postid,
         'currentsid': this.currentsid,
+        'comments': comments,
+        'likes': likes
       },
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+    modal.onDidDismiss()
+      .then((data) => {
+        // const rdata = data['data'];
+        this.ddata = data['data'];
+        this.rdata = JSON.parse(data['role']);
+
+        if (this.rdata === JSON.parse(discoverpost.likes) + 1){
+          discoverpost.likes = this.rdata;  
+          discoverpost.likedusersid = this.currentsid;
+          console.log("liiked:" + discoverpost.likedusersid == this.currentsid);
+        }else if (this.rdata === JSON.parse(discoverpost.likes) - 1){
+          discoverpost.likedusersid = "";
+          console.log("unliked:" + discoverpost.likedusersid !== this.currentsid);
+        }
+        discoverpost.comments = this.ddata;
+        // console.log(data['role']);
+    });
+    // modal.onDidDismiss().then((dataReturned) => {
+    //   if (dataReturned !== null) {
+    //     this.dataReturned = dataReturned.data;
+    //     //alert('Modal Sent Data :'+ dataReturned);
+
+    //     console.log(JSON.stringify(this.dataReturned));
+    //   }
+    // });
+
     return await modal.present();
   }
 

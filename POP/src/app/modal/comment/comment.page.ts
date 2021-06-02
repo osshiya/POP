@@ -80,7 +80,7 @@ retrievecomment(postid){
   })
 }
 
-  comment(postid, txtValue){
+  comment(postid, txtValue, discoverpost){
     let commentPostData = {
       commentid: '',
       commentpostid: postid,
@@ -95,8 +95,13 @@ retrievecomment(postid){
   //     if(response != null){  
   this.dataService.comments(data).subscribe(response => {
   if(response != null){
-    const res = document.getElementById("comment-counter").textContent;
-    $('span#comment-counter').text(JSON.parse(res) + 1);
+
+    // const res = document.getElementById("comment-counter").textContent;
+    // $('span#comment-counter').text(JSON.parse(res) + 1); 
+    var newcomment = JSON.parse(discoverpost.comments);
+    newcomment += 1; 
+    discoverpost.comments = newcomment;
+
     $('#comments-section').prepend(
       `    
       <ion-item>

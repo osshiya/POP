@@ -99,7 +99,7 @@ export class CameraPage implements OnInit {
         postdesc: '',
         postname: this.base64Image,
         usersid: currentsid,
-        likes: '',
+        likes: 0,
         comments: '',
       }
 

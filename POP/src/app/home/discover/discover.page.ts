@@ -33,8 +33,7 @@ export class DiscoverPage implements OnInit {
   likesdata: any = [];
   commentdatas: any = [];
 
-  isLiking: boolean ;
-
+  isLiking:number=-1
 
   ngOnInit() {
     // var slides = document.querySelector('ion-slides');
@@ -232,7 +231,7 @@ export class DiscoverPage implements OnInit {
   // })
   // }
 
-  like(postid, currentsid){
+  like(postid, currentsid, discoverpost){
 
       let likePostData = {
         likedid: '',
@@ -249,10 +248,15 @@ export class DiscoverPage implements OnInit {
     this.dataService.likes(data).subscribe(response => {
     if(response != null){
 
-      this.isLiking = true;
-      const res = document.getElementById("like-counter").textContent;
-      $('span#like-counter').text(JSON.parse(res) + 1);
+      discoverpost.likedusersid = currentsid;
+      var likeys = JSON.parse(discoverpost.likes);
+      likeys += 1; 
+      discoverpost.likes = likeys;
+      // const res = document.getElementById("like-counter").textContent;
+      // $('span#like-counter').text(JSON.parse(res) + 1);
       this.showToast('Liked Post');
+      // this.isLiking==-1 
+      // i=this.isLiking;
       // $('span.like-counter').text(response + " likes");
       // document.getElementById('like21');
       // $(".like21").addClass("hide");
@@ -282,7 +286,7 @@ export class DiscoverPage implements OnInit {
 			// });
   }
 
-  unlike(postid, currentsid){
+  unlike(postid, currentsid, discoverpost){
     let likePostData = {
       likedid: '',
       likedpostid: postid,
@@ -298,9 +302,13 @@ export class DiscoverPage implements OnInit {
   this.dataService.likes(data).subscribe(response => {
   if(response != null){
 
-    this.isLiking = false;
-    const res = document.getElementById("like-counter").textContent;
-    $('span#like-counter').text(JSON.parse(res) - 1);
+    // const res = document.getElementById("like-counter").textContent;
+    // $('span#like-counter').text(JSON.parse(res) - 1);
+    discoverpost.likedusersid = "";
+    var likeys = JSON.parse(discoverpost.likes);
+    likeys -= 1; 
+    discoverpost.likes = likeys;
+
     this.showToast('Unliked Post');
     // $('span.like-counter').text(response + " likes");
     // document.getElementById('like21');

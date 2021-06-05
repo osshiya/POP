@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'comment',
     loadChildren: () => import('./modal/comment/comment.module').then( m => m.CommentPageModule)
   },
+  {
+    path: 'portfolio',
+    loadChildren: () => import('./modal/portfolio/portfolio.module').then( m => m.PortfolioPageModule)
+  },
   // {
   //   path: 'social',
   //   loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)

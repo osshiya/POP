@@ -36,7 +36,7 @@
         <!-- <ng-container  *ngFor="let discoverpost of discoverposts"> -->
           <div id="discover-gallery" *ngFor="let discoverpost of discoverposts; let i = index" [attr.data-index]="i">
         <ion-item style=" --ion-card-background: #FFFFFF;">
-          <ion-card style="width:100%; height:100vh;">
+          <ion-card style="width:100%; height:80vh;">
           <ion-card-header style="width:100%; height:30px ;margin: 10px 0;">
           <ion-card-subtitle>
             <div class="small-user" style="width:100%; float:left;"><a href="/home/profiles/{{ discoverpost.usersid }}">{{ discoverpost.usersid }}</a></div>
@@ -46,9 +46,9 @@
           
             <img src="{{ discoverpost.posturl }}" style="width:100%; height:300px ;margin: 30px 0;">
     
-            <div class="bars" style="margin: 30px 0; width:100%; height: 20vh;">
+            <div class="bars" style="margin: 10px 0; width:100%; height: 20vh;">
 
-            <div class="left-bar" style="width:75%; float: left"> 
+            <div class="left-bar" style="width:75%; float: left; padding-left: 20px;"> 
               <p>{{ discoverpost.postdesc }}</p>
             </div>
 

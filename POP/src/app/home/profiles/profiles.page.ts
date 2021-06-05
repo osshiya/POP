@@ -15,6 +15,9 @@ export class ProfilesPage implements OnInit {
   // userData: any;
   // userIdentity: string;
 
+  userposts: any = [];
+  str2: any;
+
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -63,13 +66,13 @@ export class ProfilesPage implements OnInit {
     // }
     // console.log(this.router.url);
     var str = this.router.url;
-    var str2 = str.split("/").pop();
-    console.log(str2);
+    this.str2 = str.split("/").pop();
+    console.log(this.str2);
     
     // this.myData(str2);
-    this.retrieveUser(str2);
-    this.retrieveUserPosts(str2);
-    this.retrieveUserPortfolio(str2);
+    this.retrieveUser(this.str2);
+    this.retrieveUserPosts(this.str2);
+    // this.retrieveUserPortfolio(str2);
   }
 
   // async myData(str2){
@@ -135,87 +138,101 @@ xmlhttp.send();
 }
 
 
-  retrieveUserPosts(str2){
-    console.log("retrieve posts");
-    console.log("start of posting: " + str2);
+retrieveUserPosts(str2){
+  console.log("retrieve posts");
+  console.log("start of posting: " + str2);
 
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == str2 && myObj[x].posttype == 'post'){
-
-      var posts = {
-      date: myObj[x].postdate,
-      usersid: myObj[x].usersid,
-      id: myObj[x].postid,
-      url: myObj[x].posturl,
-      desc: myObj[x].postdesc,
-      }
-
-    $("#posts-profiles").prepend(
-      `
-      <div class="posts" style="width:100%; height:100%; float: left;">
-      <img src="${posts.url}" class="${posts.id}" style="width:100%;">
-      </div>
-        `
-);
+  // console.log("retrieve Discover");
+  this.dataService.getPosts(str2).subscribe(response => {
+    if(response != null){  
+    //this.showToast('Logged in');
+      // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+      // console.log(response);
+      this.userposts = response;
+      console.log(this.userposts);
+    }else{
+      //this.showErrorToast('Wrong userid/ password');
     }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-xmlhttp.send();
+})
 }
 
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-retrieveUserPortfolio(str2){
-    console.log("retrieve portfolio");
-    console.log("start of posting: " + str2);
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
 
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == str2 && myObj[x].posttype == 'post'){
 
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+//       var posts = {
+//       date: myObj[x].postdate,
+//       usersid: myObj[x].usersid,
+//       id: myObj[x].postid,
+//       url: myObj[x].posturl,
+//       desc: myObj[x].postdesc,
+//       }
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == str2 && myObj[x].posttype == 'portfolio'){
+//     $("#posts-profiles").prepend(
+//       `
+//       <div class="posts" style="width:100%; height:100%; float: left;">
+//       <img src="${posts.url}" class="${posts.id}" style="width:100%;">
+//       </div>
+//         `
+// );
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
+// xmlhttp.send();
+// }
 
-      var posts = {
-      date: myObj[x].postdate,
-      usersid: myObj[x].usersid,
-      id: myObj[x].postid,
-      url: myObj[x].posturl,
-      desc: myObj[x].postdesc,
-      }
-      //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-        $("#portfolio-profiles").prepend(
-              `
-              <div class="posts" style="width:100%; height:100%; float: left;">
-              <img src="${posts.url}" class="${posts.id}" style="width:100%;">
-              </div>
-                `
-    );
-    }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-xmlhttp.send();
-}
+
+// retrieveUserPortfolio(str2){
+//     console.log("retrieve portfolio");
+//     console.log("start of posting: " + str2);
+
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
+
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == str2 && myObj[x].posttype == 'portfolio'){
+
+//       var posts = {
+//       date: myObj[x].postdate,
+//       usersid: myObj[x].usersid,
+//       id: myObj[x].postid,
+//       url: myObj[x].posturl,
+//       desc: myObj[x].postdesc,
+//       }
+//       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
+//         $("#portfolio-profiles").prepend(
+//               `
+//               <div class="posts" style="width:100%; height:100%; float: left;">
+//               <img src="${posts.url}" class="${posts.id}" style="width:100%;">
+//               </div>
+//                 `
+//     );
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
+// xmlhttp.send();
+// }
 
 }

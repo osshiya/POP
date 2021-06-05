@@ -18,6 +18,9 @@ export class ProfilePage implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  userposts: any = [];
+  currentsid: any;
+
   ngOnInit() {
     var slides = document.querySelector('ion-slides');
 
@@ -41,11 +44,11 @@ export class ProfilePage implements OnInit {
   async myData(){
     const storage = new Storage();
     await storage.create();
-    const currentsid = await storage.get('usersid');
+    this.currentsid = await storage.get('usersid');
 
-    this.retrieveUser(currentsid);
-    this.retrieveUserPosts(currentsid);
-    this.retrieveUserPortfolio(currentsid);
+    this.retrieveUser(this.currentsid);
+    this.retrieveUserPosts(this.currentsid);
+    // this.retrieveUserPortfolio(currentsid);
   }
 
   retrieveUser(currentsid){
@@ -102,87 +105,95 @@ xmlhttp.send();
 
 
   retrieveUserPosts(currentsid){
-    console.log("retrieve posts");
-    console.log("start of posting: " + currentsid);
+      // console.log("retrieve Discover");
+      this.dataService.getPosts(currentsid).subscribe(response => {
+        if(response != null){  
+        //this.showToast('Logged in');
+          // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+          // console.log(response);
+          this.userposts = response;
+          console.log(this.userposts);
+        }else{
+          //this.showErrorToast('Wrong userid/ password');
+        }
+    })
+//     console.log("retrieve posts");
+//     console.log("start of posting: " + currentsid);
 
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'post'){
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == currentsid && myObj[x].posttype == 'post'){
 
-      var posts = {
-      date: myObj[x].postdate,
-      usersid: myObj[x].usersid,
-      id: myObj[x].postid,
-      url: myObj[x].posturl,
-      desc: myObj[x].postdesc,
-      }
+//       var posts = {
+//       date: myObj[x].postdate,
+//       usersid: myObj[x].usersid,
+//       id: myObj[x].postid,
+//       url: myObj[x].posturl,
+//       desc: myObj[x].postdesc,
+//       }
 
-    $("#posts-gallery").prepend(
-      `
-      <div class="posts" style="width:100%; height:100%; float: left;">
-      <img src="${posts.url}" class="${posts.id}" style="width:100%;">
-      </div>
-        `
-);
-    }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-xmlhttp.send();
+//     $("#posts-gallery").prepend(
+//       `
+      // <div id="posts-gallery" class="wrapper">
+      // <div class="posts" style="width:100%; height:100%; float: left;">
+      //   <img src="${posts.url}" class="${posts.id}" style="width: 100%;">
+      // </div>
+      // </div>
+//         `
+// );
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
+// xmlhttp.send();
 }
 
 
-retrieveUserPortfolio(currentsid){
-    console.log("retrieve portfolio");
-    console.log("start of posting: " + currentsid);
+// retrieveUserPortfolio(currentsid){
+//     console.log("retrieve portfolio");
+//     console.log("start of posting: " + currentsid);
 
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == currentsid && myObj[x].posttype == 'portfolio'){
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == currentsid && myObj[x].posttype == 'portfolio'){
 
-      var posts = {
-      date: myObj[x].postdate,
-      usersid: myObj[x].usersid,
-      id: myObj[x].postid,
-      url: myObj[x].posturl,
-      desc: myObj[x].postdesc,
-      }
-      //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-        $("#portfolio-gallery").prepend(
-              `
-              <div class="posts" style="width:100%; height:100%; float: left;">
-              <img src="${posts.url}" class="${posts.id}" style="width: 100%;">
-              </div>
-                `
-    );
-    }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-xmlhttp.send();
-}
+//       var posts = {
+//       date: myObj[x].postdate,
+//       usersid: myObj[x].usersid,
+//       id: myObj[x].postid,
+//       url: myObj[x].posturl,
+//       desc: myObj[x].postdesc,
+//       }
+//       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
+
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
+// xmlhttp.send();
+// }
 
 }
   //Subscribe

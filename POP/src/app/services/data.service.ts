@@ -35,6 +35,22 @@ export interface userPostData {
   liked: string;
 }
 
+export interface userData {
+  usersid: string;
+  useremail: string;
+  username: string; 
+  userpassword: string;
+  userfirstname: string;
+  userlastname: string;
+  userschool: string;
+  userdiploma: number;
+  useryear: number;
+  useravatarurl: string;
+  userbio: string;
+  school: string; 
+  schoolbadge: string;
+}
+
 export interface postPostData {
   postdesc: string;
   posturl: string;
@@ -70,10 +86,11 @@ export class DataService {
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
-  private profilepostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
+  // private profilepostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
+  private profileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
 
   constructor(
     private http: HttpClient
@@ -91,9 +108,17 @@ export class DataService {
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
-  getProfilePosts(usersid: string){
-    return this.http.get<[userPostData]>(this.profilepostsUrl + '?usersid=' + usersid);
+  getProfile(){
+    return this.http.get<[userPostData]>(this.profileUrl);
   }
+
+  // getProfile(usersid: string){
+  //   return this.http.get<[userPostData]>(this.profileUrl + '?usersid=' + usersid);
+  // }
+
+  // getProfilePosts(usersid: string){
+  //   return this.http.get<[userPostData]>(this.profilepostsUrl + '?usersid=' + usersid);
+  // }
 
   upload(services: postPostData){
     return this.http.post(this.uploadUrl, services);

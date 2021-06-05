@@ -113,6 +113,7 @@ xmlhttp.onreadystatechange = function() {
       useryear: myObj[x].useryear,
       useravatarurl: myObj[x].useravatarurl,
       userbio: myObj[x].userbio,
+      schoolbadge: myObj[x].schoolbadge,
       }
 
     $("#fixed-profiles").html(
@@ -121,7 +122,7 @@ xmlhttp.onreadystatechange = function() {
         <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       </div>
       <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
-        <strong>${user.userfirstname} ${user.userlastname}</strong>
+      <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
         <p>@${user.username}</p>
         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
       </div>
@@ -133,7 +134,7 @@ xmlhttp.onreadystatechange = function() {
     console.log(myObj);
   }
 };
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/login.php?x=" + dbParam, true);
+xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
 xmlhttp.send();
 }
 

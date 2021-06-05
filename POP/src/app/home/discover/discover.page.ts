@@ -25,6 +25,7 @@ export class DiscoverPage implements OnInit {
   // public likeShow = false;
   // public unlikeShow = false;
   enterid: string;
+  userposts: any = [];
   discoverposts: any = [];
   socialposts: any = [];
 
@@ -57,8 +58,10 @@ export class DiscoverPage implements OnInit {
     // $("#discover-gallery").html("");
     $("#discover-gallery").html("");
     $("#social-gallery").html("");   
+  
     this.retrieveDiscover();
     this.retrieveSocial();
+    this.retrieveUser();
   }
 
   async myData(){
@@ -214,6 +217,20 @@ export class DiscoverPage implements OnInit {
 // // $('.opened').hide();
 //   }
 
+retrieveUser(){
+  // console.log("retrieve Discover");
+
+  this.dataService.getProfile().subscribe(response => {
+    if(response != null){  
+    //this.showToast('Logged in');
+      // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+      // console.log(response);
+      this.userposts = response;
+    }else{
+      //this.showErrorToast('Wrong userid/ password');
+    }
+})
+}
 
   retrieveDiscover(){
       // console.log("retrieve Discover");

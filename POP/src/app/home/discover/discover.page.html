@@ -38,9 +38,11 @@
         <ion-item style=" --ion-card-background: #FFFFFF;">
           <ion-card style="width:100%; height:80vh;">
           <ion-card-header style="width:100%; height:30px ;margin: 10px 0;">
-          <ion-card-subtitle>
-            <div class="small-user" style="width:100%; float:left;"><a href="/home/profiles/{{ discoverpost.usersid }}">{{ discoverpost.usersid }}</a></div>
+            <div *ngFor="let userpost of userposts">
+          <ion-card-subtitle *ngIf="userpost.usersid == discoverpost.usersid">
+            <div class="small-user" style="width:100%; float:left;"><a href="/home/profiles/{{ userpost.usersid }}">{{ userpost.userfirstname }} {{ userpost.userlastname }}</a><img src="{{ userpost.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px"></div>
           </ion-card-subtitle>
+          </div>
           </ion-card-header>
           <!-- <ion-card-content id="post_{{ discoverpost.postid }}"style="width:100%; height:100vh;"> -->
           

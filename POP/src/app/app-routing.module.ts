@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'portfolio',
     loadChildren: () => import('./modal/portfolio/portfolio.module').then( m => m.PortfolioPageModule)
   },
+  {
+    path: 'post',
+    loadChildren: () => import('./modal/post/post.module').then( m => m.PostPageModule)
+  },
   // {
   //   path: 'social',
   //   loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)

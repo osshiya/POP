@@ -4,6 +4,9 @@ import { DataService, userLoginData, userPostData } from '../../services/data.se
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { PostPage } from '../../modal/post/post.page';
+import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +19,7 @@ export class ProfilePage implements OnInit {
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
+    private modalController: ModalController,
   ) { }
 
   userposts: any = [];
@@ -39,6 +43,33 @@ export class ProfilePage implements OnInit {
     $("#portfolio-gallery").html("");    
     
     this.myData();
+  }
+
+  async presentPostModal(postid, discoverpost) {
+    const modal = await this.modalController.create({
+      component: PostPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'postid': postid,
+        'currentsid': this.currentsid,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
+
+    async presentPortfolioModal(postid, discoverpost) {
+      const modal = await this.modalController.create({
+        component: PortfolioPage,
+        cssClass: 'my-custom-class',
+        componentProps: {
+          'postid': postid,
+          'currentsid': this.currentsid,
+        },
+        presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+      });
+
+    return await modal.present();
   }
 
   async myData(){

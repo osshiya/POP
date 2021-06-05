@@ -27,10 +27,12 @@ export class CommentPage implements OnInit {
 
 
   ngOnInit() {
+    this.retrieveUser();
     this.retrieveDiscover(this.currentsid);
     this.retrievecomment(this.postid);
   }
 
+  userposts: any = [];
   commentdatas: any = [];
   discoverposts: any = [];
 
@@ -59,6 +61,21 @@ export class CommentPage implements OnInit {
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss(this.comments, this.likes);
     console.log(this.comments, this. likes);
+  }
+
+  retrieveUser(){
+    // console.log("retrieve Discover");
+  
+    this.dataService.getProfile().subscribe(response => {
+      if(response != null){  
+      //this.showToast('Logged in');
+        // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+        // console.log(response);
+        this.userposts = response;
+      }else{
+        //this.showErrorToast('Wrong userid/ password');
+      }
+  })
   }
 
   retrieveDiscover(currentsid){

@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 import { Location } from "@angular/common";
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { PostPage } from '../../modal/post/post.page';
+import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
 
 @Component({
   selector: 'app-profiles',
@@ -24,6 +27,7 @@ export class ProfilesPage implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     public toastCtrl:ToastController,
+    private modalController: ModalController,
   ) { }
 
   ngOnInit() {
@@ -84,6 +88,33 @@ export class ProfilesPage implements OnInit {
   //   //   this.router.navigateByUrl('home/profile');
   //   // } 
   // }
+
+  async presentPostModal(postid, discoverpost) {
+    const modal = await this.modalController.create({
+      component: PostPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'postid': postid,
+        'str2': this.str2,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
+
+    async presentPortfolioModal(postid, discoverpost) {
+      const modal = await this.modalController.create({
+        component: PortfolioPage,
+        cssClass: 'my-custom-class',
+        componentProps: {
+          'postid': postid,
+          'currentsid': this.str2,
+        },
+        presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+      });
+
+    return await modal.present();
+  }
 
   retrieveUser(str2){
     console.log("retrieve users");

@@ -20,7 +20,7 @@
 </ion-header>
 
 <ion-content>
-  <div id="fixed-profile">
+  <div id="fixed-profile" style=" margin-top: 30px">
   </div>
 
   <!-- <div *ngFor="let userpost of userposts">
@@ -35,7 +35,7 @@
       <div class="wrapper">
         <ng-container  *ngFor="let userpost of userposts">
           <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.usersid == currentsid">
-          <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="width: 100%; height: 150px; padding: 1px 1px;">
+          <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="width: 100%; height: 150px; padding: 1px 1px;"  (click)=presentPostModal(userpost.postid);>
         </div>
         </ng-container>
       </div>
@@ -50,7 +50,7 @@
         <div class="wrapper">
           <ng-container  *ngFor="let userpost of userposts">
             <div id="portfolio-gallery" *ngIf="userpost.posttype == 'portfolio'&&  userpost.usersid == currentsid">
-            <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="width: 100%; height: 150px; padding: 1px 1px;">
+            <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="width: 100%; height: 150px; padding: 1px 1px;"  (click)=presentPortfolioModal(userpost.postid);>
           </div>
           </ng-container>
         </div>

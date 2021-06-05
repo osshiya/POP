@@ -7,11 +7,11 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.page.html',
-  styleUrls: ['./portfolio.page.scss'],
+  selector: 'app-post',
+  templateUrl: './post.page.html',
+  styleUrls: ['./post.page.scss'],
 })
-export class PortfolioPage implements OnInit {
+export class PostPage implements OnInit {
 
   constructor(
     private router: Router,

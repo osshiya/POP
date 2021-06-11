@@ -116,7 +116,7 @@ xmlhttp.onreadystatechange = function() {
     $("#fixed-profile").html(
       `
       <div class="leftProfile" style="width: 45%;">
-        <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+        <img src="${user.useravatarurl}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       </div>
       <div class="rightProfile" style="width: 55%; margin 0 20px; ">
         <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">

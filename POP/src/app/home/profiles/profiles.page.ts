@@ -20,6 +20,7 @@ export class ProfilesPage implements OnInit {
 
   userposts: any = [];
   str2: any;
+  currentsid: any;
 
   constructor(
     private dataService: DataService,
@@ -51,7 +52,7 @@ export class ProfilesPage implements OnInit {
     toast.present();
   }
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
     $("#fixed-profiles").html("");
     $("#posts-profiles").html("");
     $("#portfolio-profiles").html("");    
@@ -73,9 +74,13 @@ export class ProfilesPage implements OnInit {
     this.str2 = str.split("/").pop();
     console.log(this.str2);
     
+    const storage = new Storage();
+    await storage.create();
+    this.currentsid = await storage.get('usersid');
+    
     // this.myData(str2);
-    this.retrieveUser(this.str2);
-    this.retrieveUserPosts(this.str2);
+    this.retrieveUser(this.str2, this.currentsid);
+    this.retrieveUserPosts(this.str2, this.currentsid);
     // this.retrieveUserPortfolio(str2);
   }
 
@@ -89,26 +94,26 @@ export class ProfilesPage implements OnInit {
   //   // } 
   // }
 
-  async presentPostModal(postid, discoverpost) {
+  async presentPostModal(postid, currentsid, discoverpost) {
     const modal = await this.modalController.create({
       component: PostPage,
       cssClass: 'my-custom-class',
       componentProps: {
         'postid': postid,
-        'str2': this.str2,
+        'currentsid': currentsid,
       },
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
     return await modal.present();
   }
 
-    async presentPortfolioModal(postid, discoverpost) {
+    async presentPortfolioModal(postid, currentsid, discoverpost) {
       const modal = await this.modalController.create({
         component: PortfolioPage,
         cssClass: 'my-custom-class',
         componentProps: {
           'postid': postid,
-          'currentsid': this.str2,
+          'currentsid': currentsid,
         },
         presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
       });
@@ -116,7 +121,7 @@ export class ProfilesPage implements OnInit {
     return await modal.present();
   }
 
-  retrieveUser(str2){
+  retrieveUser(str2, currentsid){
     console.log("retrieve users");
     console.log("start of posting: " + str2);
 
@@ -150,7 +155,7 @@ xmlhttp.onreadystatechange = function() {
     $("#fixed-profiles").html(
       `
       <div class="leftProfiles" style="width: 45%;">
-        <img src="${user.useravatarurl}" style="width: 70px; height: 70px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+        <img src="${user.useravatarurl}" style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       </div>
       <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
       <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
@@ -170,7 +175,7 @@ xmlhttp.send();
 }
 
 
-retrieveUserPosts(str2){
+retrieveUserPosts(str2, currentsid){
   console.log("retrieve posts");
   console.log("start of posting: " + str2);
 

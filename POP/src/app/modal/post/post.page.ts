@@ -25,6 +25,7 @@ export class PostPage implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.currentsid);
     this.retrieveUser();
     this.retrieveDiscover(this.currentsid);
     this.retrievecomment(this.postid);

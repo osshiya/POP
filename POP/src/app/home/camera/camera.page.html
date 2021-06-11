@@ -2,12 +2,26 @@
 
 		Select image to upload:
 		<!-- <form #f="ngForm" (ngSubmit)="postToDB(f)" [formGroup]="form"> -->
-		<ion-img [src]="base64Image	"></ion-img>
 		<!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
-		<ion-button (click)= "postToDB()">Upload</ion-button>
+		<form name="myForm">
+		<!-- <strong>Response:</strong><p id="pRes"></p> -->
+		<div *ngIf="base64Image!==''">
+		<ion-img [src]="base64Image	"></ion-img>
+			<ion-item>
+				<ion-label>Post</ion-label>
+				<ion-radio slot="start" value="Post" [ngModel]="type"></ion-radio>
+			</ion-item>
+			<ion-item>
+				<ion-label>Portfolio</ion-label>
+				<ion-radio slot="start" value="Portfolio" [ngModel]="type"></ion-radio>
+			</ion-item>
+		<div *ngIf="type=='Post'">
+			<ion-button (click)= "postToDB()">Upload</ion-button>
+		</div>
+		</div>
+	</form>
 		<!-- <ion-button type="submit" shape="round" class="uploadButton">UPLOAD</ion-button> -->
 		<!-- </form> -->
-		<strong>Response:</strong><p id="pRes"></p>
 
 		<!-- <form action="https://student.amphibistudio.sg/10187403A/POP/db/uploader.php" method="post" enctype="multipart/form-data">
 			Select image to upload:

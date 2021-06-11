@@ -20,6 +20,10 @@ export class CameraPage implements OnInit {
   base64Image: string;
   captureProgress = 0;
 
+    type: string;
+    desc: string;
+    tags: any = [];
+
   constructor(
     private dataService: DataService,
     private location: Location,

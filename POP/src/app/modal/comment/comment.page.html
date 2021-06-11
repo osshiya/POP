@@ -63,9 +63,14 @@
     </ng-container>
   </div>
 
+
+    <div id="comments-section"></div>    
+    <!-- <ion-label>
+    <p>Post a comment now</p>
+  </ion-label>   -->
+
   <div *ngFor="let commentdata of commentdatas">
     <ng-container *ngIf = "commentdata.commentpostid == postid">
-    <div id="comments-section"></div>
     <ion-item>
       <ion-label>
         <strong>{{ commentdata.commentusersid }}</strong>

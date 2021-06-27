@@ -7,6 +7,7 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PostPage } from '../../modal/post/post.page';
 import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
+import { EditprofilePage } from '../../modal/editprofile/editprofile.page';
 
 @Component({
   selector: 'app-profile',
@@ -71,6 +72,19 @@ export class ProfilePage implements OnInit {
 
     return await modal.present();
   }
+
+  async presentProfileModal() {
+    const modal = await this.modalController.create({
+      component: EditprofilePage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'currentsid': this.currentsid,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+
+  return await modal.present();
+}
 
   async myData(){
     const storage = new Storage();

@@ -1,0 +1,226 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="outline" (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+        Close
+      </ion-button>
+      </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="outline" (click)="save()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+        Save
+      </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="fixed-profile" *ngFor="let userinfo of userinfos" style="height: 20vh; margin-top:5vh; justify-content: center; align-items: center;">
+    <ng-container *ngIf = "userinfo.usersid == currentsid">
+
+      <!-- <form [formGroup]="form" (submit)="connectToDB()">
+        <ion-item class="shadow rounded">
+          <ion-label position="stacked">Username:</ion-label>
+          <ion-input type="text" [(ngModel)]="userid" required formControlName="userid"></ion-input>
+        </ion-item>
+    
+        <ion-item class="shadow rounded">
+          <ion-label position="stacked">Password:</ion-label>
+          <ion-input type="password" [(ngModel)]="userpassword" required formControlName="userpassword"></ion-input>
+        </ion-item>
+    
+        <a class="underlined" routerLink="/register">Don't have an account?</a>
+    
+        <ion-button type="submit" class="loginButton" shape="round" [disabled]=form.invalid>LOG IN</ion-button>
+      </form> -->
+      
+    <ion-buttons class="pfp" style="position: relative; text-align: center; color: white;" (click)="updateimg()">
+      <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 150px; height: 150px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+      <div class="centered" style="  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">edit photo</div>
+    </ion-buttons>
+
+    <div style="margin: 30px 0; text-align:center;">
+
+    <ion-item>
+      <ion-label position="stacked">User Name</ion-label>
+      <ion-input type="text" value="{{ userinfo.username }}" required></ion-input>
+    </ion-item>
+
+    <ion-item style="width:50%; float: left;"> 
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input type="text" value="{{ userinfo.userfirstname }}"  [disabled]="true"></ion-input>
+    </ion-item>
+
+    <ion-item style="width:50%; float: right;">
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input type="text" value="{{ userinfo.userlastname }}"  [disabled]="true"></ion-input>
+    </ion-item>
+
+    <ion-item style="width:70%; float: left;">
+      <ion-label position="stacked">School</ion-label>
+      <ion-select okText="OK" cancelText="Cancel"  value="{{ userinfo.userschool }}" [disabled]="true">
+        <ion-select-option value="BA">Business & Accountancy</ion-select-option>
+        <ion-select-option value="DE">Design & Environment</ion-select-option>
+        <ion-select-option value="SOE">Engineering</ion-select-option>
+        <ion-select-option value="FMS">Film & Media Studies</ion-select-option>
+        <ion-select-option value="HS">Health Sciences</ion-select-option>
+        <ion-select-option value="HMS">Humanities & Social Studies</ion-select-option>
+        <ion-select-option value="ICT">InfoComm Technology</ion-select-option>
+        <ion-select-option value="LSCT">Life Sciences & Chemical Technology</ion-select-option>
+        <ion-select-option value="LECT">Staff</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="width: 25%; float: right;">
+      <img src="{{ userinfo.schoolbadge }}">
+    </ion-item>
+
+    <ion-item style="width:70%; float: left;">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-input type="text" value="{{ userinfo.userdiploma }}" required  [disabled]="true"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="userschool == 'BA'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'DE'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'SOE'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'FMS'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'HS'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'HMS'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'ICT'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="userschool == 'LSCT'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="CBA">Common Business Programme</ion-select-option>
+        <ion-select-option value="ACT">Accountancy</ion-select-option>
+        <ion-select-option value="BF">Banking & Finance</ion-select-option>
+        <ion-select-option value="BS">Business Studies</ion-select-option>
+        <ion-select-option value="ITB">International Trade & Business</ion-select-option>
+        <ion-select-option value="TRM">Tourism & Resort Managemant</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+    <!-- <ion-item *ngIf="userschool == 'LECT'">
+      <ion-label position="stacked">Diploma</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.userdiploma }}" [(ngModel)]="userdiploma">
+        <ion-select-option value="-">-</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+    <ion-item style="width: 25%; float: right;">
+      <ion-label position="stacked">Year</ion-label>
+      <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.useryear }}" [disabled]="true">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="-">-</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="width: 70%; float: left;">
+      <ion-label position="stacked">Date of Birth</ion-label>
+      <ion-input type="date" value=""></ion-input>
+    </ion-item>
+
+    <ion-item style="width: 25%; float: right;">
+      <ion-label position="stacked">MBTI</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    
+    <ion-item style="width: 100%;">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" value="{{ userinfo.useremail }}"></ion-input>
+    </ion-item>
+
+    <ion-item style="width: 100%;">
+      <ion-label position="stacked">Biography</ion-label>
+      <ion-textarea value="{{ userinfo.userbio }}"></ion-textarea>
+    </ion-item>
+  </div>
+
+
+
+  </ng-container>
+  </div>
+
+
+</ion-content>

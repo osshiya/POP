@@ -78,10 +78,14 @@ export class ProfilesPage implements OnInit {
     await storage.create();
     this.currentsid = await storage.get('usersid');
     
+if (this.str2 == this.currentsid){
+  this.router.navigate(['home/profile']);
+}else{
     // this.myData(str2);
     this.retrieveUser(this.str2, this.currentsid);
     this.retrieveUserPosts(this.str2, this.currentsid);
     // this.retrieveUserPortfolio(str2);
+}
   }
 
   // async myData(str2){

@@ -72,3 +72,12 @@ ion-header{
     --ion-toolbar-color: white;
     --ion-text-color: white;
 }
+
+.dot {
+    height: 70px;
+    width: 70px;
+    background-color: #FFCF01;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+}

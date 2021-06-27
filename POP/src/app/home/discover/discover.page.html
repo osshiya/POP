@@ -5,19 +5,52 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="secondary">
-      <ion-button fill="clear">
-        <ion-icon slot="start" src="../../../assets/images/iconas/Chat.svg"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="openFirst()">
+        <img src="../../../assets/images/AppLogo_Transparent.png" width="40vh">
+        <ion-icon name="chevron-down-outline"></ion-icon>
       </ion-button>
       </ion-buttons>
+
     <ion-title>Discover</ion-title>
-    <ion-buttons slot="primary">
+
+    <ion-buttons slot="end">
       <ion-button fill="clear">
-        <ion-icon slot="start" src="../../../assets/images/iconas/Activity.svg"></ion-icon>
+        <ion-icon src="../../../assets/images/iconas/Chat.svg"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon src="../../../assets/images/iconas/Activity.svg"></ion-icon>
       </ion-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>POP! for NP</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="main">
+    <ion-list>
+      <ion-item>
+        <ion-buttons>
+        <ion-button fill="clear" (click)="logout()">
+          <ion-icon name="log-out-outline" style="margin-right:10px"></ion-icon>
+          Log out
+        </ion-button>
+      </ion-buttons>
+      </ion-item>
+      <!-- <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item> -->
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="false">

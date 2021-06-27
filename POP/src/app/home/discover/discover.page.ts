@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CommentPage } from '../../modal/comment/comment.page';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-discover',
@@ -20,6 +21,7 @@ export class DiscoverPage implements OnInit {
     private dataService: DataService,
     public toastCtrl: ToastController ,
     private modalController: ModalController,
+    private menu: MenuController
   ) { }
 
   // public likeShow = false;
@@ -93,6 +95,11 @@ export class DiscoverPage implements OnInit {
       color: 'danger'
     });
     toast.present();
+  }
+
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
   }
 
   async presentModal(postid, comments, likes, discoverpost) {
@@ -373,5 +380,16 @@ retrieveUser(){
 });
 }
 
+  async logout(){
+  console.log("logging out");
+
+  const storage = new Storage();
+  await storage.create();
+
+  await storage.set('usersid', '');
+  await storage.set('userpassword', '');
+
+  this.router.navigate(['/login']);
+}
 
 }

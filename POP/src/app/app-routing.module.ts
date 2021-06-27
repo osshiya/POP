@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'post',
     loadChildren: () => import('./modal/post/post.module').then( m => m.PostPageModule)
   },
+  {
+    path: 'editprofile',
+    loadChildren: () => import('./modal/editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+  },
   // {
   //   path: 'social',
   //   loadChildren: () => import('./social/social.module').then( m => m.SocialPageModule)

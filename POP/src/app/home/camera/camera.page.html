@@ -15,9 +15,9 @@
 				<ion-label>Portfolio</ion-label>
 				<ion-radio slot="start" value="Portfolio"  [(ngModel)]="portfolioing"></ion-radio>
 			</ion-item> -->
-
+<form [formGroup]="form">
 			<ion-list>
-				<ion-radio-group value="method" [(ngModel)]="posting">
+				<ion-radio-group value="method" [(ngModel)]="type" formControlName="type">
 				  <ion-list-header>
 					<ion-label>Type of Posts</ion-label>
 				  </ion-list-header>
@@ -35,10 +35,10 @@
 				</ion-radio-group>
 			  </ion-list>
 
-		<div *ngIf="posting == 'Post'">
+		<div *ngIf="type == 'Post'">
 			<ion-item style="width: 100%;">
 				<ion-label position="stacked">Description</ion-label>
-				<ion-textarea value="" maxlength="150" autoGrow="true"></ion-textarea>
+				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
 			  </ion-item>
 
 			<ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Tags</ion-label>
@@ -50,7 +50,7 @@
 			</ion-item>
 		</div>
 
-		<div *ngIf="posting == 'Portfolio'">
+		<div *ngIf="type == 'Portfolio'">
 			<ion-item>
 				<ion-label position="stacked">Title</ion-label>
 				<ion-input type="text" value="" required></ion-input>
@@ -58,7 +58,7 @@
 
 			<ion-item style="width: 100%;">
 				<ion-label position="stacked">Description</ion-label>
-				<ion-textarea value="" maxlength="150" autoGrow="true"></ion-textarea>
+				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
 			  </ion-item>
 
 			  <ion-item style="width:100%">
@@ -77,10 +77,10 @@
 
 		</div>
 
-		<div *ngIf="posting == 'Post' || posting == 'Portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
-			<ion-button (click)= "postToDB()">Upload {{ posting }}</ion-button>
+		<div *ngIf="type == 'Post' || type == 'Portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
+			<ion-button (click)= "postToDB()">Upload {{ type }}</ion-button>
 		</div>
-		</div>
+
 		<!-- <ion-button type="submit" shape="round" class="uploadButton">UPLOAD</ion-button> -->
 		<!-- </form> -->
 
@@ -89,5 +89,6 @@
 			<input type="file" name="fileToUpload" id="fileToUpload">
 			<input type="submit" value="Upload Image" name="submit">
 		  </form> -->
-		
+</form>
+</div>
 </ion-content>

@@ -59,6 +59,10 @@ export class CameraPage implements OnInit {
     toast.present();
   }
 
+  form = new FormGroup({
+    type: new FormControl(),
+    desc: new FormControl()
+  });
   //actionsheet pop out for actions
 
   //async captureImage(){}
@@ -87,7 +91,7 @@ export class CameraPage implements OnInit {
     // return  this.image = image.dataUrl;
     };
     
-    async postToDB(){
+    async postToDB(posting, description){
       const storage = new Storage();
       await storage.create();
       const currentsid = await storage.get('usersid');
@@ -99,8 +103,8 @@ export class CameraPage implements OnInit {
         postdate: '',
         postid: '',
         posturl: '',
-        posttype: '',
-        postdesc: '',
+        posttype: this.type,
+        postdesc: this.desc,
         postname: this.base64Image,
         usersid: currentsid,
         likes: 0,

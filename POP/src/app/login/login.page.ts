@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     //auto login
+    this.loginChecker();
   }
 
   async showToast(data: any) {
@@ -55,6 +56,44 @@ export class LoginPage implements OnInit {
       Validators.required, Validators.minLength(2)
     ]),
   });
+
+  async loginChecker(){
+    // this.dataService.setData('user', userData);
+    const storage = new Storage();
+    await storage.create();
+
+    // await storage.set('usersid', userData.usersid);
+    // await storage.set('userpassword', userData.userpassword);
+
+
+    const currentsidCheck = await storage.get('usersid');
+    const currentpwCheck = await storage.get('userpassword');
+
+
+    if (currentsidCheck !== '' && currentpwCheck !== ''){
+      console.log(currentsidCheck + 'to' + currentpwCheck)
+
+      
+      this.dataService.get(currentsidCheck, currentpwCheck).subscribe(response => {
+        if(response != null){  
+        //this.showToast('Logged in');
+          console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/login.php?usersid=' + currentsidCheck + '&userpassword=' + currentpwCheck);
+          this.showToast('Welcome Back: ' + currentsidCheck);
+
+          this.router.navigate(['/home']);
+        }else{
+          //this.showErrorToast('Wrong userid/ password');
+          this.showErrorToast('Error');
+          console.log("Error auto login");
+        }
+    })
+
+    }else{
+      console.log('== empty');
+      return;
+    }
+    
+  }
 
   async loginSuccess(){
     let userData = {
@@ -94,7 +133,7 @@ export class LoginPage implements OnInit {
         if(response != null){  
         //this.showToast('Logged in');
           console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/login.php?usersid=' + userData.usersid + '&userpassword=' + userData.userpassword);
-          this.showToast('Login success');
+          this.showToast('Login Successful');
           this.loginSuccess();
         }else{
           //this.showErrorToast('Wrong userid/ password');

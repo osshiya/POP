@@ -58,7 +58,7 @@
       <ion-label position="stacked">Last Name</ion-label>
       <ion-input type="text" value="{{ userinfo.userlastname }}"  [disabled]="true"></ion-input>
     </ion-item>
-
+<!-- 
     <ion-item style="width:40%; float: left;">
       <ion-label position="stacked">School</ion-label>
       <ion-select okText="OK" cancelText="Cancel"  value="{{ userinfo.userschool }}" [disabled]="true">
@@ -72,16 +72,16 @@
         <ion-select-option value="LSCT">Life Sciences & Chemical Technology</ion-select-option>
         <ion-select-option value="LECT">Staff</ion-select-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
 
     <!-- <ion-item style="width: 25%; float: right;">
       <img src="{{ userinfo.schoolbadge }}">
     </ion-item> -->
 
-    <ion-item style="width:30%; float: right;">
+    <!-- <ion-item style="width:30%; float: right;">
       <ion-label position="stacked">Diploma</ion-label>
       <ion-input type="text" value="{{ userinfo.userdiploma }}" required  [disabled]="true"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
     <!-- <ion-item *ngIf="userschool == 'BA'">
       <ion-label position="stacked">Diploma</ion-label>
@@ -186,7 +186,7 @@
       </ion-select>
     </ion-item> -->
 
-    <ion-item style="width: 30%; float: right;">
+    <!-- <ion-item style="width: 30%; float: right;">
       <ion-label position="stacked">Year</ion-label>
       <ion-select okText="OK" cancelText="Cancel" value="{{ userinfo.useryear }}" [disabled]="true">
         <ion-select-option value="1">1</ion-select-option>
@@ -194,7 +194,7 @@
         <ion-select-option value="3">3</ion-select-option>
         <ion-select-option value="-">-</ion-select-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
 
     <ion-item style="width: 70%; float: left;">
       <ion-label position="stacked">Date of Birth</ion-label>
@@ -213,6 +213,11 @@
     <ion-item style="width: 100%;">
       <ion-label position="stacked">Email</ion-label>
       <ion-input type="email" value="{{ userinfo.useremail }}"></ion-input>
+    </ion-item>
+    
+    <ion-item style="width: 100%;">
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input type="number" value=""></ion-input>
     </ion-item>
 
     <ion-item style="width: 100%;">

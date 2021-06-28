@@ -24,12 +24,12 @@
 			  
 				  <ion-item>
 					<ion-label>Post</ion-label>
-					<ion-radio slot="start" value="Post"></ion-radio>
+					<ion-radio slot="start" value="post"></ion-radio>
 				  </ion-item>
 			  
 				  <ion-item>
 					<ion-label>Project</ion-label>
-					<ion-radio slot="start" value="Portfolio"></ion-radio>
+					<ion-radio slot="start" value="portfolio"></ion-radio>
 				  </ion-item>
 			  
 				</ion-radio-group>
@@ -77,7 +77,7 @@
 
 		</div>
 
-		<div *ngIf="type == 'Post' || type == 'Portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
+		<div *ngIf="type == 'post' || type == 'portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
 			<ion-button (click)= "postToDB()">Upload {{ type }}</ion-button>
 		</div>
 

@@ -35,7 +35,7 @@
 				</ion-radio-group>
 			  </ion-list>
 
-		<div *ngIf="type == 'Post'">
+		<div *ngIf="type == 'post'">
 			<ion-item style="width: 100%;">
 				<ion-label position="stacked">Description</ion-label>
 				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
@@ -50,7 +50,7 @@
 			</ion-item>
 		</div>
 
-		<div *ngIf="type == 'Portfolio'">
+		<div *ngIf="type == 'portfolio'">
 			<ion-item>
 				<ion-label position="stacked">Title</ion-label>
 				<ion-input type="text" value="" required></ion-input>

@@ -49,6 +49,23 @@ export interface userData {
   userbio: string;
   school: string; 
   schoolbadge: string;
+
+  userdob: string;
+  usercontactno: string;
+  usergender: string;
+  userlink: string;
+}
+
+export interface customUserData{
+  useremail: string;
+  usercontactno: number;
+  username: string;
+  userpassword: string;
+  useravatarurl: string;
+  userdob: string;
+  userbio: string;
+  usergender: string;
+  userlink: string;
 }
 
 export interface postPostData {
@@ -91,6 +108,7 @@ export class DataService {
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
   private profileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
+  private updateprofileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuser.php';
 
   constructor(
     private http: HttpClient
@@ -108,8 +126,16 @@ export class DataService {
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
-  getProfile(){
+  getPostProfile(){
     return this.http.get<[userPostData]>(this.profileUrl);
+  }
+
+  getProfile(){
+    return this.http.get<[userData]>(this.profileUrl);
+  }
+
+  getUniqueProfile(usersid){
+    return this.http.get<[userData]>(this.profileUrl + '?usersid=' + usersid);
   }
 
   // getProfile(usersid: string){
@@ -138,6 +164,10 @@ export class DataService {
 
   getComments(postid: string){
     return this.http.get<[commentPostData]>(this.commentsUrl + '?postid=' + postid)
+  }
+
+  updateuser(services: customUserData, usersid: string){
+    return this.http.put(this.updateprofileUrl + '?usersid=' + usersid, services);
   }
 
 

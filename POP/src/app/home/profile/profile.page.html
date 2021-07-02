@@ -17,7 +17,17 @@
   </ion-header>
 
 <ion-content>
-  <div id="fixed-profile" style="color: #0070CC; height:30vh; padding-top: 50px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+  <div *ngFor="let userinfo of userinfos">
+    <div  id="fixed-profile"  *ngIf="userinfo.usersid == currentsid"  style="color: #0070CC; height: 30vh; padding-top: 50px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+    <div class="leftProfile" style="width: 45%;">
+      <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+    </div>
+    <div class="rightProfile" style="width: 55%; margin: 0 20px; ">
+      <strong>{{ userinfo.userfirstname }} {{ userinfo.userlastname }}</strong><img src="{{ userinfo.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
+      <p>@{{ userinfo.username }}</p>
+      <p>{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
+    </div>
+    </div>
   </div>
 
   <!-- <div *ngFor="let userpost of userposts">

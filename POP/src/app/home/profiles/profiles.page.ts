@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService, userLoginData, userPostData } from '../../services/data.service';
 import { Storage } from '@ionic/storage';
@@ -18,7 +18,10 @@ export class ProfilesPage implements OnInit {
   // userData: any;
   // userIdentity: string;
 
+  userinfos: any = [];
   userposts: any = [];
+  followdata: any =[];
+
   str2: any;
   currentsid: any;
 
@@ -125,57 +128,72 @@ if (this.str2 == this.currentsid){
     return await modal.present();
   }
 
-  retrieveUser(str2, currentsid){
-    console.log("retrieve users");
-    console.log("start of posting: " + str2);
+//   retrieveUser(str2, currentsid){
+//     console.log("retrieve users");
+//     console.log("start of posting: " + str2);
 
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
 
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
 
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == str2){
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == str2){
 
-      var user = {
-      usersid: myObj[x].usersid,
-      useremail: myObj[x].useremail,
-      username: myObj[x].username,
-      userpassword: myObj[x].userpassword,
-      userfirstname: myObj[x].userfirstname,
-      userlastname: myObj[x].userlastname,
-      userschool: myObj[x].userschool,
-      userdiploma: myObj[x].userdiploma,
-      useryear: myObj[x].useryear,
-      useravatarurl: myObj[x].useravatarurl,
-      userbio: myObj[x].userbio,
-      schoolbadge: myObj[x].schoolbadge,
-      }
+//       var user = {
+//       usersid: myObj[x].usersid,
+//       useremail: myObj[x].useremail,
+//       username: myObj[x].username,
+//       userpassword: myObj[x].userpassword,
+//       userfirstname: myObj[x].userfirstname,
+//       userlastname: myObj[x].userlastname,
+//       userschool: myObj[x].userschool,
+//       userdiploma: myObj[x].userdiploma,
+//       useryear: myObj[x].useryear,
+//       useravatarurl: myObj[x].useravatarurl,
+//       userbio: myObj[x].userbio,
+//       schoolbadge: myObj[x].schoolbadge,
+//       }
 
-    $("#fixed-profiles").html(
-      `
-      <div class="leftProfiles" style="width: 45%;">
-        <img src="${user.useravatarurl}" style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
-      </div>
-      <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
-      <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
-        <p>@${user.username}</p>
-        <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
-      </div>
-        `
-);
+//     $("#fixed-profiles").html(
+//       `
+//       <div class="leftProfiles" style="width: 45%;">
+//         <img src="${user.useravatarurl}" style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+//       </div>
+//       <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
+//       <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
+//         <p>@${user.username}</p>
+//         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
+//       </div>
+//         `
+// );
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
+// xmlhttp.send();
+// }
+
+retrieveUser(str2, currentsid){
+  // console.log("retrieve Discover");
+  this.dataService.getProfiles(str2, currentsid).subscribe(response => {
+    if(response != null){  
+    //this.showToast('Logged in');
+      // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+      // console.log(response);
+      this.userinfos = response;
+      console.log(this.userinfos);
+    }else{
+      //this.showErrorToast('Wrong userid/ password');
     }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
-xmlhttp.send();
+})
 }
 
 
@@ -275,5 +293,79 @@ retrieveUserPosts(str2, currentsid){
 // xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
 // xmlhttp.send();
 // }
+
+follow(userinfo, currentsid, str2){
+  let followreq = {
+    usersidhost: currentsid,
+    usersidtarget: str2,
+    following: 1,
+  }
+
+  const data = followreq;
+  console.log('followreq: ' + JSON.stringify(data));
+
+  this.dataService.followreq(data).subscribe(response => {
+    if(response != null){
+
+userinfo.usersidhost = currentsid;
+var followers = JSON.parse(userinfo.followers);
+followers += 1; 
+userinfo.followers = followers;
+
+// this.showToast('Unliked Post');
+
+}else{
+this.showErrorToast('Error');
+}
+});
+
+//   this.dataService.getCheck(this.userid).subscribe(response => {
+//     if(response != null){  
+
+// var postid = $(this).data('likeid');
+// 		const thispost = $(this);
+
+// console.log(discoverpost.postid);
+
+  // $.ajax({
+  // 	url: 'index.php',
+  // 	type: 'post',
+  // 	data: {
+  // 		'liked': 1,
+  // 		'postid': postid
+  // 	},
+  // 	success: function(response){
+  // 		thispost.parent().find('span.likes_counter').text(response + " likes");
+  // 		thispost.addClass('hide');
+  // 		thispost.siblings().removeClass('hide');
+  // 	}
+  // });
+}
+
+unfollow(userinfo, currentsid, str2, followingData){
+  let followreq = {
+    usersidhost: currentsid,
+    usersidtarget: str2,
+    following: 0,
+  }
+
+  const data = followreq;
+  console.log('followreq: ' + JSON.stringify(data));
+
+  this.dataService.followreq(data).subscribe(response => {
+    if(response != null){
+
+userinfo.usersidhost = "";
+var followers = JSON.parse(userinfo.followers);
+followers -= 1; 
+userinfo.followers = followers;
+
+// this.showToast('Unliked Post');
+
+}else{
+this.showErrorToast('Error');
+}
+});
+}
 
 }

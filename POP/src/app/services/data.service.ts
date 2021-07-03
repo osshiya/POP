@@ -54,6 +54,12 @@ export interface userData {
   usercontactno: string;
   usergender: string;
   userlink: string;
+
+  followers: number;
+  followings: number;
+  following: number;
+  usersidtarget: string;
+  usersidhost: string;
 }
 
 export interface customUserData{
@@ -97,6 +103,12 @@ export interface useravatarurl {
   useravatarurl: string;
 }
 
+export interface followreq {
+  usersidhost: string;
+  usersidtarget: string;
+  following: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -112,8 +124,10 @@ export class DataService {
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
   private profileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
+  private profilesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profiles.php';
   private updateprofileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuser.php';
   private updateprofilepicUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuserpic.php';
+  private followreqUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/follow.php';
 
   constructor(
     private http: HttpClient
@@ -137,6 +151,10 @@ export class DataService {
 
   getProfile(){
     return this.http.get<[userData]>(this.profileUrl);
+  }
+
+  getProfiles(str2, currentsid){
+    return this.http.get<[userData]>(this.profilesUrl + '?usersidhost=' + currentsid + '&usersidtarget=' + str2);
   }
 
   getUniqueProfile(usersid){
@@ -177,6 +195,14 @@ export class DataService {
 
   updateuserpic(services: useravatarurl, usersid: string){
     return this.http.put(this.updateprofilepicUrl + '?usersid=' + usersid, services);
+  }
+
+  followreq(services: followreq){
+    return this.http.post(this.followreqUrl, services);
+  }
+
+  getFollowreq(usersidhost: string, usersidtarget: string){
+    return this.http.get<[followreq]>(this.followreqUrl + '?usersidhost=' + usersidhost + '&usersidtarget=' + usersidtarget);
   }
 
 

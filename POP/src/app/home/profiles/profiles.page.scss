@@ -21,12 +21,15 @@ ion-toolbar{
     display: block;
 }
 
-#fixed-profiles{
-    display: flex;
-    width: 100vw;
-    // margin: 20px;
-    // margin: 20px 0;
-    flex-direction: row;
+.fixed-profiles{
+  display: flex;
+  width: 100vw;
+  // margin: 20px;
+  // margin: 20px 0;
+  flex-direction: column;
+  font-size: medium;
+  justify-content: center;
+  align-content: center;
 }
 
 #portfolio-profiles{

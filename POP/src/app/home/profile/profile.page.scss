@@ -17,7 +17,7 @@ ion-toolbar{
     --font-weight: 600;
 }
 
-.fixed-profile{
+#fixed-profile{
     height: 20vh;
 }
 
@@ -39,12 +39,16 @@ ion-toolbar{
     display: block;
 }
 
-#fixed-profile{
+.fixed-profile{
     display: flex;
     width: 100vw;
     // margin: 20px;
     // margin: 20px 0;
-    flex-direction: row;
+    flex-direction: column;
+    font-size: medium;
+    justify-content: center;
+    align-content: center;
+    // position: fixed;
 }
 
 #portfolio-gallery{
@@ -79,5 +83,5 @@ ion-header{
     background-color: #FFCF01;
     border-radius: 50%;
     display: inline-block;
-    margin: 0 5px;
+    // margin: 0 5px;
 }

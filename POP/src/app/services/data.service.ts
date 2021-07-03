@@ -93,6 +93,10 @@ export interface commentPostData {
   commentfield: string;
 }
 
+export interface useravatarurl {
+  useravatarurl: any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -109,6 +113,7 @@ export class DataService {
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
   private profileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private updateprofileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuser.php';
+  private updateprofilepicUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuserpic.php';
 
   constructor(
     private http: HttpClient
@@ -168,6 +173,10 @@ export class DataService {
 
   updateuser(services: customUserData, usersid: string){
     return this.http.put(this.updateprofileUrl + '?usersid=' + usersid, services);
+  }
+
+  updateuserpic(services: useravatarurl, usersid: string){
+    return this.http.put(this.updateprofilepicUrl + '?usersid=' + usersid, services);
   }
 
 

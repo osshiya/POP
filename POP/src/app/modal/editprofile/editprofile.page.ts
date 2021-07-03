@@ -27,7 +27,7 @@ export class EditprofilePage implements OnInit {
   userlink: string;
   userbio: string;
 
-  base64Image: string;
+  base64Image: any;
   captureProgress = 0;
 
   constructor(
@@ -45,15 +45,20 @@ export class EditprofilePage implements OnInit {
     this.retrieveUser();
   }
 
+  // formpic = new FormGroup({
+  //   useravatarurl: new FormControl(),
+  // })
+
   form = new FormGroup({
-    username: new FormControl(this.userinfos.username),
-    usergender: new FormControl(this.userinfos.usergender),
-    useremail: new FormControl(this.userinfos.useremail),
-    userpassword: new FormControl(this.userinfos.userpassword),
-    userdob: new FormControl(this.userinfos.userdob),
-    usercontactno: new FormControl(this.userinfos.usercontactno),
-    userlink: new FormControl('Nancy'),
-    userbio: new FormControl(this.userinfos.userbio)
+    useravatarurl: new FormControl(),
+    username: new FormControl(),
+    usergender: new FormControl(),
+    useremail: new FormControl(),
+    userpassword: new FormControl(),
+    userdob: new FormControl(),
+    usercontactno: new FormControl(),
+    userlink: new FormControl(),
+    userbio: new FormControl()
   });
 
   async showToast(data: any) {
@@ -125,28 +130,29 @@ export class EditprofilePage implements OnInit {
 async putToDB(){
   // const result = form.value;
   // console.log('form: ' + form.value);
+// console.log('formdata?:' + this.form.value);
+  // let userinfo = {
+  //   // usersid: this.currentsid,
+  //   useremail: this.useremail,
+  //   usercontactno: this.usercontactno,
+  //   username: this.username,
+  //   userpassword: this.userpassword,
+  //   useravatarurl: this.base64Image,
+  //   userdob: this.userdob,
+  //   userbio: this.userbio,
+  //   usergender: this.usergender,
+  //   userlink: this.userlink
+  // }
 
-  let userinfo = {
-    // usersid: this.currentsid,
-    useremail: this.useremail,
-    usercontactno: this.usercontactno,
-    username: this.username,
-    userpassword: this.userpassword,
-    useravatarurl: this.base64Image,
-    userdob: this.userdob,
-    userbio: this.userbio,
-    usergender: this.usergender,
-    userlink: this.userlink
-  }
-
-  const data = userinfo;
+  const data = this.form.value;
   console.log('sending userPostData: ' + JSON.stringify(data));
+  console.log(this.base64Image);
 
 //     if(response != null){  
 this.dataService.updateuser(data, this.currentsid).subscribe(response => {
 if(response != null){
   this.showToast('Posted successfully');
-  this.dismiss(userinfo);
+  this.dismiss(this.form.value);
 }else{
   this.showErrorToast('Posted Unsuccessfully');
 }
@@ -175,6 +181,18 @@ console.log (this.base64Image);
 // this.postToDB(f);
 // console.log(this.image);
 // return  this.image = image.dataUrl;
+
+
+// const data = this.formpic.value;
+
+// this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
+//   if(response != null){
+//     this.showToast('Changed Profile Photo successfully');
+//     // this.dismiss(this.form.value);
+//   }else{
+//     this.showErrorToast('Changed Profile Photo Unsuccessfully');
+//   }
+//   });
 };
 
 }

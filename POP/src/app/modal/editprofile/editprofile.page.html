@@ -41,6 +41,7 @@
       <ion-buttons class="pfp" style="position: relative; text-align: center; color: white;" (click)="updateImage()">
         <img [src]="base64Image" style="object-fit: cover; width: 150px; height: 150px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         <div class="centered" style="  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">edit photo</div>
+        <ion-input type="text" [(ngModel)]="base64Image"  [disabled]="true" formControlName="useravatarurl" style="display: none;"></ion-input>
       </ion-buttons>
     </div>
 
@@ -48,14 +49,17 @@
     <ion-buttons class="pfp" style="position: relative; text-align: center; color: white;" (click)="updateImage()">
       <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 150px; height: 150px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       <div class="centered" style="  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">edit photo</div>
+      <ion-input type="text" [(ngModel)]="userinfo.useravatarurl"  [disabled]="true" formControlName="useravatarurl" style="display: none;"></ion-input>
     </ion-buttons>
   </div>
+  <!-- </form>
 
+  <form [formGroup]="form"> -->
     <div style="margin: 30px 0; text-align:center;">
 
     <ion-item>
       <ion-label position="stacked">User Name</ion-label>
-      <ion-input type="text" required placeholder="{{ userinfo.username }}" [(ngModel)]="username" formControlName="username"></ion-input>
+      <ion-input type="text" required [(ngModel)]="userinfo.username" formControlName="username"></ion-input>
     </ion-item>
 
     <ion-item style="width:50%; float: left;"> 
@@ -207,21 +211,21 @@
 
     <ion-item style="width: 70%; float: left;">
       <ion-label position="stacked">Date of Birth</ion-label>
-      <ion-input type="date" placeholder="{{ userinfo.userdob }}" [(ngModel)]="userdob" formControlName="userdob"></ion-input>
+      <ion-input type="date" [(ngModel)]="userinfo.userdob" formControlName="userdob"></ion-input>
     </ion-item>
 
     <ion-item style="width: 25%; float: right;">
       <ion-label position="stacked">Gender</ion-label>
-      <ion-select okText="OK" cancelText="Cancel" placeholder="{{ userinfo.gender }}" [(ngModel)]="usergender" formControlName="usergender">
-        <ion-select-option value="M">Male</ion-select-option>
-        <ion-select-option value="F">Female</ion-select-option>
+      <ion-select okText="OK" cancelText="Cancel" [(ngModel)]="userinfo.gender" formControlName="usergender">
+        <ion-select-option value="Male">Male</ion-select-option>
+        <ion-select-option value="Female">Female</ion-select-option>
         <ion-select-option value="-">-</ion-select-option>
       </ion-select>
     </ion-item>
     
     <ion-item style="width: 100%;">
       <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email" placeholder="{{ userinfo.useremail }}" [(ngModel)]="useremail" formControlName="useremail"></ion-input>
+      <ion-input type="email" [(ngModel)]="userinfo.useremail" formControlName="useremail"></ion-input>
     </ion-item>
 
     <ion-item style="width: 100%;">
@@ -231,12 +235,12 @@
     
     <ion-item style="width: 100%;">
       <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input type="number" placeholder="{{ userinfo.usercontactno }}" [(ngModel)]="usercontactno" formControlName="usercontactno"></ion-input>
+      <ion-input type="number" [(ngModel)]="userinfo.usercontactno" formControlName="usercontactno"></ion-input>
     </ion-item>
 
     <ion-item style="width: 100%;">
       <ion-label position="stacked">Link</ion-label>
-      <ion-input type="text" placeholder="{{ userinfo.userlink }}" [(ngModel)]="userlink" formControlName="userlink"></ion-input>
+      <ion-input type="text" [(ngModel)]="userinfo.userlink" formControlName="userlink"></ion-input>
     </ion-item>
 
     <ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Featured Skills</ion-label>
@@ -249,7 +253,7 @@
 
     <ion-item style="width: 100%;">
       <ion-label position="stacked">Biography</ion-label>
-      <ion-textarea maxlength="150" autoGrow="true" placeholder="{{ userinfo.userbio }}" [(ngModel)]="userbio" formControlName="userbio"></ion-textarea>
+      <ion-textarea maxlength="150" autoGrow="true" [(ngModel)]="userinfo.userbio" formControlName="userbio"></ion-textarea>
     </ion-item>
   </div>
 

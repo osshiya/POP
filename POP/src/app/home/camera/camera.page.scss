@@ -15,9 +15,17 @@ p, span{
 
 ion-toolbar{
   --font-weight: 600;
+  text-align: center;
 }
 
 ion-img{
     width: 500;
     height: 500;
+}
+
+ion-header{
+    --ion-background-color: #FFCF01;
+    --color: white;
+    --ion-toolbar-color: white;
+    --ion-text-color: white;
 }

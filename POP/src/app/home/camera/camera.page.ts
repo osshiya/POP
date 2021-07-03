@@ -25,6 +25,8 @@ export class CameraPage implements OnInit {
     desc: string;
     tags: any = [];
 
+    segment: string;
+
   constructor(
     private dataService: DataService,
     private location: Location,
@@ -35,10 +37,16 @@ export class CameraPage implements OnInit {
 
   ngOnInit() {
     // this.takePicture();
+    this.segment = 'post';
   }
 
   ionViewWillEnter(){
     this.takePicture();
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    // console.log(this.segment);
   }
 
   async showToast(data: any) {
@@ -68,6 +76,9 @@ export class CameraPage implements OnInit {
   //actionsheet pop out for actions
 
   //async captureImage(){}
+  cancelOP(){
+    this.location.back();
+  }
 
     async takePicture() {
       const image = await Camera.getPhoto({
@@ -105,7 +116,7 @@ export class CameraPage implements OnInit {
         postdate: '',
         postid: '',
         posturl: '',
-        posttype: this.type,
+        posttype: this.segment,
         postdesc: this.desc,
         postname: this.base64Image,
         usersid: currentsid,

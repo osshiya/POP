@@ -1,11 +1,102 @@
-<ion-content [fullscreen]="true">
+<ion-header>
+	<ion-toolbar>
+	  <ion-buttons slot="start">
+		<ion-button fill="clear" (click)="cancelOP()">
+		  <ion-icon name="close-outline"></ion-icon>
+		  Cancel
+		</ion-button>
+		</ion-buttons>
+		
+		<ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="post">
+			<ion-segment-button value="post" checked>
+			  <ion-label>Post</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="portfolio">
+			  <ion-label>Portfolio</ion-label>
+			</ion-segment-button>
+		  </ion-segment>
 
-		Select image to upload:
+	  <ion-buttons slot="end">
+		<ion-button fill="clear" (click)="postToDB()">
+		  <ion-icon name="checkmark-outline"></ion-icon>
+		  Save
+		</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+  </ion-header>
+
+<ion-content>
+	<div *ngIf="base64Image !== ''">
+	
+	<div class="imgframe" style="position: relative;">
+		<ion-fab-button color="primary" style="position: absolute; bottom: 15px; right: 15px;" (click)=takePicture();>
+			<ion-icon name="camera-outline"></ion-icon>
+		</ion-fab-button>
+		<!-- <span><ion-icon src="../../assets/images/iconas/Camera.svg"></ion-icon></span> -->
+		<ion-img [src]="base64Image	"></ion-img>
+	</div>
+
+	<div [ngSwitch]="segment">
+
+		<ion-card *ngSwitchCase="'post'">
+		  <ion-card-content>
+
+			<form [formGroup]="form">
+				<ion-item style="width: 100%;">
+					<ion-label position="stacked">Description</ion-label>
+					<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
+				  </ion-item>
+	
+				<ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Tags</ion-label>
+				<ion-item style="width: 70%; float: right;">
+					<ion-input type="text" value="" placeholder="1"></ion-input>
+					<ion-input type="text" value="" placeholder="2"></ion-input>
+					<ion-input type="text" value="" placeholder="3"></ion-input>
+					<ion-input type="text" value="" placeholder="4"></ion-input>
+				</ion-item>
+				</form>
+
+		  </ion-card-content>
+		</ion-card>
+
+		<ion-card *ngSwitchCase="'portfolio'">
+			<ion-card-content>
+
+				<form [formGroup]="form">
+					<ion-item>
+						<ion-label position="stacked">Title</ion-label>
+						<ion-input type="text" value="" required></ion-input>
+					  </ion-item>
+		
+					<ion-item style="width: 100%;">
+						<ion-label position="stacked">Description</ion-label>
+						<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
+					  </ion-item>
+		
+					  <ion-item style="width:100%">
+						<ion-label position="stacked">Team Name</ion-label>
+						<ion-input type="text" value="" required></ion-input>
+					  </ion-item>
+		
+		
+					<ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Tags</ion-label>
+					<ion-item style="width: 80%; float: right;">
+						<ion-input type="text" value="" placeholder="1"></ion-input>
+						<ion-input type="text" value="" placeholder="2"></ion-input>
+						<ion-input type="text" value="" placeholder="3"></ion-input>
+						<ion-input type="text" value="" placeholder="4"></ion-input>
+					</ion-item>
+		</form>
+
+			</ion-card-content>
+		  </ion-card>
+		</div>
+
+		<!-- Select image to upload: -->
 		<!-- <form #f="ngForm" (ngSubmit)="postToDB(f)" [formGroup]="form"> -->
 		<!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
 		<!-- <strong>Response:</strong><p id="pRes"></p> -->
-		<div *ngIf="base64Image !== ''">
-		<ion-img [src]="base64Image	"></ion-img>
+
 
 			<!-- <ion-item style="width: 50%; float: left;">
 				<ion-label>Post</ion-label>
@@ -15,71 +106,11 @@
 				<ion-label>Portfolio</ion-label>
 				<ion-radio slot="start" value="Portfolio"  [(ngModel)]="portfolioing"></ion-radio>
 			</ion-item> -->
-<form [formGroup]="form">
-			<ion-list>
-				<ion-radio-group value="method" [(ngModel)]="type" formControlName="type">
-				  <ion-list-header>
-					<ion-label>Type of Posts</ion-label>
-				  </ion-list-header>
-			  
-				  <ion-item>
-					<ion-label>Post</ion-label>
-					<ion-radio slot="start" value="post"></ion-radio>
-				  </ion-item>
-			  
-				  <ion-item>
-					<ion-label>Project</ion-label>
-					<ion-radio slot="start" value="portfolio"></ion-radio>
-				  </ion-item>
-			  
-				</ion-radio-group>
-			  </ion-list>
-
-		<div *ngIf="type == 'post'">
-			<ion-item style="width: 100%;">
-				<ion-label position="stacked">Description</ion-label>
-				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
-			  </ion-item>
-
-			<ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Tags</ion-label>
-			<ion-item style="width: 70%; float: right;">
-				<ion-input type="text" value="" placeholder="1"></ion-input>
-				<ion-input type="text" value="" placeholder="2"></ion-input>
-				<ion-input type="text" value="" placeholder="3"></ion-input>
-				<ion-input type="text" value="" placeholder="4"></ion-input>
-			</ion-item>
-		</div>
-
-		<div *ngIf="type == 'portfolio'">
-			<ion-item>
-				<ion-label position="stacked">Title</ion-label>
-				<ion-input type="text" value="" required></ion-input>
-			  </ion-item>
-
-			<ion-item style="width: 100%;">
-				<ion-label position="stacked">Description</ion-label>
-				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
-			  </ion-item>
-
-			  <ion-item style="width:100%">
-				<ion-label position="stacked">Team Name</ion-label>
-				<ion-input type="text" value="" required></ion-input>
-			  </ion-item>
 
 
-			<ion-label position="stacked" style="display: inline-block; vertical-align: middle; margin-left: 15px;">Tags</ion-label>
-			<ion-item style="width: 80%; float: right;">
-				<ion-input type="text" value="" placeholder="1"></ion-input>
-				<ion-input type="text" value="" placeholder="2"></ion-input>
-				<ion-input type="text" value="" placeholder="3"></ion-input>
-				<ion-input type="text" value="" placeholder="4"></ion-input>
-			</ion-item>
-
-		</div>
-
-		<div *ngIf="type == 'post' || type == 'portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
+		<!-- <div *ngIf="type == 'post' || type == 'portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
 			<ion-button (click)= "postToDB()">Upload {{ type }}</ion-button>
-		</div>
+		</div> -->
 
 		<!-- <ion-button type="submit" shape="round" class="uploadButton">UPLOAD</ion-button> -->
 		<!-- </form> -->
@@ -89,6 +120,5 @@
 			<input type="file" name="fileToUpload" id="fileToUpload">
 			<input type="submit" value="Upload Image" name="submit">
 		  </form> -->
-</form>
 </div>
 </ion-content>

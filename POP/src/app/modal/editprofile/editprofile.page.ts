@@ -5,6 +5,11 @@ import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Plugins, CameraResultType,CameraSource, CameraPhoto, CameraPlugin, CameraDirection } from '@capacitor/core';
+import { Location } from "@angular/common";
+
+const { Camera }= Plugins;
 
 @Component({
   selector: 'app-editprofile',
@@ -13,19 +18,48 @@ import { ModalController } from '@ionic/angular';
 })
 export class EditprofilePage implements OnInit {
 
+  username: string;
+  usergender: string;
+  useremail: string;
+  userpassword: string;
+  userdob: string;
+  usercontactno: number;
+  userlink: string;
+  userbio: string;
+
+  base64Image: string;
+  captureProgress = 0;
+
   constructor(
     private router: Router,
     private dataService: DataService,
     public toastCtrl: ToastController ,
     private modalController: ModalController,
+    private location: Location,
   ) { }
 
   @Input() currentsid: string;
   userinfos: any = [];
 
   ngOnInit() {
-    this.retrieveUser(this.currentsid);
+    this.retrieveUser();
   }
+
+  // formpic = new FormGroup({
+  //   useravatarurl: new FormControl(),
+  // })
+
+  form = new FormGroup({
+    // useravatarurl: new FormControl(),
+    username: new FormControl(),
+    usergender: new FormControl(),
+    useremail: new FormControl(),
+    userpassword: new FormControl(),
+    userdob: new FormControl(),
+    usercontactno: new FormControl(),
+    userlink: new FormControl(),
+    userbio: new FormControl()
+  });
 
   async showToast(data: any) {
     const toast = await this.toastCtrl.create({
@@ -47,10 +81,10 @@ export class EditprofilePage implements OnInit {
     toast.present();
   }
 
-  dismiss() {
+  dismiss(userinfo) {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss();
+    this.modalController.dismiss(userinfo);
   }
 
   // retrieveUser(){
@@ -68,7 +102,7 @@ export class EditprofilePage implements OnInit {
   // })
   // }
 
-  retrieveUser(currentsid){
+  retrieveUser(){
     // console.log("retrieve Discover");
   
     this.dataService.getProfile().subscribe(response => {
@@ -93,5 +127,85 @@ export class EditprofilePage implements OnInit {
 //         `
 // );
 
+async putToDB(){
+  // const result = form.value;
+  // console.log('form: ' + form.value);
+// console.log('formdata?:' + this.form.value);
+  // let userinfo = {
+  //   // usersid: this.currentsid,
+  //   useremail: this.useremail,
+  //   usercontactno: this.usercontactno,
+  //   username: this.username,
+  //   userpassword: this.userpassword,
+  //   useravatarurl: this.base64Image,
+  //   userdob: this.userdob,
+  //   userbio: this.userbio,
+  //   usergender: this.usergender,
+  //   userlink: this.userlink
+  // }
+
+  const data = this.form.value;
+  console.log('sending userPostData: ' + JSON.stringify(data));
+  console.log(this.base64Image);
+
+//     if(response != null){  
+this.dataService.updateuser(data, this.currentsid).subscribe(response => {
+if(response != null){
+  this.showToast('Posted successfully');
+  this.dismiss(this.form.value);
+}else{
+  this.showErrorToast('Posted Unsuccessfully');
+}
+});
+};
+
+async updateImage() {
+  const image = await Camera.getPhoto({
+    quality: 100,
+    allowEditing: true,
+    resultType: CameraResultType.DataUrl,
+    source: CameraSource.Prompt,
+    preserveAspectRatio: true,
+    width: 150,
+    height: 150,
+    direction: CameraDirection.Rear,
+    correctOrientation: true,
+    saveToGallery: true,
+    presentationStyle: 'fullscreen',
+  }).catch((e) => {
+    throw new Error(e);
+  });
+this.base64Image = image.dataUrl;
+console.log (this.base64Image);
+
+let data = {
+  useravatarurl: this.base64Image
+}
+
+this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
+if(response != null){
+  this.showToast('Changed Profile Photo successfully');
+  // this.dismiss(this.form.value);
+}else{
+  this.showErrorToast('Changed Profile Photo Unsuccessfully');
+}
+});
+// this.postToDB(f);
+// console.log(this.image);
+// return  this.image = image.dataUrl;
+};
+
+// uploadImage(){
+  // const data = this.formpic.value;
+
+// this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
+//   if(response != null){
+//     this.showToast('Changed Profile Photo successfully');
+//     // this.dismiss(this.form.value);
+//   }else{
+//     this.showErrorToast('Changed Profile Photo Unsuccessfully');
+//   }
+//   });
+// }
 
 }

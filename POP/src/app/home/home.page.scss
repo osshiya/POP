@@ -63,7 +63,41 @@ ion-label{
   color: white;
 }
 
-ion-tab-button{
-  --color: pink;
-  --color-selected: pink;
+// ion-tab-button{
+//   --color: fff;
+//   --color-selected: 000;
+// }
+
+// path.cls-1{
+//   fill:#fff !important;
+// }
+// .tab-selected{
+//   fill:#fff;
+// }
+
+// --color{
+//   fill:#000 !important;
+//   stroke: #000;
+//   color: #000;
+// }
+
+// --color-selected{
+//   fill:#fff !important;
+//   stroke: #fff;
+//   color: #000;
+// }
+
+// .cls-2{
+//   color: #FFFFFF !important;
+//   fill: #FFFFFF !important;
+// }
+
+// .tab-selected{
+//   background: rgba(255, 255, 255, 0.123) !important;
+//   color: #0070CC !important;
+// }
+
+ion-tab-bar{
+  --color: #FFFFFF !important;
+  --color-selected: #0070CC !important;
 }

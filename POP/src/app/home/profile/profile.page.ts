@@ -25,6 +25,7 @@ export class ProfilePage implements OnInit {
 
   userposts: any = [];
   currentsid: any;
+  userinfos: any = [];
 
   ngOnInit() {
     var slides = document.querySelector('ion-slides');
@@ -83,6 +84,16 @@ export class ProfilePage implements OnInit {
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
 
+    modal.onDidDismiss().then((data) => {
+      // if (data !== null) {
+      //   let info = data.data;
+      //   this.userinfos += info;
+      //   console.log('userinfos :'+ this.userinfos);
+      // }
+
+      this.ionViewWillEnter();
+    });
+ 
   return await modal.present();
 }
 
@@ -91,63 +102,82 @@ export class ProfilePage implements OnInit {
     await storage.create();
     this.currentsid = await storage.get('usersid');
 
-    this.retrieveUser(this.currentsid);
+    this.retrieveUser();
     this.retrieveUserPosts(this.currentsid);
     // this.retrieveUserPortfolio(currentsid);
   }
 
-  retrieveUser(currentsid){
-    console.log("retrieve users");
-    console.log("start of posting: " + currentsid);
-
-var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-obj = { "limit":100};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      if(myObj[x].usersid == currentsid){
-
-      var user = {
-      usersid: myObj[x].usersid,
-      useremail: myObj[x].useremail,
-      username: myObj[x].username,
-      userpassword: myObj[x].userpassword,
-      userfirstname: myObj[x].userfirstname,
-      userlastname: myObj[x].userlastname,
-      userschool: myObj[x].userschool,
-      userdiploma: myObj[x].userdiploma,
-      useryear: myObj[x].useryear,
-      useravatarurl: myObj[x].useravatarurl,
-      userbio: myObj[x].userbio,
-      schoolbadge: myObj[x].schoolbadge
+  retrieveUser(){
+    // console.log("retrieve Discover");
+    this.dataService.getProfile().subscribe(response => {
+      if(response != null){  
+      //this.showToast('Logged in');
+        // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
+        // console.log(response);
+        this.userinfos = response;
+        console.log(this.userinfos);
+      }else{
+        //this.showErrorToast('Wrong userid/ password');
       }
-
-    $("#fixed-profile").html(
-      `
-      <div class="leftProfile" style="width: 45%;">
-        <img src="${user.useravatarurl}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
-      </div>
-      <div class="rightProfile" style="width: 55%; margin 0 20px; ">
-        <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
-        <p>@${user.username}</p>
-        <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
-      </div>
-        `
-);
-    }
-    // return;
-  }
-    console.log(myObj);
-  }
-};
-xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
-xmlhttp.send();
+  })
 }
+//   retrieveUser(currentsid){
+//     console.log("retrieve users");
+//     console.log("start of posting: " + currentsid);
+
+// var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+// obj = { "limit":100};
+// dbParam = JSON.stringify(obj);
+// xmlhttp = new XMLHttpRequest();
+
+// xmlhttp.onreadystatechange = function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//     myObj = JSON.parse(this.responseText);
+//     for (x in myObj) {
+//       if(myObj[x].usersid == currentsid){
+
+//       var user = {
+//       usersid: myObj[x].usersid,
+//       useremail: myObj[x].useremail,
+//       username: myObj[x].username,
+//       userpassword: myObj[x].userpassword,
+//       userfirstname: myObj[x].userfirstname,
+//       userlastname: myObj[x].userlastname,
+//       userschool: myObj[x].userschool,
+//       userdiploma: myObj[x].userdiploma,
+//       useryear: myObj[x].useryear,
+//       useravatarurl: myObj[x].useravatarurl,
+//       userbio: myObj[x].userbio,
+//       schoolbadge: myObj[x].schoolbadge,
+
+//       usercontactno: myObj[x].usercontactno,
+//       userdob: myObj[x].userdob,
+//       usergender: myObj[x].usergender,
+//       userlink: myObj[x].userlink 
+//       }
+
+//     $("#fixed-profile").html(
+//       `
+      // <div class="leftProfile" style="width: 45%;">
+      //   <img src="${user.useravatarurl}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+      // </div>
+      // <div class="rightProfile" style="width: 55%; margin 0 20px; ">
+      //   <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
+      //   <p>@${user.username}</p>
+      //   <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
+      // </div>
+//         `
+// );
+//     }
+//     // return;
+//   }
+//     console.log(myObj);
+//   }
+// };
+// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
+// xmlhttp.send();
+// }
 
 
   retrieveUserPosts(currentsid){

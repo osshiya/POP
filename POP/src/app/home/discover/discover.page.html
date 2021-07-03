@@ -109,14 +109,14 @@
            -->
           </div>
           </div>
-            
+
           <!-- </ion-card-content>  -->
           <ion-row>
             <ion-col></ion-col>
           </ion-row>
           <ion-row class="bottomCard" >
             <ion-col><ion-button (click)="presentModal(discoverpost.postid, discoverpost.comments, discoverpost.likes, discoverpost)" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon><span id="comment-counter">{{ discoverpost.comments }}</span></ion-button>
-              <p style="float:right; margin: 10px 0px 0px 150px ">{{ discoverpost.postdate }}</p>  
+              <p style="float:right; margin: 10px 0px 0px 150px ">{{ discoverpost.postdate | timeAgo }}</p>  
             </ion-col>
           </ion-row>
           <ion-row>

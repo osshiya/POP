@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActionSheetController } from '@ionic/angular';
 
 const { Camera }= Plugins;
 
@@ -28,7 +29,8 @@ export class CameraPage implements OnInit {
     private dataService: DataService,
     private location: Location,
     public toastCtrl:ToastController,
-    private router: Router
+    private router: Router,
+    public actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -99,7 +101,7 @@ export class CameraPage implements OnInit {
       // const result = form.value;
       // console.log('form: ' + form.value);
 
-      let userPostData = {
+      let postPostData = {
         postdate: '',
         postid: '',
         posturl: '',
@@ -111,8 +113,8 @@ export class CameraPage implements OnInit {
         comments: 0,
       }
 
-      const data = userPostData;
-      console.log('userPostData: ' + data);
+      const data = postPostData;
+      console.log('postPostData: ' + data);
       $("#pRes").html("online");
 
     //   this.dataService.getCheck(this.userid).subscribe(response => {

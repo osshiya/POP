@@ -24,18 +24,18 @@
 			  
 				  <ion-item>
 					<ion-label>Post</ion-label>
-					<ion-radio slot="start" value="Post"></ion-radio>
+					<ion-radio slot="start" value="post"></ion-radio>
 				  </ion-item>
 			  
 				  <ion-item>
 					<ion-label>Project</ion-label>
-					<ion-radio slot="start" value="Portfolio"></ion-radio>
+					<ion-radio slot="start" value="portfolio"></ion-radio>
 				  </ion-item>
 			  
 				</ion-radio-group>
 			  </ion-list>
 
-		<div *ngIf="type == 'Post'">
+		<div *ngIf="type == 'post'">
 			<ion-item style="width: 100%;">
 				<ion-label position="stacked">Description</ion-label>
 				<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
@@ -50,7 +50,7 @@
 			</ion-item>
 		</div>
 
-		<div *ngIf="type == 'Portfolio'">
+		<div *ngIf="type == 'portfolio'">
 			<ion-item>
 				<ion-label position="stacked">Title</ion-label>
 				<ion-input type="text" value="" required></ion-input>
@@ -77,7 +77,7 @@
 
 		</div>
 
-		<div *ngIf="type == 'Post' || type == 'Portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
+		<div *ngIf="type == 'post' || type == 'portfolio'" style="margin: 5px 10px; justify-content: center; align-items: center;">
 			<ion-button (click)= "postToDB()">Upload {{ type }}</ion-button>
 		</div>
 

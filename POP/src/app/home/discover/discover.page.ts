@@ -14,6 +14,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./discover.page.scss'],
 }
 )
+
 export class DiscoverPage implements OnInit {
 
   constructor(
@@ -227,7 +228,7 @@ export class DiscoverPage implements OnInit {
 retrieveUser(){
   // console.log("retrieve Discover");
 
-  this.dataService.getProfile().subscribe(response => {
+  this.dataService.getPostProfile().subscribe(response => {
     if(response != null){  
     //this.showToast('Logged in');
       // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');

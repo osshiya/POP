@@ -4,8 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimeAgoPipe implements PipeTransform {
   transform(data: any): string {
 
-    let currentDate = new Date(new Date().toUTCString());
-    let date = new Date(data + "Z");
+    let currentDate = new Date(new Date().toString());
+    let date = new Date(data);
 
     let year = currentDate.getFullYear() - date.getFullYear();
     let month = currentDate.getMonth() - date.getMonth();

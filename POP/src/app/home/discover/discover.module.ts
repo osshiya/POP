@@ -15,6 +15,6 @@ import { DiscoverPage } from './discover.page';
     IonicModule,
     DiscoverPageRoutingModule
   ],
-  declarations: [DiscoverPage]
+  declarations: []
 })
 export class DiscoverPageModule {}

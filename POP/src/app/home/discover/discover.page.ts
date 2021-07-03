@@ -14,6 +14,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./discover.page.scss'],
 }
 )
+
 export class DiscoverPage implements OnInit {
 
   constructor(

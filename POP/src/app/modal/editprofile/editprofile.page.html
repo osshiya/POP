@@ -20,7 +20,7 @@
 
   <div id="fixed-profile" *ngFor="let userinfo of userinfos" style="height: 20vh; margin-top:5vh; justify-content: center; align-items: center;">
     <ng-container *ngIf = "userinfo.usersid == currentsid">
-      <form [formGroup]="form">
+      <!-- <form [formGroup]="formpic"> -->
       <!-- <form [formGroup]="form" (submit)="connectToDB()">
         <ion-item class="shadow rounded">
           <ion-label position="stacked">Username:</ion-label>
@@ -41,7 +41,7 @@
       <ion-buttons class="pfp" style="position: relative; text-align: center; color: white;" (click)="updateImage()">
         <img [src]="base64Image" style="object-fit: cover; width: 150px; height: 150px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         <div class="centered" style="  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">edit photo</div>
-        <ion-input type="text" [(ngModel)]="base64Image"  [disabled]="true" formControlName="useravatarurl" style="display: none;"></ion-input>
+        <!-- <ion-input type="text" [(ngModel)]="base64Image"  [disabled]="false" formControlName="useravatarurl" style="display: none;"></ion-input> -->
       </ion-buttons>
     </div>
 
@@ -49,12 +49,12 @@
     <ion-buttons class="pfp" style="position: relative; text-align: center; color: white;" (click)="updateImage()">
       <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 150px; height: 150px; border-radius: 50%; margin: 10px auto 20px; display: block;">
       <div class="centered" style="  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">edit photo</div>
-      <ion-input type="text" [(ngModel)]="userinfo.useravatarurl"  [disabled]="true" formControlName="useravatarurl" style="display: none;"></ion-input>
+      <!-- <ion-input type="text" [(ngModel)]="userinfo.useravatarurl"  [disabled]="true" formControlName="useravatarurl" style="display: none;"></ion-input> -->
     </ion-buttons>
   </div>
-  <!-- </form>
+  <!-- </form> -->
 
-  <form [formGroup]="form"> -->
+  <form [formGroup]="form">
     <div style="margin: 30px 0; text-align:center;">
 
     <ion-item>

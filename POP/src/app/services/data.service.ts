@@ -94,7 +94,7 @@ export interface commentPostData {
 }
 
 export interface useravatarurl {
-  useravatarurl: any;
+  useravatarurl: string;
 }
 
 @Injectable({

@@ -27,7 +27,7 @@ export class EditprofilePage implements OnInit {
   userlink: string;
   userbio: string;
 
-  base64Image: any;
+  base64Image: string;
   captureProgress = 0;
 
   constructor(
@@ -50,7 +50,7 @@ export class EditprofilePage implements OnInit {
   // })
 
   form = new FormGroup({
-    useravatarurl: new FormControl(),
+    // useravatarurl: new FormControl(),
     username: new FormControl(),
     usergender: new FormControl(),
     useremail: new FormControl(),
@@ -173,17 +173,30 @@ async updateImage() {
     saveToGallery: true,
     presentationStyle: 'fullscreen',
   }).catch((e) => {
-    this.location.back();
     throw new Error(e);
   });
 this.base64Image = image.dataUrl;
 console.log (this.base64Image);
+
+let data = {
+  useravatarurl: this.base64Image
+}
+
+this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
+if(response != null){
+  this.showToast('Changed Profile Photo successfully');
+  // this.dismiss(this.form.value);
+}else{
+  this.showErrorToast('Changed Profile Photo Unsuccessfully');
+}
+});
 // this.postToDB(f);
 // console.log(this.image);
 // return  this.image = image.dataUrl;
+};
 
-
-// const data = this.formpic.value;
+// uploadImage(){
+  // const data = this.formpic.value;
 
 // this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
 //   if(response != null){
@@ -193,6 +206,6 @@ console.log (this.base64Image);
 //     this.showErrorToast('Changed Profile Photo Unsuccessfully');
 //   }
 //   });
-};
+// }
 
 }

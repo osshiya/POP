@@ -30,7 +30,7 @@
       <strong>{{ userinfo.userfirstname }} {{ userinfo.userlastname }}</strong><img src="{{ userinfo.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
       <p>@{{ userinfo.username }}</p>
       <p>{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
-      <p style="font-size: small;">{{ userinfo.userbio }}</p>
+      <p style="font-size: x-small;">{{ userinfo.userbio }}</p>
     </div>
     </div>
 
@@ -71,7 +71,8 @@
     
     <ion-slide> 
       <div *ngFor="let userinfo of userinfos">
-        <div id="left-fixed-profile" class="fixed-profile" *ngIf="userinfo.usersid == currentsid"  style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+        <ng-container  *ngIf="userinfo.usersid == currentsid">
+        <div id="left-fixed-profile" class="fixed-profile"  style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
         <div class="leftProfile">
           <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         </div>
@@ -79,16 +80,18 @@
           <p>{{ userinfo.usercontactno }}   |   {{ userinfo.useremail }}   |   {{ userinfo.userlink }}</p>
         </div>
         </div>
-      </div>
+
 
       <div class="skill-part" style="height: 12vh; font-size: small; margin: 0 5px; color: #0070CC;">
-        <div class="skills-list" style="padding: 20px 0;">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <div class="skills-list" style="padding: 17px 0;">
+        <span class="dot"><p>{{ userinfo.userskill1 }}</p></span>
+        <span class="dot"><p>{{ userinfo.userskill2 }}</p></span>
+        <span class="dot"><p>{{ userinfo.userskill3 }}</p></span>
+        <span class="dot"><p>{{ userinfo.userskill4 }}</p></span>
       </div>
       </div>
+    </ng-container>
+    </div>
 
       <div class="posts-title" style="height: 30px;">
       <strong style="color: #FFCF01; border-bottom: 5px solid #FFCF01;">PROJECTS</strong>

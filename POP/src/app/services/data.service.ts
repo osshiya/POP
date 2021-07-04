@@ -60,6 +60,11 @@ export interface userData {
   following: number;
   usersidtarget: string;
   usersidhost: string;
+
+  userskill1: string;
+  userskill2: string;
+  userskill3: string;
+  userskill4: string;
 }
 
 export interface customUserData{
@@ -72,6 +77,11 @@ export interface customUserData{
   userbio: string;
   usergender: string;
   userlink: string;
+
+  userskill1: string;
+  userskill2: string;
+  userskill3: string;
+  userskill4: string;
 }
 
 export interface postPostData {

@@ -30,6 +30,8 @@ export class EditprofilePage implements OnInit {
   base64Image: string;
   captureProgress = 0;
 
+  segment: string;
+
   constructor(
     private router: Router,
     private dataService: DataService,
@@ -42,9 +44,14 @@ export class EditprofilePage implements OnInit {
   userinfos: any = [];
 
   ngOnInit() {
+    this.segment = 'info';
     this.retrieveUser();
   }
 
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    // console.log(this.segment);
+  }
   // formpic = new FormGroup({
   //   useravatarurl: new FormControl(),
   // })
@@ -58,7 +65,12 @@ export class EditprofilePage implements OnInit {
     userdob: new FormControl(),
     usercontactno: new FormControl(),
     userlink: new FormControl(),
-    userbio: new FormControl()
+    userbio: new FormControl(),
+
+    userskill1: new FormControl(),
+    userskill2: new FormControl(),
+    userskill3: new FormControl(),
+    userskill4: new FormControl()
   });
 
   async showToast(data: any) {

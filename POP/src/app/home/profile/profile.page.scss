@@ -84,5 +84,11 @@ ion-header{
     background-color: #FFCF01;
     border-radius: 50%;
     display: inline-block;
-    // margin: 0 5px;
+    margin: 0 5px;
+    padding: 0 5px;
+}
+
+.dot p{
+    line-height:50px;
+    white-space: nowrap;
 }

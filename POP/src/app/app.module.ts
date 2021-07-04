@@ -14,20 +14,22 @@ import { TimeAgoPipe } from './time-ago.pipe';
 import { DiscoverPage } from './home/discover/discover.page';
 import { HomePage } from './home/home.page';
 
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
     DiscoverPage,
-    TimeAgoPipe
+    TimeAgoPipe,
   ],
   entryComponents: [
     AppComponent,
     HomePage,
     DiscoverPage
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule, FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

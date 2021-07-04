@@ -26,7 +26,13 @@ export interface userPostData {
   posttype: string;
   postname: string;
   postid: string;
+
+  pjtitle: string;
+  pjdesc: string;
+  pjteam: string;
+
   usersid: string;
+
   likes: number;
   comments: number;
   likedid: string;
@@ -91,6 +97,11 @@ export interface postPostData {
   posttype: string;
   postname: string;
   postid: string;
+
+  pjtitle: string;
+  pjdesc: string;
+  pjteam: string;
+
   usersid: string;
   likes: number;
   comments: number;
@@ -129,6 +140,7 @@ export class DataService {
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
+  private followedpostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/followedposts.php';
   // private profilepostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
@@ -153,6 +165,10 @@ export class DataService {
 
   getPosts(usersid: string){
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
+  }
+
+  getfollowedPosts(usersid: string){
+    return this.http.get<[userPostData]>(this.followedpostsUrl + '?usersid=' + usersid);
   }
 
   getPostProfile(){

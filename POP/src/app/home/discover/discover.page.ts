@@ -7,6 +7,7 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CommentPage } from '../../modal/comment/comment.page';
 import { MenuController } from '@ionic/angular';
+import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-discover',
@@ -44,6 +45,8 @@ export class DiscoverPage implements OnInit {
   ddata: number;
   rdata: number;
 
+  segment: string;
+
   ngOnInit() {
     // var slides = document.querySelector('ion-slides');
 
@@ -55,6 +58,7 @@ export class DiscoverPage implements OnInit {
     // }
 
     this.myData();
+    this.segment = 'discover';
   }
 
   ionViewWillEnter(){
@@ -65,6 +69,11 @@ export class DiscoverPage implements OnInit {
     this.retrieveDiscover();
     this.retrieveSocial();
     this.retrieveUser();
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    // console.log(this.segment);
   }
 
   async myData(){
@@ -258,7 +267,7 @@ retrieveUser(){
   retrieveSocial(){
     // console.log("retrieve Social");
 
-    this.dataService.getPosts(this.currentsid).subscribe(response => {
+    this.dataService.getfollowedPosts(this.currentsid).subscribe(response => {
       if(response != null){  
       //this.showToast('Logged in');
         // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');

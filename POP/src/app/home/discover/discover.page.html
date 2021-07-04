@@ -53,6 +53,15 @@
 </ion-menu>
 
 <ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="discover">
+    <ion-segment-button value="discover" checked>
+      <ion-label>Discover</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="social">
+      <ion-label>Social</ion-label>
+    </ion-segment-button>
+    </ion-segment>
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="false">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -61,12 +70,14 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
+
 <!-- 
   <ion-slides pager="false">
 
     <ion-slide> -->
       <!-- <div id="discover-gallery" *ngFor="let discoverpost of discoverposts.slice().reverse();"> -->
         <!-- <ng-container  *ngFor="let discoverpost of discoverposts"> -->
+          <div *ngIf="segment === 'discover'">
           <div id="discover-gallery" *ngFor="let discoverpost of discoverposts; let i = index" [attr.data-index]="i">
         <ion-item style=" --ion-card-background: #FFFFFF;">
           <ion-card style="width:100%; height:80vh;">
@@ -92,7 +103,11 @@
             <div class="bars" style="margin: 10px 0; width:100%; height: 10vh;">
 
             <div class="left-bar" style="width:75%; float: left; padding-left: 20px;"> 
+              <!-- post -->
               <p>{{ discoverpost.postdesc }}</p>
+              <!-- project -->
+              <strong>{{ discoverpost.pjtitle }}</strong> 
+              <p>{{ discoverpost.pjdesc }}</p>
             </div>
 
           <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
@@ -164,4 +179,72 @@
     </ion-slide> -->
 
   <!-- </ion-slides> -->
+</div>
+
+<div *ngIf="segment === 'social'">
+  <div id="discover-gallery" *ngFor="let socialpost of socialposts; let i = index" [attr.data-index]="i">
+<ion-item style=" --ion-card-background: #FFFFFF;">
+  <ion-card style="width:100%; height:80vh;">
+  <ion-card-header style="width:100%; height:30px ;margin: 10px 0;">
+    <div *ngFor="let userpost of userposts">
+  <ion-card-subtitle *ngIf="userpost.usersid == socialpost.usersid" style="width:100%;">
+    <div class="small-user" style="width:100%;">
+    <div style=" float:left;">
+      <a href="/home/profiles/{{ userpost.usersid }}">{{ userpost.userfirstname }} {{ userpost.userlastname }}</a>
+      <img src="{{ userpost.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
+    </div>
+    <div style=" float:right;">
+      <span>#{{ socialpost.posttype }}</span>
+  </div>
+  </div>
+  </ion-card-subtitle>
+  </div>
+  </ion-card-header>
+  <!-- <ion-card-content id="post_{{ discoverpost.postid }}"style="width:100%; height:100vh;"> -->
+  
+    <img src="{{ socialpost.posturl }}" style="width:100%; height:300px ;margin: 30px 0;">
+
+    <div class="bars" style="margin: 10px 0; width:100%; height: 10vh;">
+
+    <div class="left-bar" style="width:75%; float: left; padding-left: 20px;"> 
+      <!-- post -->
+      <p>{{ socialpost.postdesc }}</p>
+      <!-- project -->
+      <strong>{{ socialpost.pjtitle }}</strong> 
+      <p>{{ socialpost.pjdesc }}</p>
+    </div>
+
+  <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
+    <!-- <ion-button (click)="like(discoverpost)" class="like like{{ discoverpost.postid }}" *ngIf="selectedIndex === undefined || selectedIndex == i" [ngClass]="{show: selectedIndex == likeShow, hide: selectedIndex == !likeShow}" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
+    <ion-button (click)="unlike()" class="unlike unlike{{ discoverpost.postid }}" *ngIf="selectedIndex === undefined || selectedIndex == i" [ngClass]="{show: selectedIndex == unlikeShow, hide: selectedIndex == !unlikeShow}" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button> -->
+    <!-- <ion-button (click)="like(discoverpost)" class="like like{{ discoverpost.postid }}" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button> -->
+    <ion-button (click)="like(socialpost.postid, currentsid, socialpost)"name="like" class="like like{{ socialpost.postid }}" *ngIf="socialpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
+    <ion-button (click)="unlike(socialpost.postid, currentsid, socialpost)" name="unlike" class="unlike unlike{{ socialpost.postid }}" *ngIf="socialpost.likedusersid == currentsid" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
+    <span id="like-counter">{{ socialpost.likes }}</span>
+    <!-- <span id="like-stat">{{ discoverpost.liked }} by {{ discoverpost.likedusersid }} : {{ currentsid }}</span> -->
+
+  <!-- <input type="button" value="Like" class="like" ng-style="discoverpost.type == 1 && {'color': '#ffa449'}" ng-click='setResponse(post.id,1,$index)' />&nbsp;(<span >{{ post.likes}}</span>)&nbsp;
+  <input type="button" value="Unlike" class="unlike" ng-style="post.type == 0 && {'color': '#ffa449'}" ng-click='setResponse(post.id,0,$index)' />&nbsp;(<span >{{ post.unlikes }}</span>)
+   -->
+  </div>
+  </div>
+
+  <!-- </ion-card-content>  -->
+  <ion-row>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row class="bottomCard" >
+    <ion-col>
+      <ion-button (click)="presentModal(socialpost.postid, socialpost.comments, socialpost.likes, socialpost)" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon><span id="comment-counter">{{ socialpost.comments }}</span></ion-button>
+      <p style="float:right; padding: 0px 15px 0px 0 ">{{ socialpost.postdate | timeAgo }}</p>  
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col></ion-col>
+  </ion-row>
+    </ion-card>
+</ion-item>
+</div>
+</div>
+
 </ion-content>

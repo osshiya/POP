@@ -49,8 +49,8 @@
         <strong>Followers</strong>
       </div>
 
-      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.usersidhost !== currentsid" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
-      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.usersidhost == currentsid" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>
+      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 || userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
+      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>
     </div>
     </ng-container>
     </div>

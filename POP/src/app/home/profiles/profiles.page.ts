@@ -307,7 +307,8 @@ follow(userinfo, currentsid, str2){
   this.dataService.followreq(data).subscribe(response => {
     if(response != null){
 
-userinfo.usersidhost = currentsid;
+userinfo.following = 1;
+// console.log(userinfo.following);
 var followers = JSON.parse(userinfo.followers);
 followers += 1; 
 userinfo.followers = followers;
@@ -355,7 +356,8 @@ unfollow(userinfo, currentsid, str2, followingData){
   this.dataService.followreq(data).subscribe(response => {
     if(response != null){
 
-userinfo.usersidhost = "";
+userinfo.following = 0;
+// console.log(userinfo.following);
 var followers = JSON.parse(userinfo.followers);
 followers -= 1; 
 userinfo.followers = followers;

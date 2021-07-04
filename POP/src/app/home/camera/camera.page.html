@@ -62,20 +62,20 @@
 		<ion-card *ngSwitchCase="'portfolio'">
 			<ion-card-content>
 
-				<form [formGroup]="form">
+			<form [formGroup]="form">
 					<ion-item>
 						<ion-label position="stacked">Title</ion-label>
-						<ion-input type="text" value="" required></ion-input>
+						<ion-input type="text" value="" required [(ngModel)]="pjtitle" formControlName="pjtitle"></ion-input>
 					  </ion-item>
 		
 					<ion-item style="width: 100%;">
 						<ion-label position="stacked">Description</ion-label>
-						<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="desc" formControlName="desc"></ion-textarea>
+						<ion-textarea value="" maxlength="150" autoGrow="true" [(ngModel)]="pjdesc" formControlName="pjdesc"></ion-textarea>
 					  </ion-item>
 		
 					  <ion-item style="width:100%">
 						<ion-label position="stacked">Team Name</ion-label>
-						<ion-input type="text" value="" required></ion-input>
+						<ion-input type="text" value="" required [(ngModel)]="pjteam" formControlName="pjteam"></ion-input>
 					  </ion-item>
 		
 		

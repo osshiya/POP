@@ -23,6 +23,12 @@ export class CameraPage implements OnInit {
 
     type: string;
     desc: string;
+
+    pjtitle: string;
+    pjdesc: string;
+    pjteam: string;
+
+
     tags: any = [];
 
     segment: string;
@@ -71,7 +77,11 @@ export class CameraPage implements OnInit {
 
   form = new FormGroup({
     type: new FormControl(),
-    desc: new FormControl()
+    desc: new FormControl(),
+
+    pjtitle: new FormControl(),
+    pjdesc: new FormControl(),
+    pjteam: new FormControl()
   });
   //actionsheet pop out for actions
 
@@ -94,7 +104,7 @@ export class CameraPage implements OnInit {
         saveToGallery: true,
         presentationStyle: 'fullscreen',
       }).catch((e) => {
-        this.location.back();
+        this.cancelOP();
         throw new Error(e);
       });
     this.base64Image = image.dataUrl;
@@ -119,13 +129,18 @@ export class CameraPage implements OnInit {
         posttype: this.segment,
         postdesc: this.desc,
         postname: this.base64Image,
+
+        pjtitle: this.pjtitle,
+        pjdesc: this.pjdesc,
+        pjteam: this.pjteam,
+
         usersid: currentsid,
         likes: 0,
         comments: 0,
       }
 
       const data = postPostData;
-      console.log('postPostData: ' + data);
+      console.log('postPostData: ' + JSON.stringify(data));
       $("#pRes").html("online");
 
     //   this.dataService.getCheck(this.userid).subscribe(response => {
@@ -133,6 +148,7 @@ export class CameraPage implements OnInit {
     this.dataService.upload(data).subscribe(response => {
     if(response != null){
       this.showToast('Posted successfully');
+      this.form.reset();
       this.router.navigate(['/home']);
     }else{
       this.showErrorToast('Posted Unsuccessfully');

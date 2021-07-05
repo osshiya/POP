@@ -27,6 +27,8 @@ export class ProfilePage implements OnInit {
   currentsid: any;
   userinfos: any = [];
 
+  segment: string;
+
   ngOnInit() {
     var slides = document.querySelector('ion-slides');
 
@@ -40,11 +42,18 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.segment = "posts";
     $("#fixed-profile").html("");
     $("#posts-gallery").html("");
     $("#portfolio-gallery").html("");    
     
     this.myData();
+  }
+
+  
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    // console.log(this.segment);
   }
 
   async presentPostModal(postid, discoverpost) {

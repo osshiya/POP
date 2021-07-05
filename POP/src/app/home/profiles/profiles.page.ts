@@ -25,6 +25,8 @@ export class ProfilesPage implements OnInit {
   str2: any;
   currentsid: any;
 
+  segment: string;
+
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -43,7 +45,15 @@ export class ProfilesPage implements OnInit {
       initialSlide: 0,
       speed: 400
     };
+
+    this.segment="posts";
   }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    // console.log(this.segment);
+  }
+
 
   async showErrorToast(data: any) {
     const toast = await this.toastCtrl.create({

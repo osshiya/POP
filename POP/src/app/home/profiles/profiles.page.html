@@ -55,18 +55,33 @@
     </ng-container>
     </div>
 
-      <div class="posts-title" style="height: 30px;">
-      <strong style="color: #FFCF01; border-bottom: 5px solid #FFCF01;">POSTS</strong>
+    <div class="posts-title" style="height: 30px;">
+      <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="posts">
+        <ion-segment-button value="posts" checked>
+          <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">POSTS</strong>
+        </ion-segment-button>
+        <ion-segment-button value="likes">
+          <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">LIKES</strong>
+        </ion-segment-button>
+        </ion-segment>
+    </div>
+    <br>
+    
+    <div class="wrapper" *ngIf="segment === 'posts'">
+      <ng-container  *ngFor="let userpost of userposts">
+        <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.usersid == str2">
+        <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPostModal(userpost.postid, currentsid)">
       </div>
-      <br>
+      </ng-container>
+    </div>
 
-      <div class="wrapper">
-        <ng-container  *ngFor="let userpost of userposts">
-          <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.usersid == str2">
-            <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPortfolioModal(userpost.postid, currentsid)">
-        </div>
-        </ng-container>
+    <div class="wrapper" *ngIf="segment === 'likes'">
+      <ng-container  *ngFor="let userpost of userposts">
+        <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.likedusersid == str2">
+        <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPostModal(userpost.postid, currentsid)">
       </div>
+      </ng-container>
+    </div>
 
     </ion-slide>
 
@@ -95,7 +110,11 @@
       </div>
 
       <div class="posts-title" style="height: 30px;">
-      <strong style="color: #FFCF01; border-bottom: 5px solid #FFCF01;">PROJECTS</strong>
+        <ion-segment value="projects">
+          <ion-segment-button value="projects" checked>
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">PROJECTS</strong>
+          </ion-segment-button>
+          </ion-segment>
       </div>
       <br>
 

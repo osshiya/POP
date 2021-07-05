@@ -49,29 +49,34 @@
           <span>{{ userinfo.followers }}</span> <br>
           <strong>Followers</strong>
         </div>
-
-        <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="discover">
-          <ion-segment-button value="discover" checked>
-            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">POSTS</strong>
-          </ion-segment-button>
-          <ion-segment-button value="social">
-            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">LIKES</strong>
-          </ion-segment-button>
-          </ion-segment>
-
       </div>
     </ng-container>
       </div>
 
       <div class="posts-title" style="height: 30px;">
-
+        <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="posts">
+          <ion-segment-button value="posts" checked>
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">POSTS</strong>
+          </ion-segment-button>
+          <ion-segment-button value="likes">
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">LIKES</strong>
+          </ion-segment-button>
+          </ion-segment>
       </div>
       <br>
-
-      <div class="wrapper">
+      
+      <div class="wrapper" *ngIf="segment === 'posts'">
         <ng-container  *ngFor="let userpost of userposts">
           <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.usersid == currentsid">
-          <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)=presentPostModal(userpost.postid);>
+          <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPostModal(userpost.postid)">
+        </div>
+        </ng-container>
+      </div>
+
+      <div class="wrapper" *ngIf="segment === 'likes'">
+        <ng-container  *ngFor="let userpost of userposts">
+          <div id="posts-gallery" *ngIf="userpost.posttype == 'post' && userpost.likedusersid == currentsid">
+          <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPostModal(userpost.postid)">
         </div>
         </ng-container>
       </div>
@@ -103,15 +108,23 @@
     </ng-container>
     </div>
 
-      <div class="posts-title" style="height: 30px;">
+      <!-- <div class="posts-title" style="height: 30px;">
       <strong style="color: #FFCF01; border-bottom: 5px solid #FFCF01;">PROJECTS</strong>
+      </div>
+      <br> -->
+      <div class="posts-title" style="height: 30px;">
+        <ion-segment value="projects">
+          <ion-segment-button value="projects" checked>
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">PROJECTS</strong>
+          </ion-segment-button>
+          </ion-segment>
       </div>
       <br>
 
         <div class="wrapper">
           <ng-container  *ngFor="let userpost of userposts">
             <div id="portfolio-gallery" *ngIf="userpost.posttype == 'portfolio'&&  userpost.usersid == currentsid">
-            <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)=presentPortfolioModal(userpost.postid);>
+            <img src="{{ userpost.posturl }}" class="{{ userpost.postid }}" style="object-fit: cover; width: 100%; height: 150px; padding: 1px 1px;"  (click)="presentPortfolioModal(userpost.postid)">
           </div>
           </ng-container>
         </div>

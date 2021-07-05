@@ -42,15 +42,19 @@
           <p>{{ discoverpost.postdesc }}</p>
         </div>
 
-      <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
-        <ion-button (click)="like(discoverpost.postid, currentsid, discoverpost)"name="like" class="like like{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
-        <ion-button (click)="unlike(discoverpost.postid, currentsid, discoverpost)" name="unlike" class="unlike unlike{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid == currentsid" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
-        <span id="like-counter">{{ discoverpost.likes }}</span>
+        <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
+          <ion-button (click)="like(discoverpost.postid, currentsid, discoverpost)"name="like" class="like like{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid !== currentsid" fill="clear"><ion-icon slot="icon-only" name="heart-outline"></ion-icon></ion-button>
+          <ion-button (click)="unlike(discoverpost.postid, currentsid, discoverpost)" name="unlike" class="unlike unlike{{ discoverpost.postid }}" *ngIf="discoverpost.likedusersid == currentsid" fill="clear"><ion-icon slot="icon-only" name="heart"></ion-icon></ion-button>
+          <span id="like-counter">{{ discoverpost.likes }}</span>
+  
+        </div>
+      </div>
 
-        <ion-button (click)="dismiss()" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon></ion-button>
-        <span id="comment-counter">{{ discoverpost.comments }}</span>
+      <div class="left-bar" style="display:flex; flex-direction: column; float:left;">
+        <ion-button (click)="dismiss()" class="comment" fill="clear"><ion-icon slot="icon-only" name="chatbox-outline"></ion-icon><span id="comment-counter">{{ discoverpost.comments }}</span></ion-button>
+        
       </div>
-      </div>
+
         <p style="float:right; display:block; margin: 30px 0; margin: 10px 10px">{{ discoverpost.postdate }}</p>
         </ion-card>
     </ion-item>

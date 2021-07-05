@@ -140,11 +140,13 @@ export class DataService {
   private url = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private loginUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/login.php';
   private postsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php';
+  private ranksUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/ranks.php';
   private followedpostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/followedposts.php';
   // private profilepostsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private uploadUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/uploader.php';
   private likesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php';
   private commentsUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/commenting.php';
+  private searchUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/search.php';
   private profileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profile.php';
   private profilesUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/profiles.php';
   private updateprofileUrl = 'https://student.amphibistudio.sg/10187403A/POP/db/updateuser.php';
@@ -167,6 +169,14 @@ export class DataService {
     return this.http.get<[userPostData]>(this.postsUrl + '?usersid=' + usersid);
   }
 
+  getnoPosts(){
+    return this.http.get<[userPostData]>(this.postsUrl);
+  }
+
+  getPostRanks(usersid: string){
+    return this.http.get<[userPostData]>(this.ranksUrl + '?usersid=' + usersid);
+  }
+
   getfollowedPosts(usersid: string){
     return this.http.get<[userPostData]>(this.followedpostsUrl + '?usersid=' + usersid);
   }
@@ -185,6 +195,10 @@ export class DataService {
 
   getUniqueProfile(usersid){
     return this.http.get<[userData]>(this.profileUrl + '?usersid=' + usersid);
+  }
+
+  getsearchProfile(searchTerm){
+    return this.http.get<[userData]>(this.searchUrl + '?searchTerm=' + searchTerm);
   }
 
   // getProfile(usersid: string){

@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: () => import('../home/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
+        path: 'search',
+        loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+      },
+      {
         path: '',
         redirectTo: '/home/discover',
         pathMatch: 'full'

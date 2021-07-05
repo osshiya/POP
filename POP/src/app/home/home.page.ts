@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DiscoverPage } from './discover/discover.page';
 
 @Component({
   selector: 'app-home',
@@ -11,5 +12,4 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
 }

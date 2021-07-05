@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Storage } from '@ionic/storage';
@@ -17,6 +18,7 @@ import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Valid
 )
 
 export class DiscoverPage implements OnInit {
+  @ViewChild(IonContent) content: IonContent;
 
   constructor(
     private router: Router,
@@ -69,6 +71,10 @@ export class DiscoverPage implements OnInit {
     this.retrieveDiscover();
     this.retrieveSocial();
     this.retrieveUser();
+  }
+
+  scrollToTOP(){
+    this.content.scrollToTop();
   }
 
   segmentChanged(ev: any) {

@@ -49,12 +49,22 @@
           <span>{{ userinfo.followers }}</span> <br>
           <strong>Followers</strong>
         </div>
+
+        <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="discover">
+          <ion-segment-button value="discover" checked>
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">POSTS</strong>
+          </ion-segment-button>
+          <ion-segment-button value="social">
+            <strong style="color: #FFCF01; border-bottom: 1px solid #FFCF01;">LIKES</strong>
+          </ion-segment-button>
+          </ion-segment>
+
       </div>
     </ng-container>
       </div>
 
       <div class="posts-title" style="height: 30px;">
-      <strong style="color: #FFCF01; border-bottom: 5px solid #FFCF01;">POSTS</strong>
+
       </div>
       <br>
 

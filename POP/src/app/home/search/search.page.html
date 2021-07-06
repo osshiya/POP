@@ -5,7 +5,7 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar animated value="" showCancelButton="focus" (ionInput)="retrieveUser($event)" (ionFocus)="overlay($event)" (ionBlur)="unoverlay($event)"></ion-searchbar>
+    <ion-searchbar animated value="" showCancelButton="focus" (ionInput)="retrieveUser($event)" (ionFocus)="overlay($event)" (ionClear)="unoverlay($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -17,8 +17,10 @@
           <img src="{{ userinfo.useravatarurl }}">
         </ion-avatar>
         <ion-label>
+          <a class="users" href="/home/profiles/{{ userinfo.usersid }}">
           <h3>{{ userinfo.userfirstname }} {{ userinfo.userlastname }}<img src="{{ userinfo.schoolbadge }}" style="width:23px; vertical-align:middle; margin-left:5px"></h3>
           <p>@{{ userinfo.username }}</p>
+          </a>
         </ion-label>
       </ion-item>
       </ion-list>

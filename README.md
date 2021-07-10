@@ -19,6 +19,7 @@ Supported OS 4.0.3 and newer.
     - usersid: 11111111A
     - password: lims
 
+
 ## Features
 - Discover:
 - Social:
@@ -45,6 +46,7 @@ Supported OS 4.0.3 and newer.
 
 - Validation
 
+
 ## Features Left to Implement
 - Forum
 - Chat
@@ -56,6 +58,7 @@ Supported OS 4.0.3 and newer.
 - Setting
 - Dark Mode
 
+
 ## Technologies Used
 - [Ionic](https://ionicframework.com/)
     - The project uses **Ionic** to create mobile interface and icons.
@@ -66,7 +69,9 @@ Supported OS 4.0.3 and newer.
 - [TypeScript]
     - The project uses **TypeScript** to create features.
 
+
 ## Testing
+
 
 ## References
 Ionic Framework APIs

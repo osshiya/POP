@@ -1,0 +1,121 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Discover</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="openFirst()">
+        <img src="../../../assets/images/AppLogo_Transparent.png" width="40vh">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+
+    <ion-title>Discover</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon src="../../../assets/images/iconas/Chat.svg"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon src="../../../assets/images/iconas/Activity.svg"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>POP! for NP</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="main">
+    <ion-list>
+      <ion-item>
+        <ion-buttons>
+        <ion-button fill="clear" (click)="logout()">
+          <ion-icon name="log-out-outline" style="margin-right:10px"></ion-icon>
+          Log out
+        </ion-button>
+      </ion-buttons>
+      </ion-item>
+      <!-- <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item> -->
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="cancelOP()">
+        <ion-icon  slot="end" name="reorder-three-outline"></ion-icon>
+        Latest
+      </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+
+            <!--
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Trending</ion-card-subtitle>
+      <ion-card-title>Mr Melvin Winner Winner Chicken Diner</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Best teacher/Lecturer and student in Ngee Ann Polytechnic in the past 15 years. Can't beat this man can WE
+    </ion-card-content>
+  </ion-card>
+  -->
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/1.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>How to manage your stress better?    </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/2.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>Vote for your POP!nfluencer?    </ion-card-content>
+    </ion-item>
+  </ion-card>
+  
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/3.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>Favourite Chicken Rice in school   </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/7.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>I cant log into my school E-portfolio   </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/5.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>Reach out to youths in Andress Boys Home    </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/placeholder/6.jpg" slot="end" style="width: 100px; text-align: center;">
+      <ion-card-content>COVID-19 Restrictions: 15 May - 16 June  </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

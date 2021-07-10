@@ -92,7 +92,8 @@
           <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         </div>
         <div class="rightProfile" style="font-size: x-small; width: 100%; white-space: nowrap;">
-          <p>{{ userinfo.usercontactno }}   |   {{ userinfo.useremail }}   |   {{ userinfo.userlink }}</p>
+          <p>{{ userinfo.usercontactno }}   |   {{ userinfo.useremail }}   |   <a style="--ion-color-primary: #0070CC;" href="#" onclick="window.open('{{ userinfo.userlink }}',
+            '_system', 'location=yes'); return false;">{{ userinfo.userlink }}</a></p>
         </div>
         </div>
 

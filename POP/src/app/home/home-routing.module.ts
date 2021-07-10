@@ -37,6 +37,10 @@ const routes: Routes = [
         },
         loadChildren: () => import('../home/profiles/profiles.module').then(m => m.ProfilesPageModule)
       },
+      {
+        path: 'forum',
+        loadChildren: () => import('../home/forum/forum.module').then(m => m.ForumPageModule)
+      },
     ]
   },
 ];

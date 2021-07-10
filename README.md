@@ -1,5 +1,6 @@
 # POP readme
-POP! is a new-age social media mobile application. Users use it to capture, save, share their valuable memories, moments and events that happen in their life with their phones. Not just that, POP serve as a creativity hub for sharing of ideas, works and projects. The community may just happen to discover this hidden gem of yours while scrolling through the discover page. Anything can happen in POP!
+POP! is a new-age social media mobile application developed by Studio MAGIQ. 
+Users can capture, save, share their valuable memories, moments and events that happen in their life with their phones. Not just that, POP serve as a creativity hub for sharing of ideas, works and projects. The community may just happen to discover this hidden gem of yours while scrolling through the discover page. Anything can happen in POP!
 
 POP! is currently underdevelopment. 
 
@@ -8,7 +9,8 @@ POP! is expected to be released in late August only for Android at Google Play S
 Supported OS 4.0.3 and newer.
 
 - [GitHub](https://github.com/osshiya/POP.git)
-
+- [Studio Development Blog](https://s10198275.wixsite.com/magiq)
+- [Individual Blog - SY](https://s10187403.wixsite.com/blog)
 
 
 ## Design Process

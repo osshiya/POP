@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="outline" (click)="dismiss()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Back
+      </ion-button>
+      </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let userinfo of userinfos">
+    <ng-container *ngIf="userinfo.usersid == currentsid" >
+    <div id="left-fixed-profile" class="fixed-profile"  style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+    <div class="leftProfile">
+      <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
+    </div>
+    <div class="rightProfile">
+      <strong>{{ userinfo.userfirstname }} {{ userinfo.userlastname }}</strong><img src="{{ userinfo.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
+      <!-- <p>@{{ userinfo.username }}</p>
+      <p>{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
+      <p style="font-size: x-small;">{{ userinfo.userbio }}</p> -->
+    </div>
+    </div>
+
+  <!-- <div *ngFor="let userpost of userposts">
+    <p>{{ userpost.posturl }}</p>
+  </div> -->
+  <!-- <ion-slides pager="false"> -->
+
+      <!-- <div class="follow-part" style="height: 12vh; font-size: small; margin: 0 5px; color: #0070CC;">
+        <a class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a;" (click)='presentFollowingModal()'>
+          <span>{{ userinfo.followings }}</span> <br>
+          <strong>Following</strong>
+        </a>
+
+        <a class="followers" style="margin: 25px 0; width: 20%;float: left;" (click)='presentFollowerModal()'>
+          <span>{{ userinfo.followers }}</span> <br>
+          <strong>Followers</strong>
+        </a>
+      </div> -->
+    </ng-container>
+      </div>
+
+      <div style="display: flex; flex-direction: row; margin: 20px 20px;">
+        <div *ngFor="let followedinfo of followedinfos">
+          <ng-container *ngIf="title == 'Follower' && followedinfo.usersidtarget == currentsid">
+  
+            <div *ngFor="let userinfo of userinfos">
+              <ng-container *ngIf="userinfo.usersid == followedinfo.usersidhost">
+                <div  style="width: 100px; height: 100px; margin: 10px, 10px;">
+                <a class="users" href="/home/profiles/{{ userinfo.usersid }}">
+                <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; display: block; margin: auto;">
+                <p style="font-size:x-small; text-align: center;">{{ userinfo.userfirstname }} {{ userinfo.userlastname }}</p>
+                <p style="font-size:xx-small; text-align: center;">{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
+              </a>
+              </div>
+                </ng-container>
+              </div>
+  
+          </ng-container>
+
+        <ng-container *ngIf="title == 'Following' && followedinfo.usersidhost == currentsid">
+
+          <div *ngFor="let userinfo of userinfos">
+            <ng-container *ngIf="userinfo.usersid == followedinfo.usersidtarget">
+              <div  style="width: 100px; height: 100px; margin: 10px, 10px;">
+              <a class="users" href="/home/profiles/{{ userinfo.usersid }}">
+              <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; display: block; margin: auto;">
+              <p style="font-size:x-small; text-align: center;">{{ userinfo.userfirstname }} {{ userinfo.userlastname }}</p>
+              <p style="font-size:xx-small; text-align: center;">{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
+            </a>
+          </div>
+              </ng-container>
+            </div>
+
+        </ng-container>
+      </div>
+    </div>
+
+</ion-content>

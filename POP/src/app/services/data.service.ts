@@ -245,6 +245,10 @@ export class DataService {
     return this.http.get<[followreq]>(this.followreqUrl + '?usersidhost=' + usersidhost + '&usersidtarget=' + usersidtarget);
   }
 
+  getFollow(){
+    return this.http.get<[followreq]>(this.followreqUrl);
+  }
+
 
   // JSON API
   setData(id, data){

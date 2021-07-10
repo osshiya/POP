@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'editprofile',
     loadChildren: () => import('./modal/editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+  },  {
+    path: 'follow',
+    loadChildren: () => import('./modal/follow/follow.module').then( m => m.FollowPageModule)
   },
+
 
   // {
   //   path: 'social',

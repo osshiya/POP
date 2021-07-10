@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
 import { PostPage } from '../../modal/post/post.page';
 import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
 import { EditprofilePage } from '../../modal/editprofile/editprofile.page';
+import { FollowPage } from 'src/app/modal/follow/follow.page';
 
 @Component({
   selector: 'app-profile',
@@ -54,6 +55,32 @@ export class ProfilePage implements OnInit {
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     // console.log(this.segment);
+  }
+
+  async presentFollowerModal() {
+    const modal = await this.modalController.create({
+      component: FollowPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'title': 'Follower',
+        'currentsid': this.currentsid,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
+
+  async presentFollowingModal() {
+    const modal = await this.modalController.create({
+      component: FollowPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'title': 'Following',
+        'currentsid': this.currentsid,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
   }
 
   async presentPostModal(postid, discoverpost) {

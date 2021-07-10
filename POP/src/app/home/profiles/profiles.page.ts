@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PostPage } from '../../modal/post/post.page';
 import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
+import { FollowPage } from 'src/app/modal/follow/follow.page';
 
 @Component({
   selector: 'app-profiles',
@@ -110,6 +111,32 @@ if (this.str2 == this.currentsid){
   //   //   this.router.navigateByUrl('home/profile');
   //   // } 
   // }
+
+  async presentFollowerModal() {
+    const modal = await this.modalController.create({
+      component: FollowPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'title': 'Follower',
+        'currentsid': this.str2,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
+
+  async presentFollowingModal() {
+    const modal = await this.modalController.create({
+      component: FollowPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'title': 'Following',
+        'currentsid': this.str2,
+      },
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
 
   async presentPostModal(postid, currentsid, discoverpost) {
     const modal = await this.modalController.create({

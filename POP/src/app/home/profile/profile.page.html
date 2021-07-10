@@ -40,15 +40,15 @@
   <!-- <ion-slides pager="false"> -->
 
       <div class="follow-part" style="height: 12vh; font-size: small; margin: 0 5px; color: #0070CC;">
-        <div class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a;">
+        <a class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a; --ion-color-primary: #0070CC;" (click)='presentFollowingModal()'>
           <span>{{ userinfo.followings }}</span> <br>
           <strong>Following</strong>
-        </div>
+        </a>
 
-        <div class="followers" style="margin: 25px 0; width: 20%;float: left;">
+        <a class="followers" style="margin: 25px 0; width: 20%;float: left;  --ion-color-primary: #0070CC;" (click)='presentFollowerModal()'>
           <span>{{ userinfo.followers }}</span> <br>
           <strong>Followers</strong>
-        </div>
+        </a>
       </div>
     </ng-container>
       </div>

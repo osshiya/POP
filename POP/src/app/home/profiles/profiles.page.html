@@ -39,15 +39,15 @@
   <!-- <ion-slides pager="false"> -->
 
     <div class="follow-part" style="height: 12vh; font-size: small; margin: 0 20px; color: #0070CC;">
-      <div class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a;">
-        <span>{{ userinfo.followings }}</span> <br>
-        <strong>Following</strong>
-      </div>
+        <a class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a; --ion-color-primary: #0070CC;" (click)='presentFollowingModal()'>
+          <span>{{ userinfo.followings }}</span> <br>
+          <strong>Following</strong>
+        </a>
 
-      <div class="followers" style="margin: 25px 0; width: 20%;float: left;">
-        <span>{{ userinfo.followers }}</span> <br>
-        <strong>Followers</strong>
-      </div>
+        <a class="followers" style="margin: 25px 0; width: 20%;float: left;  --ion-color-primary: #0070CC;" (click)='presentFollowerModal()'>
+          <span>{{ userinfo.followers }}</span> <br>
+          <strong>Followers</strong>
+        </a>
 
       <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 || userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
       <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>

@@ -10,12 +10,13 @@ import { MenuController } from '@ionic/angular';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 
+
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss'],
+  selector: 'app-activity',
+  templateUrl: './activity.page.html',
+  styleUrls: ['./activity.page.scss'],
 })
-export class ChatPage implements OnInit {
+export class ActivityPage implements OnInit {
 
   constructor(    
     private router: Router,
@@ -24,35 +25,34 @@ export class ChatPage implements OnInit {
     private modalController: ModalController,
     private menu: MenuController) { }
 
+  gotoChat() {
+    this.router.navigate(['chat'])
+    console.log("gotoChatclicked");
+  }
 
+  gotoAct() {
+    this.router.navigate(['activity'])
+    console.log("gotoActivityclicked");
+  }
 
-    gotoChat() {
-      this.router.navigate(['chat'])
-      console.log("gotoChatclicked");
-    }
   
-    gotoAct() {
-      this.router.navigate(['activity'])
-      console.log("gotoActivityclicked");
-    }
-  
-    
-    openFirst() {
-      this.menu.enable(true, 'first');
-      this.menu.open('first');
-    }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 
-    async logout(){
-      console.log("logging out");
-    
-      const storage = new Storage();
-      await storage.create();
-    
-      await storage.set('usersid', '');
-      await storage.set('userpassword', '');
-    
-      this.router.navigate(['/login']);
-    }
+  async logout(){
+    console.log("logging out");
+  
+    const storage = new Storage();
+    await storage.create();
+  
+    await storage.set('usersid', '');
+    await storage.set('userpassword', '');
+  
+    this.router.navigate(['/login']);
+  }
+
 
   ngOnInit() {
   }

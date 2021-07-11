@@ -33,6 +33,12 @@ export class DiscoverPage implements OnInit {
     console.log("gotoChatclicked");
   }
 
+  gotoAct() {
+    this.router.navigate(['activity'])
+    console.log("gotoActivityclicked");
+  }
+  
+
   // public likeShow = false;
   // public unlikeShow = false;
   enterid: string;

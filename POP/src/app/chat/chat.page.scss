@@ -1,0 +1,111 @@
+// ion-slides {
+//     height: 100%;
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+:host{
+  --ion-background-color: #FFFCF2;
+  --ion-font-family: 'Open Sans', sans-serif;
+}
+
+strong{
+    --font-weight: 400;
+}
+
+p, span{
+    --font-weight: 300;
+}
+
+ion-toolbar{
+    --font-weight: 600;
+    text-align: center;
+  }
+
+.swiper-slide {
+    display: block;
+}
+
+// .refresher-md{
+// --ion-background-color:white;
+// --ion-text-color: white;
+// --color: white;
+// }
+
+ion-refresher-content {
+    padding-bottom: 200px;
+    padding-top: 50px;
+    background-color: #FFCF01;
+    --ion-text-color: white;
+    --color: white;
+    // margin-bottom: 200px;
+  
+    // .refresher-pulling {
+    //   position: fixed;
+    //   top: 50px;
+    // }
+  }
+
+ion-card-content{
+    display: none !important;
+    --ion-card-background: #000000;
+    --ion-item-background: #000000;
+    --ion-background-color: #000000;
+}
+
+ion-header{
+    --ion-background-color: #FFCF01;
+    --color: white;
+    --ion-toolbar-color: white;
+    --ion-text-color: white;
+}
+
+.like{
+    fill: red;
+    color: red;
+    text-align: center;
+}
+
+.unlike{
+    fill: red;
+    color: red;
+}
+
+.show{
+    display: none;
+}
+
+.hide{
+    display: none;
+}
+
+#like-counter{
+    text-align: center;
+    margin-top: 0;
+}
+
+#comment-counter{
+    text-align: center;
+    margin-left: 15%;
+}
+
+.bottomCard {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.bottomCardBar {
+    position: relative;
+    bottom: 0;
+}
+
+#mainTitle {
+    text-align: center;
+    margin-left: 20%;
+}
+
+a.users{
+text-decoration: none;
+font-weight: 600;
+}

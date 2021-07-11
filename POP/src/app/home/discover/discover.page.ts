@@ -28,6 +28,11 @@ export class DiscoverPage implements OnInit {
     private menu: MenuController
   ) { }
 
+  gotoChat() {
+    this.router.navigate(['chat'])
+    console.log("gotoChatclicked");
+  }
+
   // public likeShow = false;
   // public unlikeShow = false;
   enterid: string;
@@ -394,6 +399,7 @@ retrieveUser(){
     this.showErrorToast('Error');
   }
 });
+
 }
 
   async logout(){

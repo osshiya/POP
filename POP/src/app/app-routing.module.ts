@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'follow',
     loadChildren: () => import('./modal/follow/follow.module').then( m => m.FollowPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 
 
   // {

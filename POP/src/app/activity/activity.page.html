@@ -12,7 +12,7 @@
       </ion-button>
       </ion-buttons>
 
-    <ion-title>Notification</ion-title>
+    <ion-title>Activity</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="gotoChat()" fill="clear">
@@ -53,6 +53,12 @@
 </ion-menu>
 
 <ion-content>
+
+  <ion-label style="text-align: center; margin: 3px 0px 0px 0px; padding: 1px;">
+    <ion-button fill="outline" float="left" (click)="gotoDiscover()">
+      <ion-icon  slot="start" name="arrow-back" ></ion-icon>
+    </ion-button>
+  </ion-label>
 
   <ion-card>
     <ion-item>

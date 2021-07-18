@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'activity',
     loadChildren: () => import('./activity/activity.module').then( m => m.ActivityPageModule)
   },
+  {
+    path: 'inchat',
+    loadChildren: () => import('./inchat/inchat.module').then( m => m.InchatPageModule)
+  },
 
 
   // {

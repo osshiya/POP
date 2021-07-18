@@ -35,7 +35,16 @@ export class ChatPage implements OnInit {
       this.router.navigate(['activity'])
       console.log("gotoActivityclicked");
     }
+
+    gotoInchat() {
+      this.router.navigate(['inchat'])
+      console.log("gotoInchatclicked");
+    }
   
+    gotoDiscover() {
+      this.router.navigate(['home'])
+      console.log("gotoDiscoverclicked");
+    }
     
     openFirst() {
       this.menu.enable(true, 'first');

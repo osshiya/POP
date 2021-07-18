@@ -11,12 +11,27 @@ import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Valid
 
 
 
+
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.page.html',
-  styleUrls: ['./activity.page.scss'],
+  selector: 'app-inchat',
+  templateUrl: './inchat.page.html',
+  styleUrls: ['./inchat.page.scss'],
 })
-export class ActivityPage implements OnInit {
+export class InchatPage implements OnInit {
+
+  messages = [
+    {
+      user:'Joe Kwang',
+      msg: 'hey whats up, you voted for the me as the best lecturer yet'
+    },
+    {
+      user:'You',
+      msg: 'Sorry Joe... I have already voted for Mr Melvin as the best lecturer in Ngee Ann Poly BRO',
+    }
+  ];
+
+  currentUser = 'You'
+
 
   constructor(    
     private router: Router,
@@ -33,11 +48,6 @@ export class ActivityPage implements OnInit {
   gotoAct() {
     this.router.navigate(['activity'])
     console.log("gotoActivityclicked");
-  }
-
-  gotoDiscover() {
-    this.router.navigate(['home'])
-    console.log("gotoDiscoverclicked");
   }
 
   

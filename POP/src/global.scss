@@ -24,3 +24,45 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600&display=swap');
+
+//font setting
+:root{
+//   --ion-background-color: #FFFCF2;
+  --ion-font-family: 'Comfortaa', cursive;
+//   --ion-background-color: rgb(255,215,215);
+}
+
+// ion-content #content{
+//     --ion-background-color: linear-gradient(153deg, rgba(255,215,215,1) 0%, rgba(255,249,249,1) 32%, rgba(255,255,255,1) 38%, rgba(206,210,225,1) 80%, rgba(62,77,137,1) 100%, rgba(0,20,99,1) 100%);
+// }
+
+strong{
+    --font-weight: 400;
+}
+
+p, span{
+    --font-weight: 300;
+}
+
+.tabs-inner {
+    flex: 1;
+    position: unset !important;
+    margin-bottom: -80px;
+}
+
+ion-refresher-content {
+    padding-bottom: 200px;
+    padding-top: 50px;
+    background-color: #FFCF01;
+    --ion-text-color: white;
+    --color: white;
+    // margin-bottom: 200px;
+  
+    // .refresher-pulling {
+    //   position: fixed;
+    //   top: 50px;
+    // }
+  }

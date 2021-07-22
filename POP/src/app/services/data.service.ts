@@ -190,7 +190,7 @@ export class DataService {
   }
 
   getProfiles(str2, currentsid){
-    return this.http.get<[userData]>(this.profilesUrl + '?usersidhost=' + currentsid + '&usersidtarget=' + str2);
+    return this.http.get<[userData]>(this.profilesUrl + '?usersid=' + str2);
   }
 
   getUniqueProfile(usersid){

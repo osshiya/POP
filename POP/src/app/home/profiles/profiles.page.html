@@ -16,11 +16,20 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="false">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-slides pager="false">
     <ion-slide>
 
-  <div *ngFor="let userinfo of userinfos">
-    <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost == null">
+  <div *ngFor="let userinfo of userinfos; first as isFirst;">
+    <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost !== currentsid && isFirst">
     <div id="left-fixed-profiles" class="fixed-profiles" style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
     <div class="leftProfiles">
       <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
@@ -49,8 +58,10 @@
           <strong>Followers</strong>
         </a>
 
-      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 || userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
-      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>
+      <!-- <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 || userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
+      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button> -->
+      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 ||  userinfo.following == 1 && userinfo.usersidhost !== currentsid|| userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
+      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1 && userinfo.usersidhost == currentsid" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>
     </div>
     </ng-container>
     </div>

@@ -16,7 +16,17 @@
 
   </ion-header>
 
-<ion-content>
+<ion-content id="maincontent" fullscreen>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="false">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
   <ion-slides pager="false">
     <ion-slide>
 
@@ -92,8 +102,7 @@
           <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         </div>
         <div class="rightProfile" style="font-size: x-small; width: 100%; white-space: nowrap;">
-          <p>{{ userinfo.usercontactno }}   |   {{ userinfo.useremail }}   |   <a style="--ion-color-primary: #0070CC;" href="#" onclick="window.open('{{ userinfo.userlink }}',
-            '_system', 'location=yes'); return false;">{{ userinfo.userlink }}</a></p>
+          <p>{{ userinfo.usercontactno }}   |   {{ userinfo.useremail }}   |   <a style="--ion-color-primary: #0070CC;" href="#">{{ userinfo.userlink }}</a></p>
         </div>
         </div>
 

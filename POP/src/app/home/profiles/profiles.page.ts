@@ -56,6 +56,21 @@ export class ProfilesPage implements OnInit {
   }
 
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    $("#fixed-profile").html("");
+    $("#posts-gallery").html("");
+    $("#portfolio-gallery").html("");    
+    this.retrieveUser(this.str2, this.currentsid);
+    this.retrieveUserPosts(this.str2, this.currentsid);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
   async showErrorToast(data: any) {
     const toast = await this.toastCtrl.create({
       message: data,
@@ -349,6 +364,7 @@ userinfo.following = 1;
 var followers = JSON.parse(userinfo.followers);
 followers += 1; 
 userinfo.followers = followers;
+userinfo.usersidhost = currentsid;
 
 // this.showToast('Unliked Post');
 
@@ -398,6 +414,7 @@ userinfo.following = 0;
 var followers = JSON.parse(userinfo.followers);
 followers -= 1; 
 userinfo.followers = followers;
+userinfo.usersidhost = '';
 
 // this.showToast('Unliked Post');
 

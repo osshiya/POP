@@ -40,18 +40,28 @@ export class ProfilePage implements OnInit {
       speed: 400
     };
   
+    this.myData();
   }
 
   ionViewWillEnter(){
     this.segment = "posts";
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
     $("#fixed-profile").html("");
     $("#posts-gallery").html("");
     $("#portfolio-gallery").html("");    
-    
-    this.myData();
+    this.retrieveUser();
+    this.retrieveUserPosts(this.currentsid);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
-  
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     // console.log(this.segment);

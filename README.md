@@ -10,10 +10,19 @@ Supported OS 4.0.3 and newer.
 
 - [GitHub](https://github.com/osshiya/POP.git)
 - [Studio Development Blog](https://s10198275.wixsite.com/magiq)
-- [Individual Blog - SY](https://s10187403.wixsite.com/blog)
+- [Individual Blog - Shi Ya](https://s10187403.wixsite.com/blog)
+- [Individual Blog - Irfan](https://s10198275.wixsite.com/irfansblog)
+- [Individual Blog - Elaine](https://s10195898.wixsite.com/elainepersonalblog)
+- [Individual Blog - Jia Jun]()
 
 
 ## Design Process
+
+Our Application logo's colour scheme is made of colours off NP's official logo as our application is currently targted and serving for NP community only.
+
+POP logo has a cheerful ambience. With vibrant mood colours and impactful design.
+
+For application, we will be using white and black as our main colour scheme. We would be implementing popular design trends into our application design. Such as rounded border corners, gradients and glassmorphism. This is to better serve and keep up with the design trend and preferences of the young and moving society. 
 
 - [Adobe XD](https://xd.adobe.com/view/e7fb1282-5a8e-4e2a-8229-a33eeb2ce993-b2a8/screen/4319ad0d-4174-4485-bbdd-ab92fc622976/)
 
@@ -23,57 +32,67 @@ Supported OS 4.0.3 and newer.
 
 
 ## Features
-- Discover:
-- Social:
-- Search
-- Camera
-- Forum
-- Profile
-- Chat
-- Activity
+- Discover: Discover is where you can find posts from the community sorted by newest.
+- Social: Social is where you see posts updated by your following circles sorted by newest.
+- Search: Search is where you can find users by their name or username. You also see the top 10 posts by the community at the page.
+- Camera: Camera is where you can take pictures or choose pictures from your photo library then upload then as a post or a project with custom fields and descriptions.
+- Profile: Profile is your own unique personal space, you can display and showoff anything you want to show to the public.
 
-- Likes
-- Comment
-- Follow
+- Likes: Likes is where you can show your support by supporting posts that are interesting or as an act to support your friends.
+- Comment: Comments is to leave feedback or opinion about the post. You can show support or give suggestion of improvement.
+- Follow: Follow is to receive updates from a specfic users in your social so that you can keep track of them anytime when they posted a new post.
 
-- Edit Profile
-- Check Followers/ Followings
+- Edit Profile: Edit your profile with newest updates, showcase your proudest skills, portfolio links and contact information.
+- Check Followers/ Followings: See who you're following or followed by.
 
-- Posts
-- Projects: 
-- Liked Posts
-- Liked Projects
+- Posts: Sharing of normal posts about your activities or life moments.
+- Projects: Showcase your proud works and build them up like a portfolio.
+- Liked Posts: See what posts you have liked so far.
 
-- Logout
+- Logout: Logout to swtich account or for safety purposes.
 
-- Validation
+- Validation: Password have to be 3 characters or more, to ensure that your password is secure enough.
 
 
 ## Features Left to Implement
-- Forum
-- Chat
-- Activity
+- Forum (Visual-only): Forum is an under-development feature. Forum is where you can start random and interest topics with the community and have a discussion about it. 
+- Chat (Visual-only): Chat is an under-development feature. At chat, you can start a private message ot private group chat with other users.
+- Activity (Visual-only): Activity is an under-development feature. Activity is similar to a notification center. You can see what is going around in the community or your circles.
 
-- Teams
-- Liked Projects
+- Teams: Set your team and teammates as you post a project done by your team.
+- Liked Projects: See what projects you have liked so far.
 
-- Setting
-- Dark Mode
+- Settings: Customise preferences and options.
+- Dark Mode: Switch to dark mode for a dark interface.
 
 
 ## Technologies Used
 - [Ionic](https://ionicframework.com/)
     - The project uses **Ionic** to create mobile interface and icons.
-- [HTML]
+- [HTML](https://html.com/)
     - The project uses **HTML** to create formatting.
-- [CSS]
+- [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
     - The project uses **CSS** to modify the components' style.
-- [TypeScript]
+- [TypeScript](https://www.typescriptlang.org/)
     - The project uses **TypeScript** to create features.
-
+- [php](https://www.php.net/)
+    - The project uses **php** to create features.
+- [phpMyAdmin](https://www.phpmyadmin.net/)
+    - The project uses **phpMyAdmin** to create features.
 
 ## Testing
+- As a user, I want to login to my account
+    - Success: Login page - Types in credentials - Sucess - Discover page
+    - Fail: Login page - Types in credentials - Fail - Login page
+    - Forget Password: Login page - Forget Password - Forget Password page - Read message
 
+- As a user, I want to follow a user
+    - Users from Discover: Discover page - Taps into profile - Follow
+    - Search by name/username: Search page - Types in name - Taps into user's profile - Follow
+    - Find through a mutual: A mutual's profile - Check their following/ followed - Taps into user's profile - Follow
+
+- As a user, I want to edit my profile
+    - Edit Profile: Profile page - Edit Profile - Fills in information - Save
 
 ## References
 - Ionic Framework APIs

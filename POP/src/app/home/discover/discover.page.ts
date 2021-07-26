@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
+import { IonContent, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Storage } from '@ionic/storage';
@@ -7,7 +7,6 @@ import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CommentPage } from '../../modal/comment/comment.page';
-import { MenuController } from '@ionic/angular';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -25,19 +24,25 @@ export class DiscoverPage implements OnInit {
     private dataService: DataService,
     public toastCtrl: ToastController ,
     private modalController: ModalController,
-    private menu: MenuController
+    private menu: MenuController,
   ) { }
 
-  gotoChat() {
-    this.router.navigate(['chat'])
-    console.log("gotoChatclicked");
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
   }
 
-  gotoAct() {
-    this.router.navigate(['activity'])
-    console.log("gotoActivityclicked");
-  }
-  
+  async logout(){
+  console.log("logging out");
+
+  const storage = new Storage();
+  await storage.create();
+
+  await storage.set('usersid', '');
+  await storage.set('userpassword', '');
+
+  this.router.navigate(['/login']);
+}
 
   // public likeShow = false;
   // public unlikeShow = false;
@@ -76,12 +81,6 @@ export class DiscoverPage implements OnInit {
 
   ionViewWillEnter(){
     // $("#discover-gallery").html("");
-    $("#discover-gallery").html("");
-    $("#social-gallery").html("");   
-  
-    this.retrieveDiscover();
-    this.retrieveSocial();
-    this.retrieveUser();
   }
 
   scrollToTOP(){
@@ -101,6 +100,7 @@ export class DiscoverPage implements OnInit {
 
     this.retrieveDiscover();
     this.retrieveSocial();
+    this.retrieveUser();
     // this.retrieveLikes();
   }
 
@@ -124,10 +124,10 @@ export class DiscoverPage implements OnInit {
     toast.present();
   }
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
+  // openFirst() {
+  //   this.menu.enable(true, 'first');
+  //   this.menu.open('first');
+  // }
 
   async presentModal(postid, comments, likes, discoverpost) {
     const modal = await this.modalController.create({
@@ -175,81 +175,18 @@ export class DiscoverPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
+
     $("#discover-gallery").html("");
     $("#social-gallery").html("");   
     this.retrieveDiscover();
     this.retrieveSocial();
+    this.retrieveUser();
 
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
-
-//   retrieveDiscover(){
-//     console.log("retrieve Discover");
-
-// var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-// obj = { "limit":100};
-// dbParam = JSON.stringify(obj);
-// xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.onreadystatechange = function() {
-//   if (this.readyState == 4 && this.status == 200) {
-//     myObj = JSON.parse(this.responseText);
-//     for (x in myObj) {
-//       var postsData = {
-//       date: myObj[x].postdate,
-//       usersid: myObj[x].usersid,
-//       id: myObj[x].postid,
-//       url: myObj[x].posturl,
-//       desc: myObj[x].postdesc,
-//       }
-
-//        //change to div for ion-card-content for full scale img
-//     $("#discover-gallery").prepend(
-//       `
-//       <ion-item style=" --ion-card-background: #FFFFFF;">
-//       <ion-card style="width:100%; height:100vh;">
-//       <ion-card-header style="width:100%; height:30px ;margin: 10px 0;">
-//       <ion-card-subtitle>
-//         <div class="small-user" style="width:100%; float:left;"><a href="/home/profiles/${postsData.usersid}">${postsData.usersid}</a></div>
-//       </ion-card-subtitle>
-//       </ion-card-header>
-//       <ion-card-content id="post_${postsData.id}"style="width:100%; height:100vh;">
-      
-//         <img src="${postsData.url}" style="width:100%; height:300px ;margin: 30px 0;">
-
-//         <div class="bars" style="margin: 30px 0; width:100%; height: 20vh;">
-//         <ion-button class="opened" (click)="open()">Open</ion-button>
-//         <ion-button onclick="liked()">Open</ion-button>
-//         <div class="left-bar" style="width:75%; float: left"> 
-//           <p>${postsData.desc}</p>
-//         </div>
-
-//       <div class="right-bar" style="display:flex; flex-direction: column; float:right;">
-//         <ion-button icon-only onclick="liked()"><ion-icon name="heart-outline" style="font-size:50px;"></ion-button>
-//         <ion-icon name="chatbox-outline" class="comment" style="font-size:50px;"></ion-icon>
-//       </div>
-//       </div>
-
-//         <p style="float:right; display:block; margin: 30px 0">${postsData.date}</p>
-//       </ion-card-content> 
-//       </ion-card>
-//         </ion-item>
-//         `
-// );
-//     // return;
-//   }
-//     console.log(myObj);
-//   }
-// };
-// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=" + dbParam, true);
-// xmlhttp.send();
-
-// // $('.opened').hide();
-//   }
 
 retrieveUser(){
   // console.log("retrieve Discover");
@@ -406,18 +343,6 @@ retrieveUser(){
   }
 });
 
-}
-
-  async logout(){
-  console.log("logging out");
-
-  const storage = new Storage();
-  await storage.create();
-
-  await storage.set('usersid', '');
-  await storage.set('userpassword', '');
-
-  this.router.navigate(['/login']);
 }
 
 }

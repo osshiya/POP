@@ -3,7 +3,7 @@
     <ion-title>Discover</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-header>
+<ion-header class="glass">
   <ion-toolbar>
     <ion-searchbar animated value="" showCancelButton="focus" (ionInput)="retrieveUser($event)" (ionFocus)="overlay($event)" (ionClear)="unoverlay($event)"></ion-searchbar>
   </ion-toolbar>
@@ -11,7 +11,7 @@
 
 <ion-content>
   <div padding [ngClass]="{'my-overlay': overlayHidden === true}">
-    <ion-list *ngFor="let userinfo of userinfos">
+    <ion-list  lines="none" *ngFor="let userinfo of userinfos">
       <ion-item>
         <ion-avatar slot="start">
           <img src="{{ userinfo.useravatarurl }}">

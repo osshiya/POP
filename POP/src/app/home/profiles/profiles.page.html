@@ -98,8 +98,8 @@
 
     
     <ion-slide> 
-      <div *ngFor="let userinfo of userinfos">
-        <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost == null" >
+      <div *ngFor="let userinfo of userinfos; first as isFirst;">
+        <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost !== currentsid && isFirst">
         <div id="left-fixed-profiles" class="fixed-profiles" *ngIf="userinfo.usersid == str2"  style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
         <div class="leftProfiles">
           <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">

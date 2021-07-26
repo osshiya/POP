@@ -180,59 +180,6 @@ if (this.str2 == this.currentsid){
     return await modal.present();
   }
 
-//   retrieveUser(str2, currentsid){
-//     console.log("retrieve users");
-//     console.log("start of posting: " + str2);
-
-// var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-// obj = { "limit":100};
-// dbParam = JSON.stringify(obj);
-// xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.onreadystatechange = function() {
-//   if (this.readyState == 4 && this.status == 200) {
-//     myObj = JSON.parse(this.responseText);
-//     for (x in myObj) {
-//       if(myObj[x].usersid == str2){
-
-//       var user = {
-//       usersid: myObj[x].usersid,
-//       useremail: myObj[x].useremail,
-//       username: myObj[x].username,
-//       userpassword: myObj[x].userpassword,
-//       userfirstname: myObj[x].userfirstname,
-//       userlastname: myObj[x].userlastname,
-//       userschool: myObj[x].userschool,
-//       userdiploma: myObj[x].userdiploma,
-//       useryear: myObj[x].useryear,
-//       useravatarurl: myObj[x].useravatarurl,
-//       userbio: myObj[x].userbio,
-//       schoolbadge: myObj[x].schoolbadge,
-//       }
-
-//     $("#fixed-profiles").html(
-//       `
-//       <div class="leftProfiles" style="width: 45%;">
-//         <img src="${user.useravatarurl}" style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
-//       </div>
-//       <div class="rightProfiles" style="width: 55%; margin 0 20px; ">
-//       <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
-//         <p>@${user.username}</p>
-//         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
-//       </div>
-//         `
-// );
-//     }
-//     // return;
-//   }
-//     console.log(myObj);
-//   }
-// };
-// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profile.php?x=" + dbParam, true);
-// xmlhttp.send();
-// }
-
 retrieveUser(str2, currentsid){
   // console.log("retrieve Discover");
   this.dataService.getProfiles(str2, currentsid).subscribe(response => {
@@ -267,85 +214,6 @@ retrieveUserPosts(str2, currentsid){
 })
 }
 
-// var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-// obj = { "limit":100};
-// dbParam = JSON.stringify(obj);
-// xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.onreadystatechange = function() {
-//   if (this.readyState == 4 && this.status == 200) {
-//     myObj = JSON.parse(this.responseText);
-//     for (x in myObj) {
-//       if(myObj[x].usersid == str2 && myObj[x].posttype == 'post'){
-
-//       var posts = {
-//       date: myObj[x].postdate,
-//       usersid: myObj[x].usersid,
-//       id: myObj[x].postid,
-//       url: myObj[x].posturl,
-//       desc: myObj[x].postdesc,
-//       }
-
-//     $("#posts-profiles").prepend(
-//       `
-//       <div class="posts" style="width:100%; height:100%; float: left;">
-//       <img src="${posts.url}" class="${posts.id}" style="width:100%;">
-//       </div>
-//         `
-// );
-//     }
-//     // return;
-//   }
-//     console.log(myObj);
-//   }
-// };
-// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-// xmlhttp.send();
-// }
-
-
-// retrieveUserPortfolio(str2){
-//     console.log("retrieve portfolio");
-//     console.log("start of posting: " + str2);
-
-// var obj, dbParam, xmlhttp, myObj, x, txt = "";
-
-// obj = { "limit":100};
-// dbParam = JSON.stringify(obj);
-// xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.onreadystatechange = function() {
-//   if (this.readyState == 4 && this.status == 200) {
-//     myObj = JSON.parse(this.responseText);
-//     for (x in myObj) {
-//       if(myObj[x].usersid == str2 && myObj[x].posttype == 'portfolio'){
-
-//       var posts = {
-//       date: myObj[x].postdate,
-//       usersid: myObj[x].usersid,
-//       id: myObj[x].postid,
-//       url: myObj[x].posturl,
-//       desc: myObj[x].postdesc,
-//       }
-//       //document.getElementById("gallery").innerHTML = myObj[x].userportfoliodesc;
-//         $("#portfolio-profiles").prepend(
-//               `
-//               <div class="posts" style="width:100%; height:100%; float: left;">
-//               <img src="${posts.url}" class="${posts.id}" style="width:100%;">
-//               </div>
-//                 `
-//     );
-//     }
-//     // return;
-//   }
-//     console.log(myObj);
-//   }
-// };
-// xmlhttp.open("GET", "https://student.amphibistudio.sg/10187403A/POP/db/profileposts.php?x=" + dbParam, true);
-// xmlhttp.send();
-// }
-
 follow(userinfo, currentsid, str2){
   let followreq = {
     usersidhost: currentsid,
@@ -373,27 +241,6 @@ this.showErrorToast('Error');
 }
 });
 
-//   this.dataService.getCheck(this.userid).subscribe(response => {
-//     if(response != null){  
-
-// var postid = $(this).data('likeid');
-// 		const thispost = $(this);
-
-// console.log(discoverpost.postid);
-
-  // $.ajax({
-  // 	url: 'index.php',
-  // 	type: 'post',
-  // 	data: {
-  // 		'liked': 1,
-  // 		'postid': postid
-  // 	},
-  // 	success: function(response){
-  // 		thispost.parent().find('span.likes_counter').text(response + " likes");
-  // 		thispost.addClass('hide');
-  // 		thispost.siblings().removeClass('hide');
-  // 	}
-  // });
 }
 
 unfollow(userinfo, currentsid, str2, followingData){

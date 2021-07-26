@@ -1,23 +1,66 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+<ion-content class="tabscontent">
+
+  <ion-toolbar position="top" style="border-bottom-right-radius: 80px; width: 15%;">
+    <ion-buttons slot="end" style="margin-right: 15px;">
+      <ion-button fill="clear" (click)="openFirst()">
+        <ion-icon src="../../../assets/images/iconas/Menu.svg"></ion-icon>
+      </ion-button>
+      </ion-buttons>
   </ion-toolbar>
-</ion-header>
 
-  <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title>Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-menu class="custom" side="start" menuId="first" contentId="main">
 
+    <div id="displayProfile">
+
+      <div *ngFor="let userinfo of userinfos">
+        <ng-container *ngIf="userinfo.usersid == currentsid" >
+
+          <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userinfo.userfirstname }} {{ userinfo.userlastname }}!</ion-title>
+
+        <div class="sectiontwo">
+          <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 100px; height: 100px; border-radius: 50%;">
+          
+          <div class="sectiontwo-icons" style="float: right; padding-top: 55px; padding-right: 20px;">
+            <ion-button fill="clear" (click)="gotoChat()" style="height: 100%;">
+              <ion-icon src="../../../assets/images/iconas/Chatv2.svg" style="font-size: 30px;"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="gotoAct()" style="height: 100%;">
+              <ion-icon src="../../../assets/images/iconas/Activitys.svg" style="font-size: 30px;"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+          <!-- <img src="{{ userinfo.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
+          <p>@{{ userinfo.username }}</p>
+          <p>{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
+          <p style="font-size: x-small;">{{ userinfo.userbio }}</p> -->
+          </ng-container>
+        </div>
+
+      </div>
+
+  <ion-content id="main">
+    <ion-list>
+      <ion-item>
+        <ion-buttons>
+        <ion-button fill="clear" (click)="logout()">
+          <ion-icon name="log-out-outline" style="margin-right:10px"></ion-icon>
+          Log out
+        </ion-button>
+      </ion-buttons>
+      </ion-item>
+      <!-- <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item> -->
+    </ion-list>
   </ion-content>
-   -->
+</ion-menu>
+
+<!-- <ion-content class="maincontent" fullscreen>
+</ion-content> -->
 
   <ion-tabs>
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" class="rounded">
       <ion-tab-button tab="discover">
         <!-- <ion-icon name="walk-outline"></ion-icon> -->
         <ion-icon src="../../assets/images/iconas/Discover.svg"></ion-icon>
@@ -49,3 +92,5 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
+</ion-content>

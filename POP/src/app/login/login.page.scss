@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
 :host{
-  --ion-background-color: #FFFCF2;
-  --ion-font-family: 'Open Sans', sans-serif;
+  --ion-background-color: linear-gradient(to bottom, #ffffff, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  letter-spacing: 3px;
+//   --ion-font-family: 'Open Sans', sans-serif;
 }
 
 strong{
@@ -42,8 +43,10 @@ top: 10vh;
 
 .ion-align-items-center{
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .ion-text-center{
-    text-align: center
+    text-align: center;
+    margin-bottom: 50px;
 }

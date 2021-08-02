@@ -52,11 +52,14 @@
 
 <ion-content id="main">
   <ion-list>
+
     <ion-item>
       <ion-buttons>
       <ion-button fill="clear" (click)="logout()">
-        <ion-icon name="log-out-outline" style="margin-right:10px"></ion-icon>
-        Log out
+        <ion-icon name="log-out-outline" slot="start" style="margin-right:10px"></ion-icon>
+        <ion-label>
+          Logout
+        </ion-label>
       </ion-button>
     </ion-buttons>
     </ion-item>

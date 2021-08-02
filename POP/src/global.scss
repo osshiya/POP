@@ -66,3 +66,27 @@ ion-refresher-content {
     //   top: 50px;
     // }
   }
+
+  .searchbar-input.sc-ion-searchbar-md {
+    border-radius: 25px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #7f8490;
+    background-color: white;
+    -webkit-box-shadow: 0 !important;
+    box-shadow: 0!important;
+  }
+
+  .sc-ion-input-md-h.sc-ion-input-md-s {
+    border-radius: 25px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #7f8490;
+    background-color: white;
+    -webkit-box-shadow: 0 !important;
+    box-shadow: 0!important;
+  }

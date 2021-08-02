@@ -19,12 +19,6 @@ p, span{
 //     --ion-background-color: #FFCF01; 
 //   }
 
-ion-toolbar{
-    --font-weight: 600;
-    text-align: left;
-    color: rgb(72, 69, 69)
-  }
-
   ion-searchbar{
     --ion-background-color: none;
   }
@@ -36,6 +30,14 @@ ion-toolbar{
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+
+  ion-toolbar{
+    --font-weight: 600;
+    --ion-background-color: #45444415;
+    --color: white;
+    --ion-toolbar-color: white;
+    --ion-text-color: white;
   }
 
 // .swiper-slide {

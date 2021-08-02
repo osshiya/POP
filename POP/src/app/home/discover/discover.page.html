@@ -25,7 +25,7 @@
     <div *ngFor="let userpost of userposts">
       <ng-container *ngIf="userpost.usersid == currentsid" >
 
-        <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userpost.userfirstname }} {{ userpost.userlastname }}!</ion-title>
+        <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userpost.userfirstname }} {{ userpost.userlastname }} !</ion-title>
 
       <div class="sectiontwo">
         <img src="{{ userpost.useravatarurl }}"  style="object-fit: cover; width: 100px; height: 100px; border-radius: 50%; border: 1px solid white">

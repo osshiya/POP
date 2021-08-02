@@ -27,9 +27,17 @@ export class DiscoverPage implements OnInit {
     private menu: MenuController,
   ) { }
 
-  openFirst() {
+  openFirst(){
     this.menu.enable(true, 'first');
     this.menu.open('first');
+  }
+
+  gotoChat(){
+    this.router.navigate(['/chat']);
+  }
+
+  gotoAct(){
+    this.router.navigate(['/activity']);
   }
 
   async logout(){

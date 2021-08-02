@@ -1,13 +1,16 @@
-<ion-header>
+<ion-header class="glass">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button fill="outline" (click)="dismiss()">
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
-        Back
-      </ion-button>
-      </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar position="top" style="border-bottom-right-radius: 80px; width: 50%; --background:transparent; position: absolute; top: 0; ">
+      <ion-buttons slot="start">
+        <ion-button fill="outline" (click)="dismiss()">
+          <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+          Back
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>

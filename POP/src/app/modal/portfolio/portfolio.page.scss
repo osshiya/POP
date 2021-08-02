@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
 :host{
-  --ion-background-color: #FFFCF2;
-  --ion-font-family: 'Open Sans', sans-serif;
+    //   --ion-background-color: #FFFCF2;
+    //   --ion-font-family: 'Open Sans', sans-serif;
+    --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
 }
+    
 
 strong{
 font-weight: 400;
@@ -65,18 +67,47 @@ ion-button{
     --border-style: none;
 }
 
-ion-toolbar{
+.glass{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+  
+  ion-toolbar{
     text-align: center;
-}
-
-ion-header{
-    --ion-background-color: #FFCF01;
-    --color: white;
-    --ion-toolbar-color: white;
-    --ion-text-color: white;
-}
+    --font-weight: 600;
+    --ion-background-color: #45444415;
+    --color: #454444;
+    --ion-toolbar-color: #454444;
+    --ion-text-color: #454444;
+  }
 
 a.users{
     text-decoration: none;
     font-weight: 600;
-    }
+}
+
+ion-card{
+    --background: transparent;
+    border-radius: 60px;
+
+    // backdrop-filter: blur(16px) saturate(180%);
+    // -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.292);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+ion-card-content{
+    display: none !important;
+    --ion-card-background: #000000;
+    --ion-item-background: #000000;
+    --ion-background-color: #000000;
+}
+
+ion-item{
+    --ion-background-color: none;
+}

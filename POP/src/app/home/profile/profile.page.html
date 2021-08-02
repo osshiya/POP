@@ -3,16 +3,19 @@
     <ion-title>Portfolio</ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-header>
+<ion-header class="glass">
 
   <ion-toolbar>
     <ion-title>Profile</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button color="danger" (click)="presentProfileModal()">
+  </ion-toolbar>
+
+  <ion-toolbar position="top" style="border-bottom-right-radius: 80px; width: 15%; --background:transparent; position: absolute; top: 0; right:0; ">
+    <ion-buttons slot="primary" style="margin-right: 15px;">
+      <ion-button fill="clear" (click)="presentProfileModal()">
         Edit
       </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+      </ion-buttons>
+    </ion-toolbar>
 
   </ion-header>
 

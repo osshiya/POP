@@ -28,7 +28,9 @@
         <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userpost.userfirstname }} {{ userpost.userlastname }} !</ion-title>
 
       <div class="sectiontwo">
+        <ion-button fill="clear" (click)="gotoProfile()" style="height: 100%;">
         <img src="{{ userpost.useravatarurl }}"  style="object-fit: cover; width: 100px; height: 100px; border-radius: 50%; border: 1px solid white">
+      </ion-button>
         
         <div class="sectiontwo-icons" style="float: right; padding-top: 55px; padding-right: 20px;">
           <ion-button fill="clear" (click)="gotoChat()" style="height: 100%;">

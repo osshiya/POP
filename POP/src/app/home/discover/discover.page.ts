@@ -32,6 +32,10 @@ export class DiscoverPage implements OnInit {
     this.menu.open('first');
   }
 
+  gotoProfile(){
+    this.router.navigate(['/home/profile']);
+  }
+
   gotoChat(){
     this.router.navigate(['/chat']);
   }

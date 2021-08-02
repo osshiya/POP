@@ -4,12 +4,12 @@
 //     --ion-background-color: white !important; 
 // }
 
-ion-content{
-    --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
-}
+// ion-content{
+//     --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
+// }
 
 ion-list{
-    --ion-background-color: transparent;;
+    --ion-background-color: transparent;
 }
 
 
@@ -150,3 +150,6 @@ text-decoration: none;
 font-weight: 600;
 }
 
+.clickable {
+  pointer-events: auto !important;
+}

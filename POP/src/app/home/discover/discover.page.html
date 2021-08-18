@@ -25,7 +25,7 @@
     <div *ngFor="let userpost of userposts">
       <ng-container *ngIf="userpost.usersid == currentsid" >
 
-        <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userpost.userfirstname }} {{ userpost.userlastname }} !</ion-title>
+        <ion-title style="margin: 30px 0 25px 10px; font-size: x-large;">Hi, {{ userpost.userfirstname }}!</ion-title>
 
       <div class="sectiontwo">
         <ion-button fill="clear" (click)="gotoProfile()" style="height: 100%;">
@@ -41,10 +41,6 @@
           </ion-button>
         </div>
       </div>
-        <!-- <img src="{{ userinfo.schoolbadge }}" style="width:30px; vertical-align:middle; margin-left:5px">
-        <p>@{{ userinfo.username }}</p>
-        <p>{{ userinfo.userschool }} | {{ userinfo.userdiploma }} | Year {{ userinfo.useryear }}</p>
-        <p style="font-size: x-small;">{{ userinfo.userbio }}</p> -->
         </ng-container>
       </div>
 
@@ -63,25 +59,12 @@
       </ion-button>
     </ion-buttons>
     </ion-item>
-    <!-- <ion-item>Menu Item</ion-item>
-    <ion-item>Menu Item</ion-item>
-    <ion-item>Menu Item</ion-item>
-    <ion-item>Menu Item</ion-item> -->
   </ion-list>
 </ion-content>
 </ion-menu>
 
 
 <ion-content id="maincontent" fullscreen>
-  
-  <!-- <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="discover">
-    <ion-segment-button value="discover" checked>
-      <ion-label>Explore</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="social">
-      <ion-label>Social</ion-label>
-    </ion-segment-button>
-    </ion-segment> -->
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="false">
     <ion-refresher-content

@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -99,21 +97,6 @@ export class EditprofilePage implements OnInit {
     this.modalController.dismiss(userinfo);
   }
 
-  // retrieveUser(){
-  //   // console.log("retrieve Discover");
-  
-  //   this.dataService.getProfile().subscribe(response => {
-  //     if(response != null){  
-  //     //this.showToast('Logged in');
-  //       // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
-  //       // console.log(response);
-  //       this.userinfo = response;
-  //     }else{
-  //       //this.showErrorToast('Wrong userid/ password');
-  //     }
-  // })
-  // }
-
   retrieveUser(){
     // console.log("retrieve Discover");
   
@@ -126,35 +109,7 @@ export class EditprofilePage implements OnInit {
   })
   }
 
-//     $("#fixed-profile").html(
-//       `
-//       <div class="leftProfile" style="width: 45%;">
-//         <img src="${user.useravatarurl}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
-//       </div>
-//       <div class="rightProfile" style="width: 55%; margin 0 20px; ">
-//         <strong>${user.userfirstname} ${user.userlastname}</strong><img src="${user.schoolbadge}" style="width:30px; vertical-align:middle; margin-left:5px">
-//         <p>@${user.username}</p>
-//         <p>${user.userschool} | ${user.userdiploma} | Year ${user.useryear}</p>
-//       </div>
-//         `
-// );
-
 async putToDB(){
-  // const result = form.value;
-  // console.log('form: ' + form.value);
-// console.log('formdata?:' + this.form.value);
-  // let userinfo = {
-  //   // usersid: this.currentsid,
-  //   useremail: this.useremail,
-  //   usercontactno: this.usercontactno,
-  //   username: this.username,
-  //   userpassword: this.userpassword,
-  //   useravatarurl: this.base64Image,
-  //   userdob: this.userdob,
-  //   userbio: this.userbio,
-  //   usergender: this.usergender,
-  //   userlink: this.userlink
-  // }
 
   const data = this.form.value;
   console.log('sending userPostData: ' + JSON.stringify(data));
@@ -202,22 +157,7 @@ if(response != null){
   this.showErrorToast('Changed Profile Photo Unsuccessfully');
 }
 });
-// this.postToDB(f);
-// console.log(this.image);
-// return  this.image = image.dataUrl;
 };
 
-// uploadImage(){
-  // const data = this.formpic.value;
-
-// this.dataService.updateuserpic(data, this.currentsid).subscribe(response => {
-//   if(response != null){
-//     this.showToast('Changed Profile Photo successfully');
-//     // this.dismiss(this.form.value);
-//   }else{
-//     this.showErrorToast('Changed Profile Photo Unsuccessfully');
-//   }
-//   });
-// }
 
 }

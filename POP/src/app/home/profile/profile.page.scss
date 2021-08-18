@@ -1,11 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
-
-
 :host{
-//  --ion-color-primary: #FFCF01;
-//   --ion-background-color: #FFFCF2;
 --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
-//   --ion-font-family: 'Open Sans', sans-serif;
 }
 
 strong{
@@ -19,20 +13,6 @@ p, span{
 #fixed-profile{
     height: 20vh;
 }
-
-// ion-slides {
-//     // height: 120%;
-// }
-
-// .swiper-pagination{
-//     display: none;
-// }
-
-// .slides-md{
-    // --bullet-background: none;
-    // --bullet-background-active: none;
-    // --ion-background-color: #ebe7db;
-// }
 
 .swiper-slide {
     display: block;
@@ -52,14 +32,10 @@ p, span{
 
 #portfolio-gallery{
     flex-direction: row;
-    // margin: 0 5px 0 5px;
-    // align-items: center;
 }
 
 #posts-gallery{
     flex-direction: row;
-    // margin: 0 5px 0 5px;
-    // align-items: center;
 }
 
 .wrapper {
@@ -90,7 +66,7 @@ p, span{
 .dot {
     height: 70px;
     width: 70px;
-    background-color: #FFCF01;
+    background-color: #ffffff;
     border-radius: 50%;
     display: inline-block;
     margin: 0 5px;
@@ -100,4 +76,13 @@ p, span{
 .dot p{
     line-height:50px;
     white-space: nowrap;
+}
+    
+ion-segment-button .segment-button-checked{
+color: #0070CC;;
+font-weight: bolder;
+}
+
+.colouredprofile{
+    background-image: linear-gradient(#FFFFFF, #FFCF01);
 }

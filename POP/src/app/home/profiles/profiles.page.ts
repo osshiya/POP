@@ -50,6 +50,10 @@ export class ProfilesPage implements OnInit {
     this.segment="posts";
   }
 
+  back(){
+    this.location.back();
+  }
+
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     // console.log(this.segment);
@@ -86,19 +90,6 @@ export class ProfilesPage implements OnInit {
     $("#posts-profiles").html("");
     $("#portfolio-profiles").html("");    
     
-    // if (this.route.snapshot.data['user']){
-    //   this.userData = this.route.snapshot.data['user'];
-
-    //   this.userIdentity= this.userData.userid;
-    //   console.log("userIdentity: " + this.userIdentity);
-
-    //   console.log(this.userIdentity);
-    // }else{
-    //   console.log("???");
-    //   this.showErrorToast('Error');
-    //   this.location.back();
-    // }
-    // console.log(this.router.url);
     var str = this.router.url;
     this.str2 = str.split("/").pop();
     console.log(this.str2);
@@ -116,16 +107,6 @@ if (this.str2 == this.currentsid){
     // this.retrieveUserPortfolio(str2);
 }
   }
-
-  // async myData(str2){
-  //   const storage = new Storage();
-  //   await storage.create();
-  //   const currentsid = await storage.get('usersid');
-
-  //   // if (str2 == currentsid){
-  //   //   this.router.navigateByUrl('home/profile');
-  //   // } 
-  // }
 
   async presentFollowerModal() {
     const modal = await this.modalController.create({

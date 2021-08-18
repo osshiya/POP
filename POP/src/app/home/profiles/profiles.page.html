@@ -2,6 +2,15 @@
   <ion-toolbar>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar position="top" style="border-bottom-right-radius: 80px; width: 50%; --background:transparent; position: absolute; top: 0; ">
+    <ion-buttons slot="start">
+      <ion-button fill="none" (click)="back()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -20,7 +29,7 @@
 
   <div *ngFor="let userinfo of userinfos; first as isFirst;">
     <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost !== currentsid && isFirst">
-    <div id="left-fixed-profiles" class="fixed-profiles" style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+    <div id="left-fixed-profiles" class="fixed-profiles" style="color: #0070CC; height: 35vh; padding-top: 10px;">
     <div class="leftProfiles">
       <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
     </div>
@@ -32,10 +41,6 @@
     </div>
     </div>
 
-  <!-- <div *ngFor="let userpost of userposts">
-    <p>{{ userpost.posturl }}</p>
-  </div> -->
-  <!-- <ion-slides pager="false"> -->
 
     <div class="follow-part" style="height: 12vh; font-size: small; margin: 0 20px; color: #0070CC;">
         <a class="following" style="margin: 25px 0; width: 20%; float: left; border-right: 2px solid #0070cc2a; --ion-color-primary: #0070CC;" (click)='presentFollowingModal()'>
@@ -48,8 +53,6 @@
           <strong>Followers</strong>
         </a>
 
-      <!-- <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 || userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
-      <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button> -->
       <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 0 ||  userinfo.following == 1 && userinfo.usersidhost !== currentsid|| userinfo.following == null" (click)="follow(userinfo, currentsid, str2);">Follow</ion-button>
       <ion-button shape="round" style="margin: 25px 10px; float: right;" *ngIf="userinfo.following == 1 && userinfo.usersidhost == currentsid" (click)="unfollow(userinfo, currentsid, str2);">Unfollow</ion-button>
     </div>
@@ -59,10 +62,10 @@
     <div class="posts-title" style="height: 30px;">
       <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" value="posts">
         <ion-segment-button value="posts" checked>
-          <strong style="color: #FFCF01;">POSTS</strong>
+          <strong>POSTS</strong>
         </ion-segment-button>
         <ion-segment-button value="likes">
-          <strong style="color: #FFCF01;">LIKES</strong>
+          <strong>LIKES</strong>
         </ion-segment-button>
         </ion-segment>
     </div>
@@ -90,7 +93,7 @@
     <ion-slide> 
       <div *ngFor="let userinfo of userinfos; first as isFirst;">
         <ng-container *ngIf="userinfo.usersid == str2 && userinfo.usersidhost == currentsid || userinfo.usersid == str2 && userinfo.usersidhost !== currentsid && isFirst">
-        <div id="left-fixed-profiles" class="fixed-profiles" *ngIf="userinfo.usersid == str2"  style="color: #0070CC; height: 35vh; padding-top: 10px; background-image: linear-gradient(#FFFFFF, #FFCF01);">
+        <div id="left-fixed-profiles" class="fixed-profiles" *ngIf="userinfo.usersid == str2"  style="color: #0070CC; height: 35vh; padding-top: 10px;">
         <div class="leftProfiles">
           <img src="{{ userinfo.useravatarurl }}"  style="object-fit: cover; width: 80px; height: 80px; border-radius: 50%; margin: 10px auto 20px; display: block;">
         </div>
@@ -113,7 +116,7 @@
       <div class="posts-title" style="height: 30px;">
         <ion-segment value="projects">
           <ion-segment-button value="projects" checked>
-            <strong style="color: #FFCF01;">>PROJECTS</strong>
+            <strong>>PROJECTS</strong>
           </ion-segment-button>
           </ion-segment>
       </div>

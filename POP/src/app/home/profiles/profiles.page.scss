@@ -1,10 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
-
 :host{
-//  --ion-color-primary: #FFCF01;
-//   --ion-background-color: #FFFCF2;
 --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
-//   --ion-font-family: 'Open Sans', sans-serif;
 }
 
 strong{
@@ -88,3 +83,12 @@ ion-header{
   line-height:50px;
   white-space: nowrap;
 }
+
+ion-segment-button .segment-button-checked{
+  color: #0070CC;;
+  font-weight: bolder;
+  }
+  
+  .colouredprofile{
+      background-image: linear-gradient(#FFFFFF, #FFCF01);
+  }

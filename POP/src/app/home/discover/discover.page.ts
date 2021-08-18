@@ -7,7 +7,6 @@ import * as $ from 'jquery';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CommentPage } from '../../modal/comment/comment.page';
-import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-discover',
@@ -56,8 +55,6 @@ export class DiscoverPage implements OnInit {
   this.router.navigate(['/login']);
 }
 
-  // public likeShow = false;
-  // public unlikeShow = false;
   enterid: string;
   userposts: any = [];
   discoverposts: any = [];
@@ -78,15 +75,6 @@ export class DiscoverPage implements OnInit {
   segment: string;
 
   ngOnInit() {
-    // var slides = document.querySelector('ion-slides');
-
-    // Optional parameters to pass to the swiper instance.
-    // See http://idangero.us/swiper/api/ for valid options.
-    // slides.options = {
-    //   initialSlide: 0,
-    //   speed: 400
-    // }
-
     this.myData();
     this.segment = 'discover';
   }
@@ -136,11 +124,6 @@ export class DiscoverPage implements OnInit {
     toast.present();
   }
 
-  // openFirst() {
-  //   this.menu.enable(true, 'first');
-  //   this.menu.open('first');
-  // }
-
   async presentModal(postid, comments, likes, discoverpost) {
     const modal = await this.modalController.create({
       component: CommentPage,
@@ -154,8 +137,7 @@ export class DiscoverPage implements OnInit {
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });
 
-    // const { data } = await modal.onWillDismiss();
-    // console.log(data);
+
     modal.onDidDismiss()
       .then((data) => {
         // const rdata = data['data'];
@@ -173,15 +155,6 @@ export class DiscoverPage implements OnInit {
         discoverpost.comments = this.ddata;
         // console.log(data['role']);
     });
-    // modal.onDidDismiss().then((dataReturned) => {
-    //   if (dataReturned !== null) {
-    //     this.dataReturned = dataReturned.data;
-    //     //alert('Modal Sent Data :'+ dataReturned);
-
-    //     console.log(JSON.stringify(this.dataReturned));
-    //   }
-    // });
-
     return await modal.present();
   }
 
@@ -245,27 +218,6 @@ retrieveUser(){
   })
   }
 
-  // retrieveLikes(){
-  //   this.dataService.checkLikes(this.currentsid).subscribe(response => {
-  //     if(response != null){  
-  //     //this.showToast('Logged in');
-  //       console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/liking.php?x=');
-  //       console.log("liked: " + JSON.stringify(response));
-  //       this.likedposts = response;
-  //       // $('.like21').addClass('hide');
-  //       // $('.unlike21').removeClass('hide');
-  //       // console.log("???");
-  //       if(this.likedposts.liked == 1){
-  //         console.log('true');
-  //         this.isLiked = !this.isLiked;
-  //       }
-  //     }else{
-  //       // this.likeShow = true;
-  //       // this.unlikeShow = false;
-  //       //this.showErrorToast('Wrong userid/ password');
-  //     }
-  // })
-  // }
 
   like(postid, currentsid, discoverpost){
 
@@ -288,38 +240,11 @@ retrieveUser(){
       var likeys = JSON.parse(discoverpost.likes);
       likeys += 1; 
       discoverpost.likes = likeys;
-      // const res = document.getElementById("like-counter").textContent;
-      // $('span#like-counter').text(JSON.parse(res) + 1);
       this.showToast('Liked Post');
-      // this.isLiking==-1 
-      // i=this.isLiking;
-      // $('span.like-counter').text(response + " likes");
-      // document.getElementById('like21');
-      // $(".like21").addClass("hide");
-      // $('.unlike').removeClass('hide');
     }else{
       this.showErrorToast('Error');
     }
   });
-
-// var postid = $(this).data('likeid');
-// 		const thispost = $(this);
-
-    // console.log(discoverpost.postid);
-
-			// $.ajax({
-			// 	url: 'index.php',
-			// 	type: 'post',
-			// 	data: {
-			// 		'liked': 1,
-			// 		'postid': postid
-			// 	},
-			// 	success: function(response){
-			// 		thispost.parent().find('span.likes_counter').text(response + " likes");
-			// 		thispost.addClass('hide');
-			// 		thispost.siblings().removeClass('hide');
-			// 	}
-			// });
   }
 
   unlike(postid, currentsid, discoverpost){
@@ -333,23 +258,15 @@ retrieveUser(){
     const data = likePostData;
     console.log('likePostData: ' + JSON.stringify(data));
 
-  //   this.dataService.getCheck(this.userid).subscribe(response => {
-  //     if(response != null){  
   this.dataService.likes(data).subscribe(response => {
   if(response != null){
 
-    // const res = document.getElementById("like-counter").textContent;
-    // $('span#like-counter').text(JSON.parse(res) - 1);
     discoverpost.likedusersid = "";
     var likeys = JSON.parse(discoverpost.likes);
     likeys -= 1; 
     discoverpost.likes = likeys;
 
     this.showToast('Unliked Post');
-    // $('span.like-counter').text(response + " likes");
-    // document.getElementById('like21');
-    // $(".like21").addClass("hide");
-    // $('.unlike').removeClass('hide');
   }else{
     this.showErrorToast('Error');
   }

@@ -1,8 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Discover</ion-title>
-  </ion-toolbar>
-</ion-header> -->
 <ion-header class="glass">
   <ion-toolbar>
     <ion-searchbar animated value="" showCancelButton="focus" (ionInput)="retrieveUser($event)" (ionFocus)="overlay($event)" (ionClear)="unoverlay($event)"></ion-searchbar>
@@ -26,71 +21,10 @@
       </ion-list>
 </div>
 
-  <!-- <ion-label>Monthly Post Ranking</ion-label>
-<div ngFor*="let rankingpost of rankingposts">
-  <ng-container ngIf*="rankingpost.posttype == 'post'">
-  <ion-segment [(ngModel)]="segmentposts" scrollable>
-    <ion-segment-button>
-      <img src="{{ rankingpost.posturl }}">
-    </ion-segment-button>
-    <ion-segment-button>
-      <img src="{{ rankingpost.posturl }}">
-    </ion-segment-button>
-  </ion-segment>
-</ng-container>
-</div> -->
-
-<!-- <ion-label>Monthly Portfolio Ranking</ion-label>
-<div ngFor*="let rankingpost of rankingposts">
-  <ng-container ngIf*="rankingpost.posttype == 'portfolio'">
-  <ion-segment [(ngModel)]="segmentposts" scrollable>
-    <ion-segment-button>
-      <img src="{{ rankingpost.posturl }}">
-    </ion-segment-button>
-    <ion-segment-button>
-      <img src="{{ rankingpost.posturl }}">
-    </ion-segment-button>
-  </ion-segment>
-</ng-container>
-</div> -->
-
 <div class="images">
   <div class="one-image" *ngFor="let rankingpost of rankingposts">
     <img src="{{ rankingpost.posturl }}" (click)="presentPostModal(rankingpost.posttype, rankingpost.postid)">
   </div>
 </div>
-
-  <!-- <ion-grid>
-    <ion-row class="row">
-      <ion-col  col-6 col-md-4 col-xl-3 *ngFor="let rowOne of rowOnes">
-        <img src="{{ rowOne.posturl }}" class="image-container" (click)=presentPostModal(rowOne.postid)>
-    </ion-col>
-    </ion-row>
-
-    <ion-row class="row">
-      <ion-col  col-6 col-md-4 col-xl-3 *ngFor="let rowTwo of rowTwos">
-        <img src="{{ rowTwo.posturl }}" class="image-container" (click)=presentPostModal(rowTwo.postid)>
-    </ion-col>
-    </ion-row>
-
-    <ion-row class="row">
-      <ion-col  col-6 col-md-4 col-xl-3 *ngFor="let rowThree of rowThrees">
-        <img src="{{ rowThree.posturl }}" class="image-container" (click)=presentPostModal(rowThree.postid)>
-    </ion-col>
-    </ion-row>
-
-    <ion-row class="row">
-      <ion-col  col-6 col-md-4 col-xl-3 *ngFor="let rowFour of rowFours">
-        <img src="{{ rowFour.posturl }}" class="image-container" (click)=presentPostModal(rowFour.postid)>
-    </ion-col>
-    </ion-row>
-
-    <ion-row class="row">
-      <ion-col  col-6 col-md-4 col-xl-3 *ngFor="let rowFive of rowFives">
-        <img src="{{ rowFive.posturl }}" class="image-container" (click)=presentPostModal(rowFive.postid)>
-    </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
 
 </ion-content>

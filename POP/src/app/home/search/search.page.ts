@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { PostPage } from '../../modal/post/post.page';
 import { PortfolioPage } from '../../modal/portfolio/portfolio.page';
-import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -47,24 +46,6 @@ export class SearchPage implements OnInit {
     this.retrievePosts();
   }
 
-  // form = new FormGroup({
-  //   search: new FormControl(),
-  // });
-
-//   retrieveRanks(){
-//     // console.log("retrieve Discover");
-
-//     this.dataService.getPostRanks(this.currentsid).subscribe(response => {
-//       if(response != null){  
-//       //this.showToast('Logged in');
-//         // console.log('link:' + 'https://student.amphibistudio.sg/10187403A/POP/db/posts.php?x=');
-//         // console.log(response);
-//         this.rankingposts = response;
-//       }else{
-//         //this.showErrorToast('Wrong userid/ password');
-//       }
-//   })
-// }
 overlay(evt){
       this.overlayHidden = true;
 }
@@ -145,20 +126,5 @@ async presentPostModal(posttype, postid, discoverpost) {
   return await modal.present();
 }
 }
-
-// async filterList(evt) {
-//   const searchTerm = evt.srcElement.value;
-
-//   if (!searchTerm) {
-//     return;
-//   }
-
-//   console.log(this.userinfos);
-//   this.userinfos = this.userinfos.filter(currentinfo => {
-//     if (currentinfo.name && searchTerm) {
-//       return (currentinfo.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || currentinfo.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
-//     }
-//   });
-// }
 
 }

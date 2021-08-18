@@ -1,9 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
-
 :host{
-    // --ion-background-color: #FFFCF2;
-    --ion-background-color: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 23%, rgba(227,238,255,1) 72%, rgba(255,255,255,1) 100%);
-    // --ion-font-family: 'Open Sans', sans-serif;
+    --ion-background-color: rgb(255, 251, 251);
   }
 
 strong{
@@ -18,18 +14,9 @@ ion-toolbar{
   font-weight: 600;
 }
 
-// ion-input{
-//     // --background: white;
-// }
-
 .titletxt{
     margin: 0;
 }
-
-// ion-title{
-//     text-align: center;
-//     display: inline-block;
-// }
 
 ion-button{
     --border-style: none;

@@ -1,73 +1,28 @@
-<!-- <ion-header>
+<ion-header class="glass">
   <ion-toolbar>
-    <ion-title>Discover</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button fill="clear" (click)="openFirst()">
-        <img src="../../../assets/images/AppLogo_Transparent.png" width="40vh">
-        <ion-icon name="chevron-down-outline"></ion-icon>
-      </ion-button>
-      </ion-buttons>
-
     <ion-title>Chat</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button (click)="gotoChat()" fill="clear">
-        <ion-icon src="../../../assets/images/iconas/Chat.svg"></ion-icon>
-      </ion-button>
-      </ion-buttons>
-
-    <ion-buttons slot="end">
-      <ion-button (click)="gotoAct()"  fill="clear">
-        <ion-icon src="../../../assets/images/iconas/Activity.svg"></ion-icon>
-      </ion-button>
-      </ion-buttons>
   </ion-toolbar>
-</ion-header>
 
-<ion-menu side="start" menuId="first" contentId="main">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>POP! for NP</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content id="main">
-    <ion-list>
-      <ion-item>
-        <ion-buttons>
-        <ion-button fill="clear" (click)="logout()">
-          <ion-icon name="log-out-outline" style="margin-right:10px"></ion-icon>
-          Log out
+  <ion-toolbar position="top" style="border-bottom-right-radius: 80px; width: 50%; --background:transparent; position: absolute; top: 0; ">
+      <ion-buttons slot="start">
+        <ion-button fill="none" (click)="back()">
+          <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+          Back
         </ion-button>
       </ion-buttons>
-      </ion-item>
-      <!-- <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item> -->
-    </ion-list>
-  </ion-content>
-</ion-menu>
+    </ion-toolbar>
+</ion-header>
 
 <ion-content>
 
-  <ion-toolbar>
+  <ion-toolbar style="margin-top: 10px;">
     <ion-grid>
       <ion-row>
-        <ion-col size="2">
-          <ion-button fill="outline" float="left" (click)="gotoDiscover()">
-            <ion-icon  slot="start" name="arrow-back" ></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="10">
+        <ion-col>
           <ion-searchbar></ion-searchbar>
         </ion-col>
       </ion-row>
     </ion-grid>
-
   </ion-toolbar>
 
   <ion-item>
@@ -115,5 +70,4 @@
       <p>Listen, I've had a pretty messed up day...</p>
     </ion-label>
   </ion-item>
-
 </ion-content>

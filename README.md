@@ -1,5 +1,11 @@
 # POP readme
+
+![alt text](https://github.com/osshiya/POP/blob/main/POP/src/assets/images/AppLogo.png)
+
 POP! is a new-age social media mobile application developed by Studio MAGIQ. 
+
+![alt text](https://github.com/osshiya/POP/blob/main/POP/src/assets/images/StudioLogo_v2.png)
+
 Users can capture, save, share their valuable memories, moments and events that happen in their life with their phones. Not just that, POP serve as a creativity hub for sharing of ideas, works and projects. The community may just happen to discover this hidden gem of yours while scrolling through the discover page. Anything can happen in POP!
 
 POP! is currently underdevelopment. 

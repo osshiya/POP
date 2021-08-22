@@ -4,6 +4,20 @@
 
 POP! is a new-age social media mobile application developed by Studio MAGIQ. 
 
+<img src="https://github.com/osshiya/POP/blob/main/POP/src/assets/images/StudioLogo_v2.png" width="300">
+
+### App Description
+
+Users can capture, save, share their valuable memories, moments and events that happen in their life with their phones. Not just that, POP serve as a creativity hub for sharing of ideas, works and projects. The community may just happen to discover this hidden gem of yours while scrolling through the discover page. Anything can happen in POP!
+
+POP! is currently underdevelopment. 
+
+Currently, POP! is a application targeted for students and staff of NP in Singapore. 
+POP! is expected to be released in late August only for Android at Google Play Store.
+Supported OS 4.0.3 and newer.
+
+### Team Members
+
 Irfan
 - Leader
 - UI/UX Designer
@@ -21,16 +35,7 @@ Jia Jun
 - Public Relations
 - Social Media Manager
 
-<img src="https://github.com/osshiya/POP/blob/main/POP/src/assets/images/StudioLogo_v2.png" width="300">
-
-Users can capture, save, share their valuable memories, moments and events that happen in their life with their phones. Not just that, POP serve as a creativity hub for sharing of ideas, works and projects. The community may just happen to discover this hidden gem of yours while scrolling through the discover page. Anything can happen in POP!
-
-POP! is currently underdevelopment. 
-
-Currently, POP! is a application targeted for students and staff of NP in Singapore. 
-POP! is expected to be released in late August only for Android at Google Play Store.
-Supported OS 4.0.3 and newer.
-
+### Links
 Team Github and Studio Blog
 - [GitHub](https://github.com/osshiya/POP.git)
 - [Studio Development Blog](https://s10198275.wixsite.com/magiq)
